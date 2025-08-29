@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3y7h608e7p5s"]
+
+[ext_resource type="Texture2D" uid="uid://dq7mrlc3xufik" path="res://buldingsDecoration/asepriteMoj/whitePoint.png" id="1_q4k26"]
+[ext_resource type="Script" uid="uid://c1k1m4253wpe5" path="res://scripts/enemy_blood.gd" id="2_avq0q"]
+
+[sub_resource type="Curve" id="Curve_k82yn"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 125.275), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_6sksq"]
+offsets = PackedFloat32Array(0, 0.993333)
+colors = PackedColorArray(0.0238216, 1, 0, 1, 0.153837, 0.364227, 0.153369, 1)
+
+[node name="alienblood1" type="CPUParticles2D"]
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("1_q4k26")
+particle_flag_align_y = true
+direction = Vector2(-1, 0)
+gravity = Vector2(0, 0)
+initial_velocity_max = 50.0
+radial_accel_curve = SubResource("Curve_k82yn")
+damping_max = 20.0
+scale_amount_min = 0.1
+scale_amount_max = 0.5
+color_ramp = SubResource("Gradient_6sksq")
+script = ExtResource("2_avq0q")

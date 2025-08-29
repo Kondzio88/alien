@@ -1,0 +1,175 @@
+[gd_scene load_steps=20 format=3 uid="uid://dpuicfedfs7go"]
+
+[ext_resource type="Script" uid="uid://byaqjwrbqdi3v" path="res://scripts/guardian.gd" id="1_xf4gy"]
+[ext_resource type="Texture2D" uid="uid://dk5v3agv11uq6" path="res://characters/enemy2aim.png" id="2_1i8e6"]
+[ext_resource type="Texture2D" uid="uid://djox2idlaskrp" path="res://characters/enemy2dead.png" id="3_kuh0t"]
+[ext_resource type="Texture2D" uid="uid://d1ixc3bro2bft" path="res://characters/enemy2.png" id="3_oyaks"]
+[ext_resource type="Texture2D" uid="uid://b4m6eiaol2sc" path="res://characters/enemy2move1.png" id="4_h3htc"]
+[ext_resource type="Texture2D" uid="uid://dj1a77gtcwnnt" path="res://characters/enemy2move.png" id="5_tc225"]
+[ext_resource type="AudioStream" uid="uid://bupc3dg8x3ea" path="res://sounds/sfx/556 Single Isolated MP3.mp3" id="7_qtw3j"]
+[ext_resource type="Texture2D" uid="uid://5loyfy7rbp04" path="res://characters/questionMark.png" id="8_bw4qm"]
+[ext_resource type="AudioStream" uid="uid://dfuf0saog1xh5" path="res://sounds/sfx/Injured.wav" id="9_8jckx"]
+[ext_resource type="AudioStream" uid="uid://bvkrc567i1ty6" path="res://sounds/sfx/hey-42237.mp3" id="10_vsns6"]
+[ext_resource type="Texture2D" uid="uid://2obxqh2qd6nu" path="res://buldingsDecoration/asepriteMoj/blood.png" id="11_hcqcu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ji2nb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1i8e6")
+}],
+"loop": true,
+"name": &"aim",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kuh0t")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_oyaks")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_oyaks")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_h3htc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_oyaks")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_tc225")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bh7kd"]
+radius = 9.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8srdp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_43sac"]
+radius = 243.002
+
+[sub_resource type="Gradient" id="Gradient_7agi4"]
+colors = PackedColorArray(0.961629, 0.0570953, 0.0570953, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4byr7"]
+gradient = SubResource("Gradient_7agi4")
+fill = 1
+fill_from = Vector2(0.527523, 0.481651)
+fill_to = Vector2(0.880734, 0.137615)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mo1s7"]
+radius = 211.002
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_a10ds"]
+polygon = PackedVector2Array(-2, -10, -7, -5, -7, 3, -3, 9, -6, 2, -6, -4)
+
+[node name="guardian" type="CharacterBody2D"]
+z_index = 5
+collision_layer = 9
+script = ExtResource("1_xf4gy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ji2nb")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bh7kd")
+
+[node name="pointBullet" type="Marker2D" parent="."]
+position = Vector2(15, 6)
+
+[node name="coliding" type="RayCast2D" parent="pointBullet"]
+
+[node name="audioShoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_qtw3j")
+bus = &"sfx"
+
+[node name="hurtBoxArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtBoxArea"]
+shape = SubResource("CircleShape2D_8srdp")
+debug_color = Color(0.825856, 0.108778, 0.204261, 0.42)
+
+[node name="rangeArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rangeArea"]
+shape = SubResource("CircleShape2D_43sac")
+
+[node name="question" type="Sprite2D" parent="."]
+position = Vector2(0, -25)
+scale = Vector2(1e-05, 1)
+texture = ExtResource("8_bw4qm")
+
+[node name="redLight" type="PointLight2D" parent="."]
+position = Vector2(0, -27)
+texture = SubResource("GradientTexture2D_4byr7")
+
+[node name="audioDead" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_8jckx")
+volume_db = 20.0
+bus = &"sfx"
+
+[node name="shootArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="shootArea"]
+shape = SubResource("CircleShape2D_mo1s7")
+debug_color = Color(0.411747, 0.19775, 0.199425, 0.42)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+simplify_path = true
+avoidance_enabled = true
+
+[node name="recalTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="shadow" type="LightOccluder2D" parent="."]
+position = Vector2(0, 1)
+occluder = SubResource("OccluderPolygon2D_a10ds")
+
+[node name="shootTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="chaiseTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="choiseAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_vsns6")
+volume_db = 5.0
+
+[node name="bloodSpriteDead" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("11_hcqcu")
+
+[connection signal="area_entered" from="hurtBoxArea" to="." method="_on_hurt_box_area_area_entered"]
+[connection signal="area_exited" from="hurtBoxArea" to="." method="_on_hurt_box_area_area_exited"]
+[connection signal="body_entered" from="rangeArea" to="." method="_on_range_area_body_entered"]
+[connection signal="body_exited" from="rangeArea" to="." method="_on_range_area_body_exited"]
+[connection signal="body_entered" from="shootArea" to="." method="_on_shoot_area_body_entered"]
+[connection signal="body_exited" from="shootArea" to="." method="_on_shoot_area_body_exited"]
+[connection signal="timeout" from="shootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="chaiseTimer" to="." method="_on_chaise_timer_timeout"]

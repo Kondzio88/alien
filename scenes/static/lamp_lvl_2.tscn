@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dd84yt7iphpis"]
+
+[ext_resource type="Texture2D" uid="uid://2wyc3mefw5c1" path="res://buldingsDecoration/asepriteMoj/lampLight.png" id="1_apf10"]
+[ext_resource type="Script" uid="uid://buw4qmn7fl6sx" path="res://scripts/labLight.gd" id="2_o6btx"]
+
+[sub_resource type="Gradient" id="Gradient_66om0"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_odhcq"]
+gradient = SubResource("Gradient_66om0")
+width = 120
+height = 120
+fill = 1
+fill_from = Vector2(0.522936, 0.490826)
+fill_to = Vector2(0.880734, 0.110092)
+
+[node name="lampLvl2" type="Sprite2D"]
+texture = ExtResource("1_apf10")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_odhcq")
+script = ExtResource("2_o6btx")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 2
+lifetime = 0.2
+emission_shape = 1
+emission_sphere_radius = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 30.0
+linear_accel_max = 100.0

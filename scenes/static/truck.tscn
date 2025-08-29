@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://cnjccxf6cfngo"]
+
+[ext_resource type="Texture2D" uid="uid://bph65nmcf6y33" path="res://buldingsDecoration/grass wehicles other.jpg" id="1_ia5uu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m21c0"]
+size = Vector2(148, 46)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wnstj"]
+polygon = PackedVector2Array(-45, -21, -45, 17, -23, 17, -22.9135, 23.8355, 74, 23, 74, -23, -23, -23, -25, -21)
+
+[sub_resource type="Gradient" id="Gradient_vq4tv"]
+offsets = PackedFloat32Array(0.025974, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6onyo"]
+gradient = SubResource("Gradient_vq4tv")
+fill = 1
+fill_from = Vector2(0.522936, 0.477064)
+fill_to = Vector2(0.178899, 0.876147)
+
+[node name="truck" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ia5uu")
+region_enabled = true
+region_rect = Rect2(87, 237, 148, 45)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_m21c0")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_wnstj")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-75, -19)
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 1.0
+texture = SubResource("GradientTexture2D_6onyo")
+
+[node name="PointLight2D3" type="PointLight2D" parent="."]
+position = Vector2(76, -18)
+color = Color(0.900531, 0.0830795, 0.0830795, 1)
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 1.0
+texture = SubResource("GradientTexture2D_6onyo")
+
+[node name="PointLight2D4" type="PointLight2D" parent="."]
+modulate = Color(0.968418, 0.0829737, 0.0829737, 1)
+position = Vector2(76, 18)
+color = Color(0.988783, 0.0131884, 0.0131884, 1)
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 1.0
+texture = SubResource("GradientTexture2D_6onyo")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(-75, 18)
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 1.0
+texture = SubResource("GradientTexture2D_6onyo")

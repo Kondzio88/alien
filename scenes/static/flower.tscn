@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfirjj4ue05cn"]
+
+[ext_resource type="Texture2D" uid="uid://sylsq5drosis" path="res://tileset/craftpix-551899-free-zombie-tds-tilesets-buildings-and-furniture/Objects/PNG/objects_house_0054_Layer-55.png" id="1_qqiuc"]
+
+[node name="flower" type="Sprite2D"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_qqiuc")

@@ -1,0 +1,218 @@
+[gd_scene load_steps=25 format=3 uid="uid://crg6vn2sibxey"]
+
+[ext_resource type="Script" uid="uid://d2x5jwmxwx5nr" path="res://scripts/blue_sodlier.gd" id="1_11ehv"]
+[ext_resource type="AudioStream" uid="uid://dfuf0saog1xh5" path="res://sounds/sfx/Injured.wav" id="2_kj4c1"]
+[ext_resource type="AudioStream" uid="uid://c3eu75js7hx5m" path="res://sounds/sfx/enemyWalk.wav" id="3_muvre"]
+[ext_resource type="Texture2D" uid="uid://cja7swc8f0bd0" path="res://characters/blueEnemyAim.png" id="4_346ws"]
+[ext_resource type="Texture2D" uid="uid://be4fmy301isgv" path="res://characters/blueEnemyDead.png" id="5_aoa0j"]
+[ext_resource type="Texture2D" uid="uid://c4t4nr1a7crp7" path="res://characters/blueEnemy.png" id="6_p7ld1"]
+[ext_resource type="Texture2D" uid="uid://gk4j1lvvp64f" path="res://characters/blueEnemy1.png" id="7_qjy3b"]
+[ext_resource type="Texture2D" uid="uid://r06gur0oetod" path="res://characters/blueEnemy2.png" id="8_sc4tk"]
+[ext_resource type="AudioStream" uid="uid://cjtri6sqibmn0" path="res://sounds/sfx/762x54r Single Isolated MP3.mp3" id="9_1w10y"]
+[ext_resource type="Texture2D" uid="uid://5loyfy7rbp04" path="res://characters/questionMark.png" id="10_h25it"]
+[ext_resource type="AudioStream" uid="uid://dnqitkd0226cn" path="res://sounds/sfx/whatAFuck.wav" id="11_35gak"]
+[ext_resource type="AudioStream" uid="uid://6m0o881uj55p" path="res://sounds/sfx/fuckYouAshole.wav" id="12_dqypb"]
+[ext_resource type="AudioStream" uid="uid://cs31wkq305r64" path="res://sounds/sfx/fuck.wav" id="13_k4pka"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x8ti8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_346ws")
+}],
+"loop": true,
+"name": &"aim",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_aoa0j")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_p7ld1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_p7ld1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_qjy3b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_p7ld1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_sc4tk")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ee536"]
+radius = 5.0
+height = 18.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m7wl8"]
+radius = 262.002
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_vfyib"]
+polygon = PackedVector2Array(-1, 0, 8, -3, -4, 0, 8, 3)
+
+[sub_resource type="Gradient" id="Gradient_wpbge"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cll6v"]
+gradient = SubResource("Gradient_wpbge")
+width = 150
+height = 40
+fill = 1
+fill_from = Vector2(0.513761, 0.490826)
+fill_to = Vector2(0.87156, 0.0963303)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ftnf4"]
+radius = 9.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uqeu3"]
+polygon = PackedVector2Array(-3, -7, -5, -3, -5, 3, -3, 7, -6, 4, -6, -4)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w2ihe"]
+radius = 221.002
+
+[sub_resource type="Gradient" id="Gradient_rcq5y"]
+offsets = PackedFloat32Array(0.207792, 0.811688)
+colors = PackedColorArray(0.988783, 0.0261938, 0.0261938, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_svk4n"]
+gradient = SubResource("Gradient_rcq5y")
+fill = 1
+fill_from = Vector2(0.527523, 0.46789)
+fill_to = Vector2(0.949541, 0.0458716)
+
+[node name="blueSoldier" type="CharacterBody2D"]
+z_index = 5
+collision_layer = 9
+script = ExtResource("1_11ehv")
+
+[node name="audioDead" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_kj4c1")
+volume_db = 20.0
+bus = &"sfx"
+
+[node name="audioWalk" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_muvre")
+volume_db = 15.0
+bus = &"enemyWalk"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_x8ti8")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ee536")
+
+[node name="rangeArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rangeArea"]
+shape = SubResource("CircleShape2D_m7wl8")
+
+[node name="pointBullet" type="Marker2D" parent="."]
+position = Vector2(11, 4)
+
+[node name="coliding" type="RayCast2D" parent="pointBullet"]
+target_position = Vector2(9, 0)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="pointBullet"]
+occluder = SubResource("OccluderPolygon2D_vfyib")
+
+[node name="flashLight" type="PointLight2D" parent="pointBullet"]
+position = Vector2(2, 0)
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 3.0
+texture = SubResource("GradientTexture2D_cll6v")
+texture_scale = 3.0
+
+[node name="audioShoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_1w10y")
+bus = &"sfx"
+
+[node name="hurtBoxArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtBoxArea"]
+shape = SubResource("CircleShape2D_ftnf4")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="hurtBoxArea"]
+occluder = SubResource("OccluderPolygon2D_uqeu3")
+
+[node name="question" type="Sprite2D" parent="."]
+z_index = 5
+position = Vector2(0, -32)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("10_h25it")
+
+[node name="shootArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="shootArea"]
+shape = SubResource("CircleShape2D_w2ihe")
+debug_color = Color(0.717237, 0.26428, 0.274828, 0.42)
+
+[node name="redLightQuestion" type="PointLight2D" parent="."]
+position = Vector2(0, -34)
+enabled = false
+texture = SubResource("GradientTexture2D_svk4n")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+simplify_path = true
+avoidance_enabled = true
+
+[node name="recalTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="shootTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="chaiseTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="whatAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_35gak")
+volume_db = 10.0
+bus = &"sfx"
+
+[node name="fuckYouAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_dqypb")
+
+[node name="fuckAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_k4pka")
+volume_db = 5.0
+bus = &"sfx"
+
+[connection signal="body_entered" from="rangeArea" to="." method="_on_range_area_body_entered"]
+[connection signal="body_exited" from="rangeArea" to="." method="_on_range_area_body_exited"]
+[connection signal="area_entered" from="hurtBoxArea" to="." method="_on_hurt_box_area_area_entered"]
+[connection signal="area_exited" from="hurtBoxArea" to="." method="_on_hurt_box_area_area_exited"]
+[connection signal="body_entered" from="shootArea" to="." method="_on_shoot_area_body_entered"]
+[connection signal="body_exited" from="shootArea" to="." method="_on_shoot_area_body_exited"]
+[connection signal="timeout" from="recalTimer" to="." method="_on_recal_timer_timeout"]
+[connection signal="timeout" from="shootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="chaiseTimer" to="." method="_on_chaise_timer_timeout"]

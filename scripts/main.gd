@@ -1,0 +1,44 @@
+extends Node
+
+@onready var level_2_area: Area2D = $areas/level2Area
+@onready var dialog1:bool = false
+@onready var dialog2:bool = false
+@onready var dialog3:bool = false
+@onready var dialog4:bool = false
+
+const LEVEL_2 = preload("res://scenes/level_2.tscn")
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	get_tree().paused = true
+	Global.laserEquipeGlobal = false
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func _on_level_2_area_body_entered(body: Node2D) -> void:
+	get_tree().change_scene_to_file('res://scenes/level_2.tscn')
+
+
+func _on_dialog_area_body_entered(body: Node2D) -> void:
+	if !dialog1 && body is Player:
+		Global.dialog1.emit()
+		dialog1 = true
+
+
+func _on_dialog_area_2_body_entered(body: Node2D) -> void:
+	if !dialog2 && body is Player:
+		Global.dialog2.emit()
+		dialog2 = true
+
+
+func _on_dialog_area_3_body_entered(body: Node2D) -> void:
+	if !dialog3 && body is Player:
+		Global.dialog3.emit()
+		dialog3 = true
+
+
+func _on_dialog_area_4_body_entered(body: Node2D) -> void:
+	if !dialog4 && body is Player:
+		Global.dialog4.emit()
+		dialog4 = true

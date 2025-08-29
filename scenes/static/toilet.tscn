@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bm5da18iet7il"]
+
+[ext_resource type="Texture2D" uid="uid://b5tc35e21xq24" path="res://tileset/BasicFurniture/BasicFurniture_0000s_0006s_0003_Toilet-green.png" id="1_tl0qy"]
+
+[node name="toilet" type="Sprite2D"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_tl0qy")

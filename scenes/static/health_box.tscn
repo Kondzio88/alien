@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://b1y1duuy7trqn"]
+
+[ext_resource type="Texture2D" uid="uid://bribej16wcfx1" path="res://buldingsDecoration/asepriteMoj/healthBox.png" id="1_ihmyr"]
+[ext_resource type="Script" uid="uid://c0e46cw62u1hw" path="res://scripts/health_box.gd" id="1_t3kby"]
+[ext_resource type="AudioStream" uid="uid://bohsihm1lb3y5" path="res://sounds/sfx/Chest Open 2.wav" id="3_ve4q6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oynbe"]
+size = Vector2(16, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hqrv8"]
+radius = 19.0
+
+[sub_resource type="Gradient" id="Gradient_fckfm"]
+offsets = PackedFloat32Array(0, 0.863636)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f53gj"]
+gradient = SubResource("Gradient_fckfm")
+fill = 1
+fill_from = Vector2(0.527523, 0.46789)
+fill_to = Vector2(0.931193, 0.0917431)
+
+[node name="healthBox" type="StaticBody2D"]
+script = ExtResource("1_t3kby")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ihmyr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_oynbe")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_hqrv8")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ve4q6")
+bus = &"sfx"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+enabled = false
+texture = SubResource("GradientTexture2D_f53gj")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

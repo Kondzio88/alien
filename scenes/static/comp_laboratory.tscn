@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://ljwpnon5hhw6"]
+
+[ext_resource type="Texture2D" uid="uid://c7p7i03jalag3" path="res://buldingsDecoration/compLab.png" id="1_27jpa"]
+[ext_resource type="Script" uid="uid://bfoo5pkqcibko" path="res://scripts/comp_laboratory.gd" id="1_lnm01"]
+[ext_resource type="AudioStream" uid="uid://l2o4q3h8b6ou" path="res://sounds/sfx/Mecha TURN ON - OFF 12.wav" id="3_qydhx"]
+[ext_resource type="AudioStream" uid="uid://2ecrsbsl7i5e" path="res://sounds/sfx/password-typing-sound-on-the-keyboard-option-2.mp3" id="4_pdygr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1p2o"]
+size = Vector2(64, 44)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_sk1eo"]
+polygon = PackedVector2Array(-24.4009, -32.4592, -29.6, -13.1468, 32.1996, 3.49059, 37.3988, -15.8218)
+
+[sub_resource type="Gradient" id="Gradient_6xf8k"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b5n0d"]
+gradient = SubResource("Gradient_6xf8k")
+fill = 1
+fill_from = Vector2(0.509174, 0.504587)
+fill_to = Vector2(0.857798, 0.142202)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxtwl"]
+size = Vector2(63, 52)
+
+[node name="comp_laboratory" type="StaticBody2D"]
+script = ExtResource("1_lnm01")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_27jpa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_s1p2o")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+rotation = -0.26298
+occluder = SubResource("OccluderPolygon2D_sk1eo")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-26, -4)
+color = Color(0.961629, 0.0128262, 0.0128262, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_b5n0d")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(-11, -3)
+enabled = false
+color = Color(0.0128262, 0.961629, 0.12668, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_b5n0d")
+
+[node name="turnOnArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="turnOnArea"]
+position = Vector2(0.5, 16)
+shape = SubResource("RectangleShape2D_uxtwl")
+
+[node name="audioTurnOn" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_qydhx")
+
+[node name="keyboarTypinAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_pdygr")
+
+[connection signal="body_entered" from="turnOnArea" to="." method="_on_turn_on_area_body_entered"]
+[connection signal="body_exited" from="turnOnArea" to="." method="_on_turn_on_area_body_exited"]
+[connection signal="finished" from="keyboarTypinAudio" to="." method="_on_keyboar_typin_audio_finished"]

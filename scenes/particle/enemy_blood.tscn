@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://cd8to2v7ao0ny"]
+
+[ext_resource type="Script" uid="uid://c1k1m4253wpe5" path="res://scripts/enemy_blood.gd" id="1_whfy2"]
+
+[sub_resource type="Gradient" id="Gradient_6sksq"]
+offsets = PackedFloat32Array(0, 0.993333)
+colors = PackedColorArray(0.581464, 0.10718, 0.10718, 1, 0.595041, 0.101856, 0.101856, 1)
+
+[node name="enemyBlood" type="CPUParticles2D"]
+emitting = false
+amount = 40
+lifetime = 4.0
+one_shot = true
+explosiveness = 1.0
+particle_flag_align_y = true
+direction = Vector2(-1, 0)
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+linear_accel_min = -100.0
+linear_accel_max = -100.0
+scale_amount_min = 0.5
+scale_amount_max = 3.0
+color_ramp = SubResource("Gradient_6sksq")
+script = ExtResource("1_whfy2")

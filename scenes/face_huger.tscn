@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=4 uid="uid://u361i8y3dadm"]
+
+[ext_resource type="Script" uid="uid://beg52e86ofd7c" path="res://scripts/face_huger.gd" id="1_r433g"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_pppf1"]
+_data = PackedByteArray("AAADAAUAAAABAAAAQAAAACAAAABIAQAAUklGRkABAABXRUJQVlA4TDQBAAAvP8AHEDegqG0bqPx5lc317YZEUdtGTAd/lodg35Mg22b+JNc5yAmWJ/MfABjZHLn+tbo7AY62vW2b3ynYVS7gcgDLkDUzpow5TZz5PIJ5/zMkpKDUOaL/DNy2baTbm71n4NdMySyazXZkdH60emarN1gdp6URJPuK6WAyVjGZ44hMOFtOw4FhDlN4BBC1cBYOEcogYWJ+I0SVwlk4JD1kXXn/xG/pU7Hs0NJxqMb6wqPAchDy5IPZbnu/2hF79vWlPvn31Q7mpuqqqlfbsejcVSd+X+uAMHe+Zk+rHWHcd4fO37DOcSTEqeaa3wcge2npoByhUdOV2d+SV81yheMe8QEuDYQwhUCQbKQzhDJHHEYhwBHy+8q70wxAsx+oCxpdyEkGTTAmIZgQNXJq5sR04n+eAA==")
+size_override = Vector2(64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r433g"]
+atlas = SubResource("PortableCompressedTexture2D_pppf1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxmtl"]
+atlas = SubResource("PortableCompressedTexture2D_pppf1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q1uwa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r433g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r433g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxmtl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxmtl")
+}],
+"loop": true,
+"name": &"run",
+"speed": 20.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xxmtl"]
+radius = 4.0
+
+[node name="faceHuger" type="CharacterBody2D"]
+collision_layer = 17
+collision_mask = 5
+script = ExtResource("1_r433g")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+rotation = 0.380482
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_q1uwa")
+animation = &"run"
+autoplay = "run"
+frame_progress = 0.454576
+flip_h = true
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"should_round_fps": true,
+"slice": "",
+"source": "res://characters/faceHagerAseprite.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "19e4de698523ed5e36f4b707b85e3fc7"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xxmtl")

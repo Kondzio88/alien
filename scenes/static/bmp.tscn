@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcl26m2t155nn"]
+
+[ext_resource type="Texture2D" uid="uid://fyot2ujhhlhd" path="res://buldingsDecoration/update/Background/military.png" id="1_8b62t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4sut8"]
+size = Vector2(132, 56)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_guehu"]
+polygon = PackedVector2Array(-21, -7, -27, 1, -24, 8, -16, 9, -11, 5, -1, 7, 35, 7, 62, 21, 61, -18, 34, -8, 2, -7, -10, -2, -15, -6, -19, -7)
+
+[node name="bmp" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 0.191986
+texture = ExtResource("1_8b62t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_4sut8")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_guehu")

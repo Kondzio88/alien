@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://wdtl0nbly3gb"]
+
+[ext_resource type="Texture2D" uid="uid://kq0emk6sr8j5" path="res://buldingsDecoration/buildings roofs other.jpg" id="1_glg58"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8cg0"]
+size = Vector2(144, 154)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ouu0m"]
+polygon = PackedVector2Array(-56.51, 88.9923, 92.5804, 50.4169, -55.7925, 87.7736, -87.9564, -48.5147, 55.0749, -86.5549, 92.3298, 49.449, 56.51, -88.9923, -92.5804, -50.4169)
+
+[node name="whiteRoof" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_glg58")
+region_enabled = true
+region_rect = Rect2(462, 302, 144, 154)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 10
+shape = SubResource("RectangleShape2D_i8cg0")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+rotation = 1.82398
+occluder = SubResource("OccluderPolygon2D_ouu0m")

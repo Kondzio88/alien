@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://e32gtxdjd1fm"]
+
+[ext_resource type="Texture2D" uid="uid://dw6gc1dor385g" path="res://buldingsDecoration/asepriteMoj/kitchen.png" id="1_lssdh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbyjt"]
+size = Vector2(64, 33)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ip4vt"]
+polygon = PackedVector2Array(-32, -16.5, 32, -16.5, 32, -3.5, -32, -3.5)
+
+[node name="kitchen" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lssdh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_wbyjt")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(0, 0.5)
+occluder = SubResource("OccluderPolygon2D_ip4vt")

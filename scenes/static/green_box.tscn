@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://ds2gktgtxo8ay"]
+
+[ext_resource type="Texture2D" uid="uid://cf24114q2tsa3" path="res://buldingsDecoration/update/Background/cauch.png" id="1_tgil1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4whl0"]
+size = Vector2(28, 44)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kibfm"]
+polygon = PackedVector2Array(-9, -12, -10, 9, 9, 10, 11, -11)
+
+[node name="greenBox" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -0.139626
+texture = ExtResource("1_tgil1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_4whl0")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_kibfm")

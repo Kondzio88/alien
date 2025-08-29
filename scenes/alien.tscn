@@ -1,0 +1,127 @@
+[gd_scene load_steps=16 format=3 uid="uid://cwc4uugi1yqjh"]
+
+[ext_resource type="Script" uid="uid://bib3h5xxfdkyr" path="res://scripts/alien.gd" id="1_nisha"]
+[ext_resource type="PackedScene" uid="uid://d3y7h608e7p5s" path="res://scenes/particle/alien_blood1.tscn" id="2_0easv"]
+[ext_resource type="Texture2D" uid="uid://dauh1b67dx6i5" path="res://characters/alien.png" id="3_ocufe"]
+[ext_resource type="Texture2D" uid="uid://dal5h84ajou4u" path="res://characters/alienmove1.png" id="4_xkgdy"]
+[ext_resource type="Texture2D" uid="uid://d4ccjmfwjseyb" path="res://characters/alienmove.png" id="5_mnnl7"]
+[ext_resource type="AudioStream" uid="uid://kcdj5st1e7jw" path="res://sounds/sfx/aliensound.wav" id="6_ywar6"]
+[ext_resource type="AudioStream" uid="uid://cqwnjlw4d20rw" path="res://sounds/sfx/monster-bite.mp3" id="7_nr5yk"]
+[ext_resource type="AudioStream" uid="uid://3xr115siqhjs" path="res://sounds/sfx/alienHurtSound.mp3" id="8_oy0n1"]
+[ext_resource type="Script" uid="uid://b1tf3xv31w0md" path="res://scripts/hit_box_area.gd" id="9_rs7ql"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hg324"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ocufe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xkgdy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ocufe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_mnnl7")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4iqgt"]
+radius = 3.0
+height = 22.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ir82s"]
+polygon = PackedVector2Array(-2, -0.999993, -2.00003, -7.99999, -1.00004, -10, -1.00005, -13, 0.999953, -13, 0.999964, -10, 1.99997, -8.00001, 2, -1.00001)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wawlm"]
+radius = 3.0
+height = 22.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m2mis"]
+radius = 215.009
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_53khj"]
+size = Vector2(1, 5)
+
+[node name="alien" type="CharacterBody2D"]
+z_index = 5
+collision_layer = 17
+collision_mask = 5
+script = ExtResource("1_nisha")
+bloodScene = ExtResource("2_0easv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hg324")
+animation = &"run"
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_4iqgt")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="CollisionShape2D"]
+position = Vector2(2.17199e-05, 6)
+occluder = SubResource("OccluderPolygon2D_ir82s")
+
+[node name="hurtBoxArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="hurtBoxColision" type="CollisionShape2D" parent="hurtBoxArea"]
+position = Vector2(5, 0)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_wawlm")
+
+[node name="rangeArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rangeArea"]
+shape = SubResource("CircleShape2D_m2mis")
+
+[node name="hurtTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="alienSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_ywar6")
+bus = &"sfx"
+
+[node name="alienBiteSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_nr5yk")
+volume_db = 5.0
+bus = &"sfx"
+
+[node name="alienHurtSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_oy0n1")
+volume_db = 5.0
+bus = &"sfx"
+
+[node name="hitBoxArea" type="Area2D" parent="."]
+position = Vector2(4, 0)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("9_rs7ql")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitBoxArea"]
+position = Vector2(13, -0.5)
+shape = SubResource("RectangleShape2D_53khj")
+
+[node name="attackTimer" type="Timer" parent="."]
+wait_time = 0.3
+
+[connection signal="area_entered" from="hurtBoxArea" to="." method="_on_hurt_box_area_area_entered"]
+[connection signal="area_exited" from="hurtBoxArea" to="." method="_on_hurt_box_area_area_exited"]
+[connection signal="body_entered" from="rangeArea" to="." method="_on_range_area_body_entered"]
+[connection signal="body_exited" from="rangeArea" to="." method="_on_range_area_body_exited"]
+[connection signal="timeout" from="hurtTimer" to="." method="_on_hurt_timer_timeout"]
+[connection signal="timeout" from="attackTimer" to="." method="_on_attack_timer_timeout"]

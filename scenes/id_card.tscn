@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvjnrvtg0cppw"]
+
+[ext_resource type="Texture2D" uid="uid://dcau4dvvse4r" path="res://buldingsDecoration/asepriteMoj/idCard.png" id="1_ni5ax"]
+[ext_resource type="Script" uid="uid://dll4pi040bu6c" path="res://scripts/id_card.gd" id="2_oljkv"]
+[ext_resource type="Texture2D" uid="uid://cl3wdtvoncour" path="res://buldingsDecoration/asepriteMoj/weylandLogo.png" id="3_hgs0d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_44yav"]
+radius = 22.0
+
+[sub_resource type="Gradient" id="Gradient_ry68i"]
+offsets = PackedFloat32Array(0.285714, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hjx57"]
+gradient = SubResource("Gradient_ry68i")
+fill = 1
+fill_from = Vector2(0.495413, 0.463303)
+fill_to = Vector2(0.862385, 0.087156)
+
+[node name="idCard" type="Sprite2D"]
+z_index = 5
+texture = ExtResource("1_ni5ax")
+script = ExtResource("2_oljkv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_hgs0d")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_44yav")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = SubResource("GradientTexture2D_hjx57")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

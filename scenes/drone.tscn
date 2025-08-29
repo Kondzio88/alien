@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=3 uid="uid://ce0bx2lhdn03c"]
+
+[ext_resource type="Texture2D" uid="uid://00r2xrqejv0o" path="res://buldingsDecoration/asepriteMoj/dronePng.png" id="1_rdf1m"]
+[ext_resource type="Script" uid="uid://6kdx5byopb68" path="res://scripts/drone.gd" id="2_1bkji"]
+
+[sub_resource type="Gradient" id="Gradient_sy2wq"]
+offsets = PackedFloat32Array(0.909091, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ytjxy"]
+gradient = SubResource("Gradient_sy2wq")
+width = 20
+height = 20
+fill = 1
+fill_from = Vector2(0.522936, 0.490826)
+fill_to = Vector2(0.862385, 0.146789)
+
+[sub_resource type="Gradient" id="Gradient_v44pu"]
+offsets = PackedFloat32Array(0, 0.707792, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.900531, 0.870753, 0.870753, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mogqk"]
+gradient = SubResource("Gradient_v44pu")
+width = 100
+height = 50
+fill = 1
+fill_from = Vector2(0.513761, 0.513761)
+fill_to = Vector2(0.889908, 0.149083)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_8e4fd"]
+polygon = PackedVector2Array(4, 0, 20, -3.33333, 6.66667, -13.3333, -13.3333, -13.3333, -13.3333, 0, -13.3333, 13.3333, 6.66667, 13.3333, 20, 3.33333)
+
+[node name="drone" type="Sprite2D"]
+z_index = 5
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_rdf1m")
+script = ExtResource("2_1bkji")
+
+[node name="blueLight" type="PointLight2D" parent="."]
+scale = Vector2(2, 2)
+color = Color(0.0291, 0.0442134, 0.97, 1)
+energy = 0.0
+texture = SubResource("GradientTexture2D_ytjxy")
+
+[node name="flashLight" type="PointLight2D" parent="."]
+position = Vector2(13.3333, 0)
+scale = Vector2(24, 24)
+energy = 0.5
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 2.0
+texture = SubResource("GradientTexture2D_mogqk")
+
+[node name="flashLight2" type="PointLight2D" parent="."]
+position = Vector2(13.3333, 0)
+scale = Vector2(12, 12)
+energy = 0.9
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 1.0
+texture = SubResource("GradientTexture2D_mogqk")
+
+[node name="flashLight3" type="PointLight2D" parent="."]
+position = Vector2(13.3333, 0)
+scale = Vector2(21, 21)
+energy = 0.7
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 1.5
+texture = SubResource("GradientTexture2D_mogqk")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(3.33333, 0)
+occluder = SubResource("OccluderPolygon2D_8e4fd")

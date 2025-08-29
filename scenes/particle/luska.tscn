@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://dxldalr40sibi"]
+
+[ext_resource type="Texture2D" uid="uid://b6d2pbqqn77lo" path="res://buldingsDecoration/asepriteMoj/luska.png" id="1_xfyq8"]
+[ext_resource type="Script" uid="uid://b0sxamaap0uqa" path="res://scripts/luska.gd" id="2_kobgo"]
+
+[sub_resource type="Curve" id="Curve_b86eb"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0.0533333, 98.9011), 0.0, 0.0, 0, 0, Vector2(0.173333, 25.2747), 0.0, 0.0, 0, 0, Vector2(0.286667, 20.8791), -44.9551, -44.9551, 0, 0, Vector2(0.373333, 19.7802), 0.0, 0.0, 0, 0, Vector2(0.493333, 14.2857), 0.0, 0.0, 0, 0, Vector2(0.58, 0), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_vybfm"]
+curve = SubResource("Curve_b86eb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dln2m"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 30.0
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+velocity_limit_curve = SubResource("CurveTexture_vybfm")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.5
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.55
+
+[sub_resource type="Animation" id="Animation_g7u66"]
+resource_name = "stop"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aaoa4"]
+_data = {
+&"stop": SubResource("Animation_g7u66")
+}
+
+[node name="luska" type="GPUParticles2D"]
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_dln2m")
+texture = ExtResource("1_xfyq8")
+lifetime = 3.0
+interpolate = false
+script = ExtResource("2_kobgo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_aaoa4")
+}

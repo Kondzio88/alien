@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb71cwj6db4m0"]
+
+[ext_resource type="Texture2D" uid="uid://b0qa7355t0twc" path="res://tileset/BasicFurniture/BasicFurniture_0000s_0005s_0001_Washbasin-green.png" id="1_4cjdh"]
+[ext_resource type="Texture2D" uid="uid://dakisva651xkh" path="res://tileset/BasicFurniture/BasicFurniture_0000s_0005s_0000_Water-mixer.png" id="2_fcea0"]
+
+[node name="kran" type="Node2D"]
+z_index = 1
+position = Vector2(0, 27)
+scale = Vector2(0.2, 0.2)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("1_4cjdh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.768696, 0.981995, 0.828191, 1)
+position = Vector2(0, -29)
+texture = ExtResource("2_fcea0")

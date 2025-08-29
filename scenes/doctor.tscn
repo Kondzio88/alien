@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://cwj7mvtmkb8o3"]
+
+[ext_resource type="Texture2D" uid="uid://bhwfx0ay81lov" path="res://characters/doctorDead.png" id="1_1ycjd"]
+[ext_resource type="Script" uid="uid://cixwv7ybv6oh1" path="res://scripts/doctor.gd" id="1_2x6mr"]
+[ext_resource type="Texture2D" uid="uid://d2yxdmwr2fqp3" path="res://characters/doctor.png" id="1_nrpv2"]
+[ext_resource type="Texture2D" uid="uid://cuq14yk85hd6o" path="res://characters/doctoreMove1.png" id="2_gmcht"]
+[ext_resource type="Texture2D" uid="uid://cmsa088j7jqkl" path="res://characters/doctorMove2.png" id="3_2h16s"]
+[ext_resource type="AudioStream" uid="uid://byasy17c1ds22" path="res://sounds/sfx/death_8_sean.wav" id="6_1d3uo"]
+[ext_resource type="AudioStream" uid="uid://i2gpvus3o0dk" path="res://sounds/sfx/scream.wav" id="8_7sg1n"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tp70c"]
+radius = 4.0
+height = 18.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dtgcc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1ycjd")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_nrpv2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_nrpv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_gmcht")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_nrpv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2h16s")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2bnvk"]
+radius = 5.0
+height = 20.0
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_xxuu2"]
+loop = false
+stream_count = 1
+stream_0 = ExtResource("8_7sg1n")
+
+[node name="doctor" type="CharacterBody2D"]
+script = ExtResource("1_2x6mr")
+moveDirection = Vector2(0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_tp70c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 5
+sprite_frames = SubResource("SpriteFrames_dtgcc")
+animation = &"idle"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_2bnvk")
+
+[node name="audioDead" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_1d3uo")
+
+[node name="hitSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPlaylist_xxuu2")
+volume_db = -10.0
+bus = &"sfx"
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

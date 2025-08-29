@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://6hcixk8exrl0"]
+
+[ext_resource type="Texture2D" uid="uid://c065j32vrxtdg" path="res://buldingsDecoration/asepriteMoj/magazine.png" id="1_mqu3m"]
+[ext_resource type="Script" uid="uid://c1n4n465py865" path="res://scripts/magazine_particle.gd" id="2_vieq4"]
+
+[node name="magazine particle" type="CPUParticles2D"]
+amount = 1
+lifetime = 5.0
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("1_mqu3m")
+particle_flag_align_y = true
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+linear_accel_max = 10.1
+damping_min = 32.324
+damping_max = 37.259
+script = ExtResource("2_vieq4")

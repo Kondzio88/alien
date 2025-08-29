@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://nxs1xvbbjowe"]
+
+[ext_resource type="Script" uid="uid://7fxfmpmhkesg" path="res://scripts/strength_bar_ui.gd" id="1_s2owe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qhv2f"]
+bg_color = Color(0.152941, 0.145098, 0.145098, 1)
+skew = Vector2(1, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.0587371, 0.0564085, 0.0564085, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wk6ys"]
+skew = Vector2(1, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.0180051, 0.0168177, 0.0168177, 1)
+
+[node name="strengthBarUi" type="ProgressBar"]
+offset_right = 300.0
+offset_bottom = 50.0
+theme_override_styles/background = SubResource("StyleBoxFlat_qhv2f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_wk6ys")
+max_value = 300.0
+show_percentage = false
+script = ExtResource("1_s2owe")

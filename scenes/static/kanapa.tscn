@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://2xf7mvshbwvb"]
+
+[ext_resource type="Texture2D" uid="uid://byc1yw8y5m1bu" path="res://tileset/craftpix-551899-free-zombie-tds-tilesets-buildings-and-furniture/Objects/PNG/objects_house_0002_Layer-3.png" id="1_mf5gx"]
+
+[node name="kanapa" type="Sprite2D"]
+modulate = Color(0.157165, 0.95484, 0.204309, 1)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_mf5gx")

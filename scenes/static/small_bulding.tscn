@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cr68yub0tnwa8"]
+
+[ext_resource type="Texture2D" uid="uid://d4g62c8nnkys6" path="res://buldingsDecoration/roofs helipad otherr.jpg" id="1_emllp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n8dnc"]
+size = Vector2(136, 128)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_75dof"]
+polygon = PackedVector2Array(-68, -64, 68, -64, 69, 64, -68, 64)
+
+[node name="small_bulding" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_emllp")
+region_enabled = true
+region_rect = Rect2(325, 364, 137, 129)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_n8dnc")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_75dof")

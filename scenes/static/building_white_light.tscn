@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://tjisodc8rcv0"]
+
+[ext_resource type="Texture2D" uid="uid://crdtvv00vvpn" path="res://buldingsDecoration/update/buildings/3.png" id="1_sty8h"]
+[ext_resource type="PackedScene" uid="uid://b68cuf5bqc0av" path="res://scenes/lights/lamp_yellow.tscn" id="2_kecxu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ccmxj"]
+size = Vector2(91, 104)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ubl7l"]
+polygon = PackedVector2Array(-45, -52, 46, -52, 45.5, 52, -45, 52)
+
+[node name="building_white_light" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sty8h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_ccmxj")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="CollisionShape2D"]
+rotation = -0.00101972
+occluder = SubResource("OccluderPolygon2D_ubl7l")
+
+[node name="lamp_yellow" parent="." instance=ExtResource("2_kecxu")]
+position = Vector2(50, -1)
+rotation = 4.71389
+
+[node name="lamp_yellow2" parent="." instance=ExtResource("2_kecxu")]
+position = Vector2(-49, -3.8147e-06)
+rotation = 1.57628

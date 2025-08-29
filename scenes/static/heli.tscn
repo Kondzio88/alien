@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bui7h5qg2sfb2"]
+
+[ext_resource type="Texture2D" uid="uid://clxjd6bpxmiip" path="res://buldingsDecoration/update/Background/chooper.png" id="1_rqiq5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k03pf"]
+size = Vector2(132.936, 47.3762)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2pv2v"]
+size = Vector2(200.212, 20)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_it50d"]
+polygon = PackedVector2Array(-39, -54, -54, -40, -12, 5, 13, 25, 46, 51, 24, 13, 4, -8)
+
+[node name="heli" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 10
+texture = ExtResource("1_rqiq5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-24.75, -24.25)
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_k03pf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(63.7145, 63.7145)
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_2pv2v")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_it50d")

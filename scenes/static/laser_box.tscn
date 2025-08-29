@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://cm30r8n1gp086"]
+
+[ext_resource type="Script" uid="uid://ci66dtbm2xwt0" path="res://scripts/laser_box.gd" id="1_phnqj"]
+[ext_resource type="Texture2D" uid="uid://bph65nmcf6y33" path="res://buldingsDecoration/grass wehicles other.jpg" id="2_f88xs"]
+[ext_resource type="Texture2D" uid="uid://buuemxsool7ip" path="res://buldingsDecoration/asepriteMoj/marinesLogo.png" id="3_a0ypx"]
+[ext_resource type="Texture2D" uid="uid://cl3wdtvoncour" path="res://buldingsDecoration/asepriteMoj/weylandLogo.png" id="4_5t1jb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vbc3c"]
+size = Vector2(84, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_la81y"]
+size = Vector2(122, 58)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bn1hh"]
+polygon = PackedVector2Array(-42, -15, 42, -15, 42, 15, -42, 15)
+
+[sub_resource type="Gradient" id="Gradient_1kbco"]
+offsets = PackedFloat32Array(0.331169, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tmkd2"]
+gradient = SubResource("Gradient_1kbco")
+width = 85
+height = 30
+fill = 1
+fill_from = Vector2(0.522936, 0.519878)
+fill_to = Vector2(0.940367, 0.155963)
+
+[node name="laserBox" type="StaticBody2D"]
+script = ExtResource("1_phnqj")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("2_f88xs")
+region_enabled = true
+region_rect = Rect2(457, 285, 85, 30)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_a0ypx")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(-28, 0)
+rotation = 1.57142
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_5t1jb")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(30, -1.49214e-13)
+rotation = -1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_5t1jb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vbc3c")
+
+[node name="openArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="openArea"]
+shape = SubResource("RectangleShape2D_la81y")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_bn1hh")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_tmkd2")
+
+[connection signal="body_entered" from="openArea" to="." method="_on_open_area_body_entered"]
+[connection signal="body_exited" from="openArea" to="." method="_on_open_area_body_exited"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8cagnk43cg2w"]
+
+[ext_resource type="Texture2D" uid="uid://b2r1e0vvktsc3" path="res://buldingsDecoration/asepriteMoj/kitchenTable.png" id="1_oklll"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f53lt"]
+size = Vector2(64, 32)
+
+[node name="kitchen_table" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_oklll")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_f53lt")

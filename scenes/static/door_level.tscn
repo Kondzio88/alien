@@ -1,0 +1,180 @@
+[gd_scene load_steps=13 format=3 uid="uid://dc40gvqdxyb01"]
+
+[ext_resource type="Script" uid="uid://ley6yo7rr2ar" path="res://scripts/door_level.gd" id="1_0o7hu"]
+[ext_resource type="Texture2D" uid="uid://3b2am0lbcfy4" path="res://buldingsDecoration/asepriteMoj/doorLevel.png" id="1_sjsqg"]
+[ext_resource type="AudioStream" uid="uid://kpap60nu7j2k" path="res://sounds/sfx/spaceship-door-opening.mp3" id="3_rr1de"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y87x4"]
+size = Vector2(50, 15)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wqyjc"]
+polygon = PackedVector2Array(-25, -8, -25, 7, 25, 7, 25, -8)
+
+[sub_resource type="Gradient" id="Gradient_mur8y"]
+colors = PackedColorArray(0.975206, 0.975026, 0.975026, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iftnq"]
+gradient = SubResource("Gradient_mur8y")
+fill = 1
+fill_from = Vector2(0.541284, 0.463303)
+fill_to = Vector2(0.908257, 0.0963303)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kvhxq"]
+polygon = PackedVector2Array(-25, -8, -25, 7, 25, 7, 25, -8)
+
+[sub_resource type="Animation" id="Animation_gsoq4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_gqdhb"]
+resource_name = "close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-40, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(90, 0), Vector2(50, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ejwtc"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-40, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(50, 0), Vector2(90, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1o51u"]
+_data = {
+&"RESET": SubResource("Animation_gsoq4"),
+&"close": SubResource("Animation_gqdhb"),
+&"open": SubResource("Animation_ejwtc")
+}
+
+[node name="doorLevel" type="Node2D"]
+script = ExtResource("1_0o7hu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sjsqg")
+
+[node name="Area2D" type="StaticBody2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_y87x4")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D"]
+occluder = SubResource("OccluderPolygon2D_wqyjc")
+
+[node name="PointLight2D" type="PointLight2D" parent="Sprite2D"]
+position = Vector2(0, 7)
+color = Color(1, 0.00676143, 0.00676143, 1)
+texture = SubResource("GradientTexture2D_iftnq")
+
+[node name="PointLight2D2" type="PointLight2D" parent="Sprite2D"]
+position = Vector2(0, -9)
+color = Color(1, 0.00676143, 0.00676143, 1)
+texture = SubResource("GradientTexture2D_iftnq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(50, 0)
+texture = ExtResource("1_sjsqg")
+
+[node name="Area2D" type="StaticBody2D" parent="Sprite2D2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D2/Area2D"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_y87x4")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D2"]
+occluder = SubResource("OccluderPolygon2D_kvhxq")
+
+[node name="PointLight2D4" type="PointLight2D" parent="Sprite2D2"]
+position = Vector2(0, -8)
+color = Color(1, 0.00676143, 0.00676143, 1)
+texture = SubResource("GradientTexture2D_iftnq")
+
+[node name="PointLight2D3" type="PointLight2D" parent="Sprite2D2"]
+position = Vector2(0, 7)
+color = Color(1, 0.00676143, 0.00676143, 1)
+texture = SubResource("GradientTexture2D_iftnq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1o51u")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_rr1de")
+volume_db = -10.0

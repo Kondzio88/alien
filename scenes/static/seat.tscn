@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cr4dkhouegdx0"]
+
+[ext_resource type="Texture2D" uid="uid://7xvsyjrii30r" path="res://tileset/craftpix-551899-free-zombie-tds-tilesets-buildings-and-furniture/Objects/PNG/objects_house_0024_Layer-25.png" id="1_0qmst"]
+
+[node name="seat" type="Sprite2D"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_0qmst")

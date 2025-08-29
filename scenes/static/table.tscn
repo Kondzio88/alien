@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkj6obcbqpem7"]
+
+[ext_resource type="Texture2D" uid="uid://28u12r0nr4yo" path="res://buldingsDecoration/table.png" id="1_jstdo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_437xl"]
+size = Vector2(64, 27)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_t8ll4"]
+polygon = PackedVector2Array(0, -6, -6, 1, 23, 1, 16, -6)
+
+[sub_resource type="Gradient" id="Gradient_dskv6"]
+offsets = PackedFloat32Array(0.454545, 1)
+colors = PackedColorArray(0, 0.872156, 0.975206, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_itwu3"]
+gradient = SubResource("Gradient_dskv6")
+fill = 1
+fill_from = Vector2(0.518349, 0.486239)
+fill_to = Vector2(0.880734, 0.110092)
+
+[node name="table" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jstdo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_437xl")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_t8ll4")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(8, 2)
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 2.0
+texture = SubResource("GradientTexture2D_itwu3")

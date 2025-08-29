@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cm6tvpnoed8u2"]
+
+[ext_resource type="Texture2D" uid="uid://dvwjum4x4n0a3" path="res://buldingsDecoration/update/Background/fuel box.png" id="1_uu0gq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_umurn"]
+size = Vector2(62, 110)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_62tak"]
+polygon = PackedVector2Array(-1, -42, -11, -33, -11, -23, -7, -13, -7, 44, 11, 45, 12, -13, 19, -20, 19, -34, 11, -41)
+
+[node name="fuel" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.25, 0)
+scale = Vector2(1.00769, 1)
+texture = ExtResource("1_uu0gq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_umurn")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_62tak")

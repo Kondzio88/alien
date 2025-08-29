@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyhpml1ugjeyj"]
+
+[ext_resource type="Script" uid="uid://cbo5u7cb6r3ga" path="res://scripts/tree_2.gd" id="1_uq68c"]
+[ext_resource type="Texture2D" uid="uid://bdomwhp4fr1ye" path="res://buldingsDecoration/update/Background/tree.png" id="1_yaoos"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vrw0x"]
+radius = 40.0125
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_20yht"]
+radius = 50.04
+
+[node name="tree" type="StaticBody2D"]
+z_index = 10
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_uq68c")
+
+[node name="Area2D" type="Sprite2D" parent="."]
+z_index = 10
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("1_yaoos")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vrw0x")
+
+[node name="shadowArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="shadowArea"]
+shape = SubResource("CircleShape2D_20yht")
+
+[connection signal="body_entered" from="shadowArea" to="." method="_on_shadow_area_body_entered"]
+[connection signal="body_exited" from="shadowArea" to="." method="_on_shadow_area_body_exited"]

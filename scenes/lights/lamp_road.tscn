@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://37rnwndl2jrl"]
+
+[ext_resource type="Texture2D" uid="uid://dke8h11c5t80i" path="res://buldingsDecoration/lampRoad.png" id="1_6hj15"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1xojo"]
+radius = 9.21955
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_44t6b"]
+polygon = PackedVector2Array(-6.56468, -2.62773, -7.27445, 0.287104, -3.36275, 5.35649, 0.523691, 6.30284, 7.2997, 3.83593, 8.24606, -0.0505137, 4.33436, -5.1199, -0.523691, -6.30284)
+
+[sub_resource type="Gradient" id="Gradient_os1cc"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e03fs"]
+gradient = SubResource("Gradient_os1cc")
+width = 220
+height = 220
+fill = 1
+fill_from = Vector2(0.527523, 0.5)
+fill_to = Vector2(0.83945, 0.114679)
+
+[sub_resource type="Gradient" id="Gradient_2ax42"]
+offsets = PackedFloat32Array(0.396104, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5ghwt"]
+gradient = SubResource("Gradient_2ax42")
+width = 100
+height = 100
+fill = 1
+fill_from = Vector2(0.522936, 0.504587)
+fill_to = Vector2(0.862385, 0.114679)
+
+[node name="lampRoad" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -12)
+rotation = -0.238853
+shape = SubResource("CircleShape2D_1xojo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 10
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_6hj15")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(0, -8)
+rotation = -0.238853
+occluder = SubResource("OccluderPolygon2D_44t6b")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, 11)
+energy = 0.7
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 2.0
+texture = SubResource("GradientTexture2D_e03fs")
+texture_scale = 2.0
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 4.9
+texture = SubResource("GradientTexture2D_5ghwt")

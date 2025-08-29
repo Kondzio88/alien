@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://86h22u71ot4l"]
+
+[ext_resource type="Texture2D" uid="uid://bcqudx8c11o6b" path="res://tileset/BasicFurniture/BasicFurniture_0000s_0006s_0000_Toilet-lid-opened.png" id="1_rxf8t"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_lhsrt"]
+polygon = PackedVector2Array(-103, 9, 102, 9, 69, -22, -72, -22)
+
+[sub_resource type="Gradient" id="Gradient_pkfbu"]
+colors = PackedColorArray(0.012464, 0.934474, 0.808554, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wk6hx"]
+gradient = SubResource("Gradient_pkfbu")
+width = 300
+height = 150
+fill = 1
+fill_from = Vector2(0.518349, 0.449541)
+fill_to = Vector2(0.972477, 0.100917)
+
+[node name="tv" type="Sprite2D"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_rxf8t")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_lhsrt")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, 15)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_wk6hx")
