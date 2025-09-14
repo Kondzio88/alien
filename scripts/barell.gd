@@ -11,19 +11,22 @@ extends StaticBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var health:int = 15
 @onready var laser_target_light: PointLight2D = $laserTargetLight
+@onready var shadow: LightOccluder2D = $shadow
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 	
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	health -= area.dealDamage()
 	if health <= 0:
 		animation_player.play('explosion')
+		shadow.visible = false
+		
 	if area is AreaLaser:
 		var tween = get_tree().create_tween().set_loops()
 		tween.tween_property(laser_target_light,'texture_scale',1,0.5)

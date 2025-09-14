@@ -28,6 +28,8 @@ var firstKillLevel2Dialog:bool = true # Levle2 Setts bool on false
 # Script Scenes Signals
 signal scriptSceneLvl2
 signal scriptSceneLvl2DeadSoldier
+signal helicopterLandingSignal
+
 # Player and Global Ui display
 var globalArmorPrecent:String
 var globalBullets:String

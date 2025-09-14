@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbxi2p6qa273a"]
+
+[ext_resource type="Script" uid="uid://cbj54ib83kb54" path="res://scripts/fog.gd" id="1_3hlml"]
+[ext_resource type="PackedScene" uid="uid://io1jha783hwg" path="res://scenes/shaderScenes/fogRect.tscn" id="3_hcsc4"]
+
+[node name="Fog" type="ParallaxBackground"]
+layer = 0
+script = ExtResource("1_3hlml")
+
+[node name="TextureRect" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="ColorRect" parent="TextureRect" instance=ExtResource("3_hcsc4")]
+z_index = 1

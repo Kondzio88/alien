@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dxldalr40sibi"]
 
-[ext_resource type="Texture2D" uid="uid://b6d2pbqqn77lo" path="res://buldingsDecoration/asepriteMoj/luska.png" id="1_xfyq8"]
+[ext_resource type="Texture2D" uid="uid://b6d2pbqqn77lo" path="res://assets/asepriteMoj/luska.png" id="1_xfyq8"]
 [ext_resource type="Script" uid="uid://b0sxamaap0uqa" path="res://scripts/luska.gd" id="2_kobgo"]
 
 [sub_resource type="Curve" id="Curve_b86eb"]

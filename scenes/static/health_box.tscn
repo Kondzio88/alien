@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://b1y1duuy7trqn"]
 
-[ext_resource type="Texture2D" uid="uid://bribej16wcfx1" path="res://buldingsDecoration/asepriteMoj/healthBox.png" id="1_ihmyr"]
+[ext_resource type="Texture2D" uid="uid://bribej16wcfx1" path="res://assets/asepriteMoj/healthBox.png" id="1_ihmyr"]
 [ext_resource type="Script" uid="uid://c0e46cw62u1hw" path="res://scripts/health_box.gd" id="1_t3kby"]
 [ext_resource type="AudioStream" uid="uid://bohsihm1lb3y5" path="res://sounds/sfx/Chest Open 2.wav" id="3_ve4q6"]
 

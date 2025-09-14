@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://bgf2a6qgg1q6s"]
 
 [ext_resource type="Script" uid="uid://xbtqnp2mlw7p" path="res://scripts/drone_box.gd" id="1_5vqfs"]
-[ext_resource type="Texture2D" uid="uid://bph65nmcf6y33" path="res://buldingsDecoration/grass wehicles other.jpg" id="1_n1iko"]
-[ext_resource type="Texture2D" uid="uid://00r2xrqejv0o" path="res://buldingsDecoration/asepriteMoj/dronePng.png" id="2_f44uk"]
-[ext_resource type="Texture2D" uid="uid://cl3wdtvoncour" path="res://buldingsDecoration/asepriteMoj/weylandLogo.png" id="4_4y5de"]
+[ext_resource type="Texture2D" uid="uid://bph65nmcf6y33" path="res://assets/grass wehicles other.jpg" id="1_n1iko"]
+[ext_resource type="Texture2D" uid="uid://00r2xrqejv0o" path="res://assets/asepriteMoj/dronePng.png" id="2_f44uk"]
+[ext_resource type="Texture2D" uid="uid://cl3wdtvoncour" path="res://assets/asepriteMoj/weylandLogo.png" id="4_4y5de"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vbc3c"]
 size = Vector2(84, 30)
@@ -12,6 +12,7 @@ size = Vector2(84, 30)
 size = Vector2(122, 58)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_b0mro"]
+cull_mode = 1
 polygon = PackedVector2Array(-42, -15, 42, -15, 42, 14, -42, 14)
 
 [sub_resource type="Gradient" id="Gradient_sttoy"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://37rnwndl2jrl"]
 
-[ext_resource type="Texture2D" uid="uid://dke8h11c5t80i" path="res://buldingsDecoration/lampRoad.png" id="1_6hj15"]
+[ext_resource type="Texture2D" uid="uid://dke8h11c5t80i" path="res://assets/lampRoad.png" id="1_6hj15"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1xojo"]
 radius = 9.21955

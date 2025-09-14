@@ -11,7 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://cjtri6sqibmn0" path="res://sounds/sfx/762x54r Single Isolated MP3.mp3" id="6_ammvo"]
 [ext_resource type="Texture2D" uid="uid://5loyfy7rbp04" path="res://characters/questionMark.png" id="8_sknsm"]
 [ext_resource type="AudioStream" uid="uid://dnqitkd0226cn" path="res://sounds/sfx/whatAFuck.wav" id="11_w10cf"]
-[ext_resource type="Texture2D" uid="uid://2obxqh2qd6nu" path="res://buldingsDecoration/asepriteMoj/blood.png" id="11_wy8un"]
+[ext_resource type="Texture2D" uid="uid://2obxqh2qd6nu" path="res://assets/asepriteMoj/blood.png" id="11_wy8un"]
 [ext_resource type="AudioStream" uid="uid://6m0o881uj55p" path="res://sounds/sfx/fuckYouAshole.wav" id="12_0c4no"]
 [ext_resource type="AudioStream" uid="uid://cs31wkq305r64" path="res://sounds/sfx/fuck.wav" id="13_na7pt"]
 
@@ -74,7 +74,8 @@ radius = 262.002
 radius = 9.0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uqeu3"]
-polygon = PackedVector2Array(-3, -7, -5, -3, -5, 3, -3, 7, -6, 4, -6, -4)
+cull_mode = 2
+polygon = PackedVector2Array(-4, -8, -2, -9, 2, -9, 4, -8, 5, -4, 6, -3, 6, 3, 4, 5, 4, 8, 2, 9, -2, 9, -4, 8, -6, 4, -6, -4)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w2ihe"]
 radius = 221.002
@@ -106,7 +107,7 @@ bus = &"enemyWalk"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ljtrn")
-animation = &"dead"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -155,6 +156,7 @@ collision_layer = 0
 collision_mask = 18
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="shootArea"]
+position = Vector2(2, 0)
 shape = SubResource("CircleShape2D_w2ihe")
 debug_color = Color(0.717237, 0.26428, 0.274828, 0.42)
 

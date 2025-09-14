@@ -1,14 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://bm5igqpaqs8qd"]
+[gd_scene load_steps=13 format=3 uid="uid://bm5igqpaqs8qd"]
 
 [ext_resource type="Script" uid="uid://cuwbwhod3ho52" path="res://scripts/door.gd" id="1_4ra6u"]
-[ext_resource type="Texture2D" uid="uid://cwurmsjr81s82" path="res://buldingsDecoration/gtaSprites/tiles/GTATIL1_362.bmp" id="2_r7cfk"]
 [ext_resource type="AudioStream" uid="uid://kpap60nu7j2k" path="res://sounds/sfx/spaceship-door-opening.mp3" id="3_lgrgf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y87x4"]
 size = Vector2(64, 63)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wqyjc"]
-polygon = PackedVector2Array(-32, -32, -32, 32, 27.2593, 32, 27.2593, -32)
+polygon = PackedVector2Array(-32, -32, -32, 32, 32.057, 32, 32.057, -32)
 
 [sub_resource type="Gradient" id="Gradient_prmdq"]
 offsets = PackedFloat32Array(0, 0.948052)
@@ -49,6 +48,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(50, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_gqdhb"]
 resource_name = "close"
@@ -62,7 +73,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-40, 0), Vector2(0, 0)]
+"values": [Vector2(-50, 0), Vector2(-22, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -74,7 +85,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(90, 0), Vector2(50, 0)]
+"values": [Vector2(78, 0), Vector2(50, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -101,7 +112,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-40, 0)]
+"values": [Vector2(-22, 0), Vector2(-50, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -113,7 +124,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(50, 0), Vector2(90, 0)]
+"values": [Vector2(50, 0), Vector2(78, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -143,8 +154,8 @@ z_index = 6
 script = ExtResource("1_4ra6u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.84375, 0.1875)
-texture = ExtResource("2_r7cfk")
+scale = Vector2(1.123, 0.25)
+region_rect = Rect2(0, 0, 400, 400)
 
 [node name="Area2D" type="StaticBody2D" parent="Sprite2D"]
 
@@ -167,13 +178,11 @@ texture = SubResource("GradientTexture2D_ebloq")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(50, 0)
-scale = Vector2(0.84375, 0.1875)
-texture = ExtResource("2_r7cfk")
+scale = Vector2(1.122, 0.25)
 
 [node name="Area2D" type="StaticBody2D" parent="Sprite2D2"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D2/Area2D"]
-position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_y87x4")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D2"]
@@ -195,10 +204,11 @@ libraries = {
 }
 
 [node name="range" type="Area2D" parent="."]
+position = Vector2(-11, 0)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="range"]
-position = Vector2(25, 0)
+position = Vector2(38, -1)
 shape = SubResource("CircleShape2D_vufvb")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

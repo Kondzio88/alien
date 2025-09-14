@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://dc40gvqdxyb01"]
 
 [ext_resource type="Script" uid="uid://ley6yo7rr2ar" path="res://scripts/door_level.gd" id="1_0o7hu"]
-[ext_resource type="Texture2D" uid="uid://3b2am0lbcfy4" path="res://buldingsDecoration/asepriteMoj/doorLevel.png" id="1_sjsqg"]
+[ext_resource type="Texture2D" uid="uid://3b2am0lbcfy4" path="res://assets/asepriteMoj/doorLevel.png" id="1_sjsqg"]
 [ext_resource type="AudioStream" uid="uid://kpap60nu7j2k" path="res://sounds/sfx/spaceship-door-opening.mp3" id="3_rr1de"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y87x4"]

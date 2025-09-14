@@ -1,14 +1,14 @@
 extends StaticBody2D
 
-@onready var point_light_2d: PointLight2D = $PointLight2D
-@onready var tween: Tween = get_tree().create_tween().set_loops()
+@onready var shader: ColorRect = $Sprite2D/Shader
+@onready var mat := shader.material as ShaderMaterial
 @onready var player:CharacterBody2D = null
 @onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
 var open:bool = false
 
 func _ready() -> void:
-	tween.tween_property(point_light_2d,'energy',1,1)
-	tween.tween_property(point_light_2d,'energy',0,1)
+	pass
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,10 +20,9 @@ func _process(delta: float) -> void:
 		collision_shape_2d.disabled = true
 	if open:
 		player = null
-		tween.kill()
-		point_light_2d.enabled = false
+		mat.set_shader_parameter('Brightness',0.0)
+				
 		
-
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	player = body
 	if !open && player:

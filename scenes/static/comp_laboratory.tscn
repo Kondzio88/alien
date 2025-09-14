@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://ljwpnon5hhw6"]
 
-[ext_resource type="Texture2D" uid="uid://c7p7i03jalag3" path="res://buldingsDecoration/compLab.png" id="1_27jpa"]
 [ext_resource type="Script" uid="uid://bfoo5pkqcibko" path="res://scripts/comp_laboratory.gd" id="1_lnm01"]
+[ext_resource type="Texture2D" uid="uid://sjheox1sraxn" path="res://assets/asepriteMoj/compLab.png" id="2_dciut"]
 [ext_resource type="AudioStream" uid="uid://l2o4q3h8b6ou" path="res://sounds/sfx/Mecha TURN ON - OFF 12.wav" id="3_qydhx"]
 [ext_resource type="AudioStream" uid="uid://2ecrsbsl7i5e" path="res://sounds/sfx/password-typing-sound-on-the-keyboard-option-2.mp3" id="4_pdygr"]
 
@@ -9,7 +9,8 @@
 size = Vector2(64, 44)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_sk1eo"]
-polygon = PackedVector2Array(-24.4009, -32.4592, -29.6, -13.1468, 32.1996, 3.49059, 37.3988, -15.8218)
+cull_mode = 1
+polygon = PackedVector2Array(-24.4009, -32.4592, -34.8734, 10.288, 25.9606, 26.6655, 37.3988, -15.8218)
 
 [sub_resource type="Gradient" id="Gradient_6xf8k"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -27,7 +28,7 @@ size = Vector2(63, 52)
 script = ExtResource("1_lnm01")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_27jpa")
+texture = ExtResource("2_dciut")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)

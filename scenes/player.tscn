@@ -197,11 +197,13 @@ fill_from = Vector2(0.518349, 0.481651)
 fill_to = Vector2(0.830275, 0.178899)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_otv6e"]
-polygon = PackedVector2Array(-2.37031, -6.81041, -6.02589, -4.6571, -6.34302, 4.55698, -3.93934, 7.24442, -6.09264, 3.58884, -5.05774, -4.40672)
+cull_mode = 1
+polygon = PackedVector2Array(-1.86955, -8.7467, -4.05622, -8.27931, -6.02589, -4.6571, -6.34302, 4.55698, -4.90749, 6.99404, -2.25342, 8.71333, 1.86955, 8.7467, 3.83922, 5.12449, 5.84226, -2.62069, 4.18972, -8.21257)
 
 [node name="player" type="CharacterBody2D"]
 z_index = 6
 collision_layer = 3
+collision_mask = 9
 script = ExtResource("1_kdosh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

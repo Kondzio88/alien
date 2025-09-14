@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ce0bx2lhdn03c"]
 
-[ext_resource type="Texture2D" uid="uid://00r2xrqejv0o" path="res://buldingsDecoration/asepriteMoj/dronePng.png" id="1_rdf1m"]
+[ext_resource type="Texture2D" uid="uid://00r2xrqejv0o" path="res://assets/asepriteMoj/dronePng.png" id="1_rdf1m"]
 [ext_resource type="Script" uid="uid://6kdx5byopb68" path="res://scripts/drone.gd" id="2_1bkji"]
 
 [sub_resource type="Gradient" id="Gradient_sy2wq"]

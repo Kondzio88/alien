@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bcl26m2t155nn"]
 
-[ext_resource type="Texture2D" uid="uid://fyot2ujhhlhd" path="res://buldingsDecoration/update/Background/military.png" id="1_8b62t"]
+[ext_resource type="Texture2D" uid="uid://fyot2ujhhlhd" path="res://assets/update/Background/military.png" id="1_8b62t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4sut8"]
 size = Vector2(132, 56)

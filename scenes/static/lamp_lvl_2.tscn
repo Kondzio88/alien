@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dd84yt7iphpis"]
 
-[ext_resource type="Texture2D" uid="uid://2wyc3mefw5c1" path="res://buldingsDecoration/asepriteMoj/lampLight.png" id="1_apf10"]
+[ext_resource type="Texture2D" uid="uid://2wyc3mefw5c1" path="res://assets/asepriteMoj/lampLight.png" id="1_apf10"]
 [ext_resource type="Script" uid="uid://buw4qmn7fl6sx" path="res://scripts/labLight.gd" id="2_o6btx"]
 
 [sub_resource type="Gradient" id="Gradient_66om0"]

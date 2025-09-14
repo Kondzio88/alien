@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dll6gvw1o0a7r"]
 
-[ext_resource type="Texture2D" uid="uid://2nt5axiasa5i" path="res://buldingsDecoration/labTable.png" id="1_56547"]
+[ext_resource type="Texture2D" uid="uid://2nt5axiasa5i" path="res://assets/labTable.png" id="1_56547"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_437xl"]
 size = Vector2(64, 33)

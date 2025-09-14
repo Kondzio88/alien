@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://clsaw6fo7w3l4"]
 
 [ext_resource type="Script" uid="uid://dofqp0tpb5paf" path="res://scripts/magazine_box.gd" id="1_1oltc"]
-[ext_resource type="Texture2D" uid="uid://bph65nmcf6y33" path="res://buldingsDecoration/grass wehicles other.jpg" id="2_be2rd"]
-[ext_resource type="Texture2D" uid="uid://bkuejsb1bheht" path="res://buldingsDecoration/asepriteMoj/magazineBoxPng.png" id="3_n5cgg"]
-[ext_resource type="Texture2D" uid="uid://cl3wdtvoncour" path="res://buldingsDecoration/asepriteMoj/weylandLogo.png" id="4_ise5k"]
+[ext_resource type="Texture2D" uid="uid://bph65nmcf6y33" path="res://assets/grass wehicles other.jpg" id="2_be2rd"]
+[ext_resource type="Texture2D" uid="uid://bkuejsb1bheht" path="res://assets/asepriteMoj/magazineBoxPng.png" id="3_n5cgg"]
+[ext_resource type="Texture2D" uid="uid://cl3wdtvoncour" path="res://assets/asepriteMoj/weylandLogo.png" id="4_ise5k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vbc3c"]
 size = Vector2(84, 30)

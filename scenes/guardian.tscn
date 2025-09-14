@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://5loyfy7rbp04" path="res://characters/questionMark.png" id="8_bw4qm"]
 [ext_resource type="AudioStream" uid="uid://dfuf0saog1xh5" path="res://sounds/sfx/Injured.wav" id="9_8jckx"]
 [ext_resource type="AudioStream" uid="uid://bvkrc567i1ty6" path="res://sounds/sfx/hey-42237.mp3" id="10_vsns6"]
-[ext_resource type="Texture2D" uid="uid://2obxqh2qd6nu" path="res://buldingsDecoration/asepriteMoj/blood.png" id="11_hcqcu"]
+[ext_resource type="Texture2D" uid="uid://2obxqh2qd6nu" path="res://assets/asepriteMoj/blood.png" id="11_hcqcu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ji2nb"]
 animations = [{
@@ -77,7 +77,8 @@ fill_to = Vector2(0.880734, 0.137615)
 radius = 211.002
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_a10ds"]
-polygon = PackedVector2Array(-2, -10, -7, -5, -7, 3, -3, 9, -6, 2, -6, -4)
+cull_mode = 1
+polygon = PackedVector2Array(-1, -11, -7, -4, -7, 3, -3, 9, 1, 9, 4, 6, 5, 2, 6, 1, 6, -3, 4, -5, 4, -8, 2, -11)
 
 [node name="guardian" type="CharacterBody2D"]
 z_index = 5
@@ -101,6 +102,7 @@ stream = ExtResource("7_qtw3j")
 bus = &"sfx"
 
 [node name="hurtBoxArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 4
 
@@ -109,6 +111,7 @@ shape = SubResource("CircleShape2D_8srdp")
 debug_color = Color(0.825856, 0.108778, 0.204261, 0.42)
 
 [node name="rangeArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 18
 
@@ -130,6 +133,7 @@ volume_db = 20.0
 bus = &"sfx"
 
 [node name="shootArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 18
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bui7h5qg2sfb2"]
 
-[ext_resource type="Texture2D" uid="uid://clxjd6bpxmiip" path="res://buldingsDecoration/update/Background/chooper.png" id="1_rqiq5"]
+[ext_resource type="Texture2D" uid="uid://clxjd6bpxmiip" path="res://assets/update/Background/chooper.png" id="1_rqiq5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k03pf"]
 size = Vector2(132.936, 47.3762)

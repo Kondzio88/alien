@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://cu7ldqvib4shk"]
+
+[ext_resource type="Script" uid="uid://clan0xr4a8ilm" path="res://scripts/helicopter.gd" id="1_wncid"]
+[ext_resource type="Texture2D" uid="uid://y3v2auhjre51" path="res://assets/helicopterPng.png" id="1_xmuea"]
+[ext_resource type="Texture2D" uid="uid://pw6jrsy5exfg" path="res://assets/update/Background/wirnik.png" id="2_xmuea"]
+[ext_resource type="AudioStream" uid="uid://b2q11hd0vps0p" path="res://sounds/sfx/helicopter-sound2.mp3" id="4_vw2hu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vw2hu"]
+size = Vector2(136, 47)
+
+[sub_resource type="Gradient" id="Gradient_vw2hu"]
+offsets = PackedFloat32Array(0.0844156, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xd8dw"]
+gradient = SubResource("Gradient_vw2hu")
+fill = 1
+fill_from = Vector2(0.513761, 0.43578)
+fill_to = Vector2(0.123853, 0.165138)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_vw2hu"]
+polygon = PackedVector2Array(83, -21, 96, -20, 107, -8, 107, 7, 100, 16, 82, 20, 49, 26, 5, 24, -22, 19, -40, 15, -39, -16, -21, -23, 42, -26)
+
+[node name="helicopter" type="CharacterBody2D"]
+z_index = 20
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_wncid")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(32, 0.5)
+shape = SubResource("RectangleShape2D_vw2hu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 0
+z_index = 20
+rotation = 2.35619
+scale = Vector2(0.993493, 0.994164)
+texture = ExtResource("1_xmuea")
+
+[node name="wirnik" type="Sprite2D" parent="Sprite2D"]
+z_index = 20
+position = Vector2(-10, -8)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_xmuea")
+
+[node name="redLight" type="PointLight2D" parent="Sprite2D"]
+position = Vector2(120.995, 135.14)
+rotation = 0.755779
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 1.0
+shadow_item_cull_mask = 5
+texture = SubResource("GradientTexture2D_xd8dw")
+
+[node name="sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_vw2hu")
+volume_db = 5.0
+autoplay = true
+parameters/looping = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_vw2hu")

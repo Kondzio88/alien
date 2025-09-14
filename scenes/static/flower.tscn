@@ -1,7 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://cfirjj4ue05cn"]
+[gd_scene load_steps=3 format=3 uid="uid://cfirjj4ue05cn"]
 
 [ext_resource type="Texture2D" uid="uid://sylsq5drosis" path="res://tileset/craftpix-551899-free-zombie-tds-tilesets-buildings-and-furniture/Objects/PNG/objects_house_0054_Layer-55.png" id="1_qqiuc"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_l7fwp"]
+cull_mode = 1
+polygon = PackedVector2Array(-100, -200, -100, -100, -90, -40, -130, -60, -190, -60, -160, 10, -110, 40, -160, 80, -210, 180, -130, 170, -70, 110, -50, 160, 10, 200, 10, 90, 100, 100, 150, 90, 210, 60, 120, 20, 80, 10, 130, -10, 180, -110, 60, -90, 0, -60, -30, -130, -60, -170)
 
 [node name="flower" type="Sprite2D"]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_qqiuc")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_l7fwp")

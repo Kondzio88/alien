@@ -1,7 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://cgxlof2jfa48d"]
+[gd_scene load_steps=16 format=3 uid="uid://cgxlof2jfa48d"]
 
 [ext_resource type="Script" uid="uid://y8i1qi3pu4c8" path="res://scripts/barell.gd" id="1_xg5ky"]
-[ext_resource type="Texture2D" uid="uid://dmy8uwby02iw8" path="res://buldingsDecoration/asepriteMoj/barell.png" id="2_e134d"]
+[ext_resource type="Texture2D" uid="uid://dmy8uwby02iw8" path="res://assets/asepriteMoj/barell.png" id="2_e134d"]
 [ext_resource type="Script" uid="uid://ckgww488ehbgp" path="res://scripts/area_2d_2.gd" id="2_ueovy"]
 [ext_resource type="PackedScene" uid="uid://dqob40bf7w3c" path="res://scenes/particle/explosion.tscn" id="3_lp3lo"]
 [ext_resource type="AudioStream" uid="uid://cx8vxe5n7ljlw" path="res://sounds/sfx/barellExplode.wav" id="5_wruwr"]
@@ -207,6 +207,10 @@ fill = 1
 fill_from = Vector2(0.495413, 0.490826)
 fill_to = Vector2(0.169725, 0.123853)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7di67"]
+cull_mode = 1
+polygon = PackedVector2Array(-8, -2, -8, 2, -7, 4, -4, 7, -1, 8, 4, 7, 6, 5, 8, 2, 8, -2, 7, -4, 5, -6, 3, -7, 1, -8, -1, -8, -4, -7, -6, -5)
+
 [node name="barell" type="StaticBody2D"]
 script = ExtResource("1_xg5ky")
 
@@ -239,7 +243,7 @@ volume_db = 10.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_8ru01")
+&"": SubResource("AnimationLibrary_8ru01")
 }
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -258,6 +262,9 @@ color = Color(0.988783, 0, 0, 1)
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_45wrk")
 texture_scale = 0.01
+
+[node name="shadow" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_7di67")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

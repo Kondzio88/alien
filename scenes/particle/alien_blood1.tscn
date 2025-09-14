@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d3y7h608e7p5s"]
 
-[ext_resource type="Texture2D" uid="uid://dq7mrlc3xufik" path="res://buldingsDecoration/asepriteMoj/whitePoint.png" id="1_q4k26"]
+[ext_resource type="Texture2D" uid="uid://dq7mrlc3xufik" path="res://assets/asepriteMoj/whitePoint.png" id="1_q4k26"]
 [ext_resource type="Script" uid="uid://c1k1m4253wpe5" path="res://scripts/enemy_blood.gd" id="2_avq0q"]
 
 [sub_resource type="Curve" id="Curve_k82yn"]

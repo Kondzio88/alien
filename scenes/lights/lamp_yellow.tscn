@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b68cuf5bqc0av"]
 
-[ext_resource type="Texture2D" uid="uid://f67s35t0etd" path="res://buldingsDecoration/lampYellow.png" id="1_673t7"]
+[ext_resource type="Texture2D" uid="uid://f67s35t0etd" path="res://assets/lampYellow.png" id="1_673t7"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_lupat"]
 polygon = PackedVector2Array(-8, 0, 7, 0, 5, -4, -6, -4)

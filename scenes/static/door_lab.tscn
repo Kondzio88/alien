@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://vwt2qwrt75ha"]
 
 [ext_resource type="Script" uid="uid://yffbli8nbumt" path="res://scripts/door_lab.gd" id="1_6o1mb"]
-[ext_resource type="Texture2D" uid="uid://cnpeyqseecj2a" path="res://buldingsDecoration/asepriteMoj/doorLab.png" id="1_8pxin"]
+[ext_resource type="Texture2D" uid="uid://cnpeyqseecj2a" path="res://assets/asepriteMoj/doorLab.png" id="1_8pxin"]
 
 [sub_resource type="Animation" id="Animation_lrpod"]
 length = 0.001

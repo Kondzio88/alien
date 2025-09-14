@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://io1jha783hwg"]
+
+[ext_resource type="Shader" uid="uid://d3k6lnmwxal0e" path="res://shaders/fog.gdshader" id="1_af2wx"]
+[ext_resource type="Script" uid="uid://5cwispquq15n" path="res://scripts/fog_rect.gd" id="2_7q5y5"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3hlml"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hcsc4"]
+seamless = true
+noise = SubResource("FastNoiseLite_3hlml")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tr26l"]
+shader = ExtResource("1_af2wx")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_hcsc4")
+shader_parameter/density = 0.25
+shader_parameter/speed = Vector2(0.02, 0.01)
+
+[node name="fog" type="ColorRect"]
+material = SubResource("ShaderMaterial_tr26l")
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("2_7q5y5")

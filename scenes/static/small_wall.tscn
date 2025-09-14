@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://wx6ab1aq34aj"]
 
-[ext_resource type="Texture2D" uid="uid://kq0emk6sr8j5" path="res://buldingsDecoration/buildings roofs other.jpg" id="1_shgkn"]
+[ext_resource type="Texture2D" uid="uid://kq0emk6sr8j5" path="res://assets/buildings roofs other.jpg" id="1_shgkn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sieki"]
 size = Vector2(40, 52)

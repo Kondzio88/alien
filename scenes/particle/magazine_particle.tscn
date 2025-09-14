@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://6hcixk8exrl0"]
 
-[ext_resource type="Texture2D" uid="uid://c065j32vrxtdg" path="res://buldingsDecoration/asepriteMoj/magazine.png" id="1_mqu3m"]
+[ext_resource type="Texture2D" uid="uid://c065j32vrxtdg" path="res://assets/asepriteMoj/magazine.png" id="1_mqu3m"]
 [ext_resource type="Script" uid="uid://c1n4n465py865" path="res://scripts/magazine_particle.gd" id="2_vieq4"]
 
 [node name="magazine particle" type="CPUParticles2D"]

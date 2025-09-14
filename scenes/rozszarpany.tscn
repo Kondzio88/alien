@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dwvxvtijn82ph" path="res://characters/Rozszarpany5.png" id="3_gnxke"]
 [ext_resource type="Texture2D" uid="uid://g7s2hmmt1vgo" path="res://characters/Rozszarpany3.png" id="3_k3ooe"]
 [ext_resource type="AudioStream" uid="uid://ba6ujttumldhh" path="res://sounds/sfx/helpMeSFX.mp3" id="6_xymts"]
-[ext_resource type="Texture2D" uid="uid://2obxqh2qd6nu" path="res://buldingsDecoration/asepriteMoj/blood.png" id="7_rrbdg"]
+[ext_resource type="Texture2D" uid="uid://2obxqh2qd6nu" path="res://assets/asepriteMoj/blood.png" id="7_rrbdg"]
 [ext_resource type="AudioStream" uid="uid://bgr77ary84fr8" path="res://sounds/sfx/death_1_sean.wav" id="8_w0g6n"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u0frw"]

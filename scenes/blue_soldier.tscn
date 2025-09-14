@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://crg6vn2sibxey"]
+[gd_scene load_steps=26 format=3 uid="uid://crg6vn2sibxey"]
 
 [ext_resource type="Script" uid="uid://d2x5jwmxwx5nr" path="res://scripts/blue_sodlier.gd" id="1_11ehv"]
 [ext_resource type="AudioStream" uid="uid://dfuf0saog1xh5" path="res://sounds/sfx/Injured.wav" id="2_kj4c1"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://dnqitkd0226cn" path="res://sounds/sfx/whatAFuck.wav" id="11_35gak"]
 [ext_resource type="AudioStream" uid="uid://6m0o881uj55p" path="res://sounds/sfx/fuckYouAshole.wav" id="12_dqypb"]
 [ext_resource type="AudioStream" uid="uid://cs31wkq305r64" path="res://sounds/sfx/fuck.wav" id="13_k4pka"]
+[ext_resource type="Texture2D" uid="uid://2obxqh2qd6nu" path="res://assets/asepriteMoj/blood.png" id="14_8r5ah"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x8ti8"]
 animations = [{
@@ -83,7 +84,8 @@ fill_to = Vector2(0.87156, 0.0963303)
 radius = 9.0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uqeu3"]
-polygon = PackedVector2Array(-3, -7, -5, -3, -5, 3, -3, 7, -6, 4, -6, -4)
+cull_mode = 2
+polygon = PackedVector2Array(-3, -9, 2, -9, 5, -4, 5, 5, 3, 9, -3, 9, -6, 4, -6, -4)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w2ihe"]
 radius = 221.002
@@ -115,7 +117,7 @@ bus = &"enemyWalk"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_x8ti8")
-animation = &"idle"
+animation = &"dead"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -134,7 +136,7 @@ position = Vector2(11, 4)
 [node name="coliding" type="RayCast2D" parent="pointBullet"]
 target_position = Vector2(9, 0)
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="pointBullet"]
+[node name="flashLightOcluder" type="LightOccluder2D" parent="pointBullet"]
 occluder = SubResource("OccluderPolygon2D_vfyib")
 
 [node name="flashLight" type="PointLight2D" parent="pointBullet"]
@@ -156,7 +158,7 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtBoxArea"]
 shape = SubResource("CircleShape2D_ftnf4")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="hurtBoxArea"]
+[node name="shadow" type="LightOccluder2D" parent="hurtBoxArea"]
 occluder = SubResource("OccluderPolygon2D_uqeu3")
 
 [node name="question" type="Sprite2D" parent="."]
@@ -206,6 +208,11 @@ stream = ExtResource("12_dqypb")
 stream = ExtResource("13_k4pka")
 volume_db = 5.0
 bus = &"sfx"
+
+[node name="bloodSpriteDead" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("14_8r5ah")
 
 [connection signal="body_entered" from="rangeArea" to="." method="_on_range_area_body_entered"]
 [connection signal="body_exited" from="rangeArea" to="." method="_on_range_area_body_exited"]

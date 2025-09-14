@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://c01qykfbfiur5"]
 
 [ext_resource type="Script" uid="uid://dp1025008lkg" path="res://scripts/comp_level.gd" id="1_cjfso"]
-[ext_resource type="Texture2D" uid="uid://dd62cj07up0uy" path="res://buldingsDecoration/asepriteMoj/compLevel.png" id="2_wf3ef"]
+[ext_resource type="Texture2D" uid="uid://dd62cj07up0uy" path="res://assets/asepriteMoj/compLevel.png" id="2_wf3ef"]
 [ext_resource type="AudioStream" uid="uid://l2o4q3h8b6ou" path="res://sounds/sfx/Mecha TURN ON - OFF 12.wav" id="4_k31r7"]
 [ext_resource type="AudioStream" uid="uid://drbfykcshokfb" path="res://sounds/sfx/password.wav" id="5_vebho"]
 [ext_resource type="AudioStream" uid="uid://2ecrsbsl7i5e" path="res://sounds/sfx/password-typing-sound-on-the-keyboard-option-2.mp3" id="6_ncu4q"]

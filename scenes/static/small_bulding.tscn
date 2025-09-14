@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cr68yub0tnwa8"]
 
-[ext_resource type="Texture2D" uid="uid://d4g62c8nnkys6" path="res://buldingsDecoration/roofs helipad otherr.jpg" id="1_emllp"]
+[ext_resource type="Texture2D" uid="uid://d4g62c8nnkys6" path="res://assets/roofs helipad otherr.jpg" id="1_emllp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n8dnc"]
 size = Vector2(136, 128)

@@ -16,12 +16,12 @@ var direction:Vector2 = Vector2.ZERO
 @onready var shooting :bool = false
 @onready var attack:bool = false
 @onready var shootTimerBool:bool = false
-@onready var shootColiding:bool = false
+@onready var shot_blocked:bool = false
 
 # Player navigation
 @export var playerNav:Node2D = null
 @onready var player:CharacterBody2D = null
-@onready var playerPos
+@onready var playerPos:Vector2 # Global cordinate when player isnt chaise
 
 # Packed Scenes
 @export var bulletScene:PackedScene = preload("res://scenes/bullet.tscn")
@@ -69,7 +69,6 @@ func _physics_process(delta):
 		if collision.get_collider():
 			direction = Vector2(changeDirection(),changeDirection())
 	
-	playerPos = Global.playerPosition.global_position
 	
 	question.rotation = -rotation
 	question.global_position = self.global_position - Vector2(0,25)
@@ -85,6 +84,8 @@ func _physics_process(delta):
 			direction = global_position.direction_to(navigation_agent_2d.get_next_path_position()).normalized()
 			velocity = direction * speed
 		if chaise && !player:
+			# playerPos Global Script position player to navigate when chaise and no player
+			playerPos = Global.playerPosition.global_position
 			rotation = global_position.angle_to_point(playerPos)
 			direction = global_position.direction_to(playerPos).normalized()
 			velocity = direction * speed
@@ -105,7 +106,7 @@ func _physics_process(delta):
 	colidingShoot()
 	
 func shoot():
-	if shooting && attack && player && !shootTimerBool && !shootColiding:
+	if shooting && attack && player && !shootTimerBool && !shot_blocked:
 		shootTimerBool = true
 		audio_shoot.play()
 		var projectile = bulletScene.instantiate()
@@ -120,19 +121,19 @@ func shoot():
 		luskaItem.global_rotation = point_bullet.global_rotation
 		shoot_timer.start()
 
-func playAnimation(direction,delta):
+func playAnimation(direction, delta):
 	
 	if die:
 		animated_sprite_2d.play("dead")
 	else:
-		if !attack || shootColiding:
+		if !attack || shot_blocked:
 			if direction == Vector2.ZERO:
 				animated_sprite_2d.play("idle")
 			if direction != Vector2.ZERO:
 				animated_sprite_2d.play("run")
 				speed = 60
 				
-		if attack && !shootColiding:
+		if attack && !shot_blocked:
 			speed = 30
 			animated_sprite_2d.play("aim")
 
@@ -206,10 +207,10 @@ func colidingShoot():
 	if shooting:
 		coliding.target_position = to_local(player.global_position)
 	if coliding.get_collider() == player:
-		shootColiding = false
+		shot_blocked = false
 		shoot()
 	else:
-		shootColiding = true
+		shot_blocked = true
 		
 func enemy():
 	pass

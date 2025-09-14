@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://kle4ghtpojbx"]
 
 [ext_resource type="Script" uid="uid://ba83lqlivsyug" path="res://scripts/grenade.gd" id="1_g4yln"]
-[ext_resource type="Texture2D" uid="uid://b344v0n66tuss" path="res://buldingsDecoration/asepriteMoj/grenade.png" id="2_wpcpn"]
+[ext_resource type="Texture2D" uid="uid://b344v0n66tuss" path="res://assets/asepriteMoj/grenade.png" id="2_wpcpn"]
 [ext_resource type="PackedScene" uid="uid://dqob40bf7w3c" path="res://scenes/particle/explosion.tscn" id="3_lrbtl"]
 [ext_resource type="Script" uid="uid://b5sw6wqdjfxml" path="res://scripts/area_grenade.gd" id="4_f1mcy"]
 [ext_resource type="AudioStream" uid="uid://b3llwb0s0x2oc" path="res://sounds/sfx/Mecha DAMAGED 1.wav" id="5_v5gls"]

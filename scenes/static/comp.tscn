@@ -1,12 +1,13 @@
 [gd_scene load_steps=6 format=3 uid="uid://bm8sjw0kl50eh"]
 
-[ext_resource type="Texture2D" uid="uid://2f8tnl2n6nyc" path="res://buldingsDecoration/comp.png" id="1_4wyim"]
+[ext_resource type="Texture2D" uid="uid://b21578u6pw3no" path="res://assets/asepriteMoj/comp.png" id="1_3are0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3r044"]
 size = Vector2(25, 21)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ot1jc"]
-polygon = PackedVector2Array(-9.5, -4.5, 10.5, -4.5, 10.5, -10.5, -9.5, -10.5)
+cull_mode = 1
+polygon = PackedVector2Array(-12.5, 10.5, 12.5, 10.5, 12.5, -7.5, 10.5, -7.5, 10.5, -10.5, -9.5, -10.5, -9.5, -7.5, -12.5, -7.5)
 
 [sub_resource type="Gradient" id="Gradient_nltbt"]
 offsets = PackedFloat32Array(0.305195, 1)
@@ -24,7 +25,7 @@ fill_to = Vector2(0.833333, 0.15812)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 10
-texture = ExtResource("1_4wyim")
+texture = ExtResource("1_3are0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 3.5)

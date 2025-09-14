@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dqob40bf7w3c"]
 
-[ext_resource type="Texture2D" uid="uid://dq7mrlc3xufik" path="res://buldingsDecoration/asepriteMoj/whitePoint.png" id="1_5cv55"]
+[ext_resource type="Texture2D" uid="uid://dq7mrlc3xufik" path="res://assets/asepriteMoj/whitePoint.png" id="1_5cv55"]
 
 [sub_resource type="Gradient" id="Gradient_qtmte"]
 offsets = PackedFloat32Array(0.00819672, 0.163934, 0.303279, 0.434426, 0.631148, 0.786885, 0.909836)

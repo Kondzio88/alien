@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://e32gtxdjd1fm"]
 
-[ext_resource type="Texture2D" uid="uid://dw6gc1dor385g" path="res://buldingsDecoration/asepriteMoj/kitchen.png" id="1_lssdh"]
+[ext_resource type="Texture2D" uid="uid://dw6gc1dor385g" path="res://assets/asepriteMoj/kitchen.png" id="1_lssdh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbyjt"]
 size = Vector2(64, 33)

@@ -26,7 +26,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var point_bullet:Marker2D = $pointBullet
 @onready var hurt_box_area:Area2D = $hurtBoxArea
 @onready var range_area:Area2D = $rangeArea
-@onready var coliding: RayCast2D = $pointBullet/coliding
+@onready var colidingRayCast: RayCast2D = $pointBullet/coliding
 
 # Question , lights and navigation ,and bloodSprite dead
 @onready var question:Sprite2D = $question
@@ -54,35 +54,38 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 # Player coordinate and player Nav
 @onready var player:CharacterBody2D = null
-@onready var playerPos :Vector2 
 @export var playerNav: Node2D
+@onready var playerPos # Global cordinate when player isnt chaise
 
 func _ready():
 	direction = Vector2.UP
 	recal_timer.timeout.connect(_on_recal_timer_timeout)
-
+	
 func _physics_process(delta):
+	
+	# Change move direction when touch avoide
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		if collision.get_collider():
 			direction = Vector2(changeDirection(),changeDirection())
 			
+	# Question Sign Position
 	question.rotation = -rotation
 	question.global_position = self.global_position - Vector2(0,25)
 	red_light_question.rotation = -rotation
 	red_light_question.global_position = self.global_position - Vector2(0,25)
 	
-	playerPos = Global.playerPosition.global_position
-	
 	if die:
 		return
 	else:
-		
+		# Chaise logic when player is at Area
 		if chaise && player:
 			rotation = global_position.angle_to_point(player.global_position)
 			direction = global_position.direction_to(navigation_agent_2d.get_next_path_position()).normalized()
 			velocity = direction * speed
 		if chaise && !player:
+			# playerPos Global Script position player to navigate when chaise and no player
+			playerPos = Global.playerPosition.global_position  
 			rotation = global_position.angle_to_point(playerPos)
 			direction = global_position.direction_to(playerPos).normalized()
 			velocity = direction * speed
@@ -103,10 +106,12 @@ func _physics_process(delta):
 	move_and_slide()
 	colidingShoot()
 	
+# Create Navigation Path to Player
 func makePath():
 	if player:
 		navigation_agent_2d.target_position = player.global_position
 
+# Animated Sprite Texture Logic
 func playAnimation(direction,delta):
 	
 	if die:
@@ -160,12 +165,14 @@ func shoot():
 		luskaItem.global_rotation = point_bullet.global_rotation
 		fuck_you_audio.play()
 		
+# Func Determinated shoot for 2.0s, not auto shoot
 func _on_shoot_timer_timeout() -> void:
 	shootTimerBool = false
 	if player && shooting :
 		shoot()
 
 func _on_hurt_box_area_area_entered(area):
+	
 	if area is AreaLaser:
 		animated_sprite_2d.modulate = Color8(255,0,0,255)
 	if area is not AreaLaser:
@@ -193,12 +200,12 @@ func dead():
 		attack = false
 		player = null
 		self.z_index = 4
-		audio_dead.play()
 		range_area.queue_free()
-		question.visible = false
-		red_light_question.enabled = false
 		collision_shape_2d.queue_free()
 		hurt_box_area.queue_free()
+		question.visible = false
+		red_light_question.enabled = false
+		audio_dead.play()
 		direction = Vector2.ZERO
 		what_audio.stop()
 		fuck_you_audio.stop()
@@ -221,20 +228,20 @@ func _on_shoot_area_body_exited(body):
 func changeDirection():
 	return randi_range(-1,1)
 
+# Func to create Navigation Path for 0,1s
 func _on_recal_timer_timeout():
 	makePath()
 
+# Function to detect avoids or Player then Shoot or Not
 func colidingShoot():
 	if shooting && player:
-		coliding.target_position = to_local(player.global_position)
-	if coliding.get_collider() == player:
+		colidingRayCast.target_position = to_local(player.global_position)
+	if colidingRayCast.get_collider() == player:
 		shootColiding = false
 		shoot()
 	else:
 		shootColiding = true
 		
-func enemy():
-	pass
 
 func _on_chaise_timer_timeout() -> void:
 	if player == null:
@@ -246,3 +253,6 @@ func _on_chaise_timer_timeout() -> void:
 func _on_hurt_box_area_area_exited(area: Area2D) -> void:
 	if area is AreaLaser:
 		animated_sprite_2d.modulate = Color8(255,255,255,255)
+
+func enemy():
+	pass
