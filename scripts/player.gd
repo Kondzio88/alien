@@ -81,7 +81,15 @@ var magazineActive:bool = false
 @onready var red_grenade_light: PointLight2D = $redGrenadeLight
 @onready var laser: RayCast2D = $laser
 
+# Dialog variable for first dialog in the game rest will be in the other nodes
+@export_multiline var textToSay:String = ''
+@export var speakerName:String = ''
+var firstDialogEver :bool = false
+
 func _ready():
+	# First dialog after landing
+	firtsDialogInTheGame()
+	
 	collision_polygon_2d.disabled = true
 	red_grenade_light.enabled = false
 	battery = maxBattery
@@ -137,6 +145,12 @@ func _physics_process(delta):
 		magazineCheck()
 		flashLightArrayDisplay(flashLigthsArray)
 		
+func firtsDialogInTheGame():
+	if  firstDialogEver == false:
+		await get_tree().create_timer(15).timeout
+		Dialogs.trigger_dialog.emit(textToSay,speakerName)
+		firstDialogEver = true
+	
 @warning_ignore("unused_parameter")
 func _input(event):
 	direction = Input.get_vector('left',"right","up",'down')

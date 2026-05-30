@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://n0wi3ls6upe4"]
+
+[ext_resource type="Script" uid="uid://0n4s6e4y5m52" path="res://scripts/dialog_layer.gd" id="1_7onm6"]
+[ext_resource type="FontFile" uid="uid://jynm04cv6a3c" path="res://alien_fonts/alienleaguebold.ttf" id="2_wfn73"]
+[ext_resource type="Texture2D" uid="uid://b6v0qjg6oc552" path="res://assets/asepriteMoj/pilotFace.jpg" id="3_0ms8x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dt7fs"]
+bg_color = Color(0.066, 0.064, 0.064, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+
+[sub_resource type="Theme" id="Theme_wqfne"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wnwbv"]
+font = ExtResource("2_wfn73")
+font_size = 35
+outline_size = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_gl8cc"]
+font = ExtResource("2_wfn73")
+font_size = 40
+
+[node name="dialogLayer" type="CanvasLayer" unique_id=1843559335]
+script = ExtResource("1_7onm6")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1754906875]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="dialogPanel" type="PanelContainer" parent="PanelContainer" unique_id=939709]
+visible = false
+light_mask = 0
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_dt7fs")
+
+[node name="VBoxContainer" type="HBoxContainer" parent="PanelContainer/dialogPanel" unique_id=1365920235]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/dialogPanel/VBoxContainer" unique_id=1576408794]
+clip_contents = true
+custom_minimum_size = Vector2(150, 150)
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 2
+theme = SubResource("Theme_wqfne")
+
+[node name="dialogNameLabel" type="Label" parent="PanelContainer/dialogPanel/VBoxContainer/VBoxContainer" unique_id=218022036]
+layout_mode = 2
+text = "Pilot"
+label_settings = SubResource("LabelSettings_wnwbv")
+horizontal_alignment = 1
+
+[node name="dialogImage" type="TextureRect" parent="PanelContainer/dialogPanel/VBoxContainer/VBoxContainer" unique_id=208983133]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_0ms8x")
+expand_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/dialogPanel/VBoxContainer" unique_id=1657258542]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.77
+
+[node name="dialogLabel" type="Label" parent="PanelContainer/dialogPanel/VBoxContainer/MarginContainer" unique_id=1733784526]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_vertical = 6
+text = "Ta baza wydaje sie byc zupelnie opuszczona ..."
+label_settings = SubResource("LabelSettings_gl8cc")
+horizontal_alignment = 1
+autowrap_mode = 2

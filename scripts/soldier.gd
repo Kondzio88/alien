@@ -192,8 +192,8 @@ func _on_hurt_box_area_area_entered(area):
 func dead():
 	if health <= 0:
 		# Dialog Signal Emit 
-		Global.firstKillDialogSignal.emit()
-		Global.firstKillLevel2DialogSignal.emit()
+		Dialogs.dialogSoldierKillLvl1.emit()
+		
 		
 		chaise = false
 		shooting = false
@@ -213,7 +213,7 @@ func dead():
 		die = true
 		animated_sprite_2d.play("dead")
 		var tween:Tween = get_tree().create_tween()
-		tween.tween_property(blood_sprite_dead,'scale',Vector2(0.8,0.8),4)
+		tween.tween_property(blood_sprite_dead,'scale',Vector2(0.6,0.6),4)
 		await get_tree().create_timer(7).timeout
 		queue_free()
 

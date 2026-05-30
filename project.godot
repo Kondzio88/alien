@@ -8,16 +8,22 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="alien"
 run/main_scene="res://scenes/start_game.tscn"
-config/features=PackedStringArray("4.4", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Global="*res://scripts/global.gd"
+Dialogs="*res://scripts/dialogs.gd"
+DialogLayer="*uid://n0wi3ls6upe4"
 
 [display]
 
@@ -28,7 +34,7 @@ mouse_cursor/custom_image_hotspot=Vector2(16, 16)
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/ai_assistant_hub/plugin.cfg")
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/ai_assistant_hub/plugin.cfg", "res://addons/script_splitter/plugin.cfg")
 
 [file_customization]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://uftpxq14jvjo"]
+[gd_scene format=3 uid="uid://uftpxq14jvjo"]
 
 [ext_resource type="Texture2D" uid="uid://ejq4kcqoju7i" path="res://assets/asepriteMoj/bulletUi.png" id="1_8616g"]
 [ext_resource type="Script" uid="uid://can61w5tsqyky" path="res://scripts/player_ui.gd" id="1_agv8g"]
@@ -32,7 +32,7 @@ outline_size = 10
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j8nsy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vuxol"]
-bg_color = Color(0.0655258, 0.0642209, 0.0642209, 1)
+bg_color = Color(0.066, 0.064, 0.064, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -40,7 +40,7 @@ border_width_bottom = 3
 
 [sub_resource type="LabelSettings" id="LabelSettings_m3vho"]
 font = ExtResource("2_luxgy")
-font_size = 30
+font_size = 40
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ydd4"]
 bg_color = Color(0.00442779, 0.00433961, 0.00433961, 1)
@@ -106,11 +106,12 @@ stream_count = 2
 stream_0 = ExtResource("13_jcxsf")
 stream_1 = ExtResource("9_nwxca")
 
-[node name="playerUi" type="CanvasLayer"]
-layer = 0
+[node name="playerUi" type="CanvasLayer" unique_id=2087704816]
+layer = 5
 script = ExtResource("1_agv8g")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1996983355]
+light_mask = 0
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -118,24 +119,24 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_0bqf3")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=2101744986]
 layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1135712645]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=1697515782]
 custom_minimum_size = Vector2(70, 100)
 layout_mode = 2
 size_flags_stretch_ratio = 0.0
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=2117566174]
 custom_minimum_size = Vector2(60, 0)
 layout_direction = 1
 layout_mode = 2
@@ -147,13 +148,13 @@ text = "15"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sprite2D" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Sprite2D" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1711809008]
 custom_minimum_size = Vector2(80, 100)
 layout_mode = 2
 texture = ExtResource("1_8616g")
 expand_mode = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=2139937945]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -161,7 +162,7 @@ size_flags_vertical = 8
 size_flags_stretch_ratio = 0.0
 alignment = 1
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1450386896]
 custom_minimum_size = Vector2(100, 0)
 layout_direction = 1
 layout_mode = 2
@@ -174,12 +175,12 @@ text = "3
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sprite2D" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+[node name="Sprite2D" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=2031817868]
 layout_mode = 2
 texture = ExtResource("3_3yxpl")
 expand_mode = 4
 
-[node name="armorContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+[node name="armorContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=33805988]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -187,7 +188,7 @@ size_flags_vertical = 8
 size_flags_stretch_ratio = 0.0
 alignment = 1
 
-[node name="armorPrecent" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/armorContainer"]
+[node name="armorPrecent" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/armorContainer" unique_id=453315995]
 custom_minimum_size = Vector2(100, 0)
 layout_direction = 1
 layout_mode = 2
@@ -200,18 +201,18 @@ text = "100
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="armorSprite" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer/armorContainer"]
+[node name="armorSprite" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer/armorContainer" unique_id=1818857340]
 layout_mode = 2
 texture = ExtResource("5_l0820")
 expand_mode = 4
 
-[node name="panelEquipment" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+[node name="panelEquipment" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=891460766]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ojsk3")
 
-[node name="equipmentHBox" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/panelEquipment"]
+[node name="equipmentHBox" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/panelEquipment" unique_id=1071535126]
 custom_minimum_size = Vector2(200, 130)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -219,31 +220,31 @@ size_flags_vertical = 8
 size_flags_stretch_ratio = 0.0
 alignment = 1
 
-[node name="droneSprite" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer/panelEquipment/equipmentHBox"]
+[node name="droneSprite" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer/panelEquipment/equipmentHBox" unique_id=2025256231]
 visible = false
 layout_mode = 2
 texture = ExtResource("6_bt8ks")
 expand_mode = 2
 
-[node name="laserSprite" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer/panelEquipment/equipmentHBox"]
+[node name="laserSprite" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer/panelEquipment/equipmentHBox" unique_id=1035339319]
 visible = false
 layout_mode = 2
 texture = ExtResource("6_hm4r1")
 expand_mode = 2
 
-[node name="pausePanel" type="PanelContainer" parent="PanelContainer"]
+[node name="pausePanel" type="PanelContainer" parent="PanelContainer" unique_id=1420942047]
 process_mode = 3
 visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_l4di6")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/pausePanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/pausePanel" unique_id=1878285009]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 30
 
-[node name="Label" type="Label" parent="PanelContainer/pausePanel/VBoxContainer"]
+[node name="Label" type="Label" parent="PanelContainer/pausePanel/VBoxContainer" unique_id=711997319]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_gu0sa")
 theme_override_font_sizes/font_size = 100
@@ -251,7 +252,7 @@ text = "PAUSE"
 label_settings = SubResource("LabelSettings_y6wb6")
 horizontal_alignment = 1
 
-[node name="continueButtons" type="Button" parent="PanelContainer/pausePanel/VBoxContainer"]
+[node name="continueButtons" type="Button" parent="PanelContainer/pausePanel/VBoxContainer" unique_id=2027669831]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("8_gu0sa")
@@ -259,7 +260,7 @@ theme_override_font_sizes/font_size = 50
 text = "Continue"
 flat = true
 
-[node name="controlsButton" type="Button" parent="PanelContainer/pausePanel/VBoxContainer"]
+[node name="controlsButton" type="Button" parent="PanelContainer/pausePanel/VBoxContainer" unique_id=44997398]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("8_gu0sa")
@@ -267,7 +268,7 @@ theme_override_font_sizes/font_size = 50
 text = "Controls"
 flat = true
 
-[node name="quitButtonPause" type="Button" parent="PanelContainer/pausePanel/VBoxContainer"]
+[node name="quitButtonPause" type="Button" parent="PanelContainer/pausePanel/VBoxContainer" unique_id=1961190646]
 process_mode = 3
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -276,19 +277,19 @@ theme_override_font_sizes/font_size = 50
 text = "Quit"
 flat = true
 
-[node name="controlsPanel" type="PanelContainer" parent="PanelContainer/pausePanel"]
+[node name="controlsPanel" type="PanelContainer" parent="PanelContainer/pausePanel" unique_id=982663208]
 visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_j8nsy")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/pausePanel/controlsPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/pausePanel/controlsPanel" unique_id=1170510246]
 layout_mode = 2
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 
-[node name="GridContainer" type="GridContainer" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer" unique_id=438050653]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -296,160 +297,160 @@ theme_override_constants/h_separation = 50
 theme_override_constants/v_separation = 10
 columns = 2
 
-[node name="Label" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer"]
+[node name="Label" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer" unique_id=1907344216]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_gu0sa")
 theme_override_font_sizes/font_size = 30
 text = "w"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer"]
+[node name="Label2" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer" unique_id=1598382817]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_gu0sa")
 theme_override_font_sizes/font_size = 30
 text = "up"
 horizontal_alignment = 1
 
-[node name="Label3" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer"]
+[node name="Label3" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer" unique_id=234701405]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_gu0sa")
 theme_override_font_sizes/font_size = 30
 text = "S"
 horizontal_alignment = 1
 
-[node name="Label4" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer"]
+[node name="Label4" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer" unique_id=49615822]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_gu0sa")
 theme_override_font_sizes/font_size = 30
 text = "down"
 horizontal_alignment = 1
 
-[node name="Label5" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer"]
+[node name="Label5" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer" unique_id=2053225477]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_gu0sa")
 theme_override_font_sizes/font_size = 30
 text = "a"
 horizontal_alignment = 1
 
-[node name="Label6" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer"]
+[node name="Label6" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer" unique_id=658052930]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_gu0sa")
 theme_override_font_sizes/font_size = 30
 text = "left"
 horizontal_alignment = 1
 
-[node name="Label7" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer"]
+[node name="Label7" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer" unique_id=638781623]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_gu0sa")
 theme_override_font_sizes/font_size = 30
 text = "d"
 horizontal_alignment = 1
 
-[node name="Label8" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer"]
+[node name="Label8" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer" unique_id=761993061]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_gu0sa")
 theme_override_font_sizes/font_size = 30
 text = "right"
 horizontal_alignment = 1
 
-[node name="Label17" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer"]
+[node name="Label17" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer" unique_id=1984351045]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_gu0sa")
 theme_override_font_sizes/font_size = 30
 text = "Fire"
 horizontal_alignment = 1
 
-[node name="Label18" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer"]
+[node name="Label18" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer" unique_id=1319269121]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_gu0sa")
 theme_override_font_sizes/font_size = 30
 text = "left mouse"
 horizontal_alignment = 1
 
-[node name="Label19" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer"]
+[node name="Label19" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer" unique_id=440938738]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_gu0sa")
 theme_override_font_sizes/font_size = 30
 text = "aim"
 horizontal_alignment = 1
 
-[node name="Label20" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer"]
+[node name="Label20" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer" unique_id=1090297930]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_gu0sa")
 theme_override_font_sizes/font_size = 30
 text = "right mouse"
 horizontal_alignment = 1
 
-[node name="Label9" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer"]
+[node name="Label9" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer" unique_id=1340246318]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_gu0sa")
 theme_override_font_sizes/font_size = 30
 text = "r"
 horizontal_alignment = 1
 
-[node name="Label10" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer"]
+[node name="Label10" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer" unique_id=103308329]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_gu0sa")
 theme_override_font_sizes/font_size = 30
 text = "reload"
 horizontal_alignment = 1
 
-[node name="Label11" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer"]
+[node name="Label11" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer" unique_id=601634506]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_gu0sa")
 theme_override_font_sizes/font_size = 30
 text = "f"
 horizontal_alignment = 1
 
-[node name="Label12" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer"]
+[node name="Label12" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer" unique_id=1337079881]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_gu0sa")
 theme_override_font_sizes/font_size = 30
 text = "Interactions"
 horizontal_alignment = 1
 
-[node name="Label13" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer"]
+[node name="Label13" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer" unique_id=194219569]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_gu0sa")
 theme_override_font_sizes/font_size = 30
 text = "space"
 
-[node name="Label14" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer"]
+[node name="Label14" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer" unique_id=1680549885]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_gu0sa")
 theme_override_font_sizes/font_size = 30
 text = "frag grenade"
 horizontal_alignment = 1
 
-[node name="Label15" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer"]
+[node name="Label15" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer" unique_id=1922349368]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_gu0sa")
 theme_override_font_sizes/font_size = 30
 text = "shift"
 horizontal_alignment = 1
 
-[node name="Label16" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer"]
+[node name="Label16" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer" unique_id=1910110040]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_gu0sa")
 theme_override_font_sizes/font_size = 30
 text = "run"
 horizontal_alignment = 1
 
-[node name="Label21" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer"]
+[node name="Label21" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer" unique_id=1043909571]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_gu0sa")
 theme_override_font_sizes/font_size = 30
 text = "ESC"
 horizontal_alignment = 1
 
-[node name="Label22" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer"]
+[node name="Label22" type="Label" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer/GridContainer" unique_id=1029971001]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_gu0sa")
 theme_override_font_sizes/font_size = 30
 text = "pause"
 horizontal_alignment = 1
 
-[node name="backButton" type="Button" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer"]
+[node name="backButton" type="Button" parent="PanelContainer/pausePanel/controlsPanel/MarginContainer" unique_id=2053158463]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
@@ -459,13 +460,13 @@ theme_override_font_sizes/font_size = 40
 text = "back"
 flat = true
 
-[node name="healthBarUi" parent="." instance=ExtResource("3_kichw")]
+[node name="healthBarUi" parent="." unique_id=987078615 instance=ExtResource("3_kichw")]
 offset_left = 56.0
 offset_top = 39.0
 offset_right = 356.0
 offset_bottom = 89.0
 
-[node name="powerBarUi" parent="." instance=ExtResource("4_1780e")]
+[node name="powerBarUi" parent="." unique_id=1640998311 instance=ExtResource("4_1780e")]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -475,7 +476,7 @@ offset_right = -40.0
 offset_bottom = 89.0
 grow_horizontal = 0
 
-[node name="strengthBarUi" parent="." instance=ExtResource("5_gcqer")]
+[node name="strengthBarUi" parent="." unique_id=121973034 instance=ExtResource("5_gcqer")]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -485,7 +486,7 @@ offset_right = 150.0
 offset_bottom = 89.0
 grow_horizontal = 2
 
-[node name="tipPanel" type="PanelContainer" parent="."]
+[node name="tipPanel" type="PanelContainer" parent="." unique_id=1509057606]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -500,10 +501,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vuxol")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="tipPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="tipPanel" unique_id=1897565678]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="tipPanel/VBoxContainer"]
+[node name="Label" type="Label" parent="tipPanel/VBoxContainer" unique_id=2030929861]
 custom_minimum_size = Vector2(180, 50)
 layout_mode = 2
 size_flags_vertical = 6
@@ -513,42 +514,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="dialogPanel" type="PanelContainer" parent="."]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -107.0
-offset_top = -204.5
-offset_right = 143.0
-offset_bottom = -54.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_vuxol")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="dialogPanel"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="dialogPanel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="dialogLabel" type="Label" parent="dialogPanel/VBoxContainer/MarginContainer"]
-custom_minimum_size = Vector2(150, 50)
-layout_mode = 2
-size_flags_vertical = 6
-text = "Ta baza wydaje sie byc zupelnie opuszczona ..."
-label_settings = SubResource("LabelSettings_m3vho")
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="infoPanel" type="PanelContainer" parent="."]
+[node name="infoPanel" type="PanelContainer" parent="." unique_id=542805344]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -563,46 +529,46 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_0ydd4")
 
-[node name="HBoxContainer" type="VBoxContainer" parent="infoPanel"]
+[node name="HBoxContainer" type="VBoxContainer" parent="infoPanel" unique_id=1180172034]
 layout_mode = 2
 
-[node name="titleLabel" type="Label" parent="infoPanel/HBoxContainer"]
+[node name="titleLabel" type="Label" parent="infoPanel/HBoxContainer" unique_id=2070142846]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_kull0")
 text = "LASER WEYLAND LX 229"
 label_settings = SubResource("LabelSettings_nmg1e")
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="infoPanel/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="infoPanel/HBoxContainer" unique_id=308543238]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/separation = 30
 
-[node name="kindLabel" type="Label" parent="infoPanel/HBoxContainer/VBoxContainer"]
+[node name="kindLabel" type="Label" parent="infoPanel/HBoxContainer/VBoxContainer" unique_id=391270612]
 layout_mode = 2
 size_flags_vertical = 0
 text = "DODATEK DO BRONI:"
 label_settings = SubResource("LabelSettings_cp4wc")
 horizontal_alignment = 1
 
-[node name="textLabel" type="Label" parent="infoPanel/HBoxContainer/VBoxContainer"]
+[node name="textLabel" type="Label" parent="infoPanel/HBoxContainer/VBoxContainer" unique_id=928113451]
 layout_mode = 2
 text = "Laser taktyczny klasy wojskowej do broni to zaawansowane narzedzie przeznaczone do zwiekszenia efektywnosci bojowej w ekstremalnych warunkach. Wyposazony w wiazke swiatla podczerwonego, laser ten umozliwia precyzyjne celowanie i poszerza kat widzenia podczas namierzania szybko poruszajacych sie celow. Dzieki wytrzymalej konstrukcji jest odporny na ekstremalne temperatury i uszkodzenia mechaniczne. kat widzenia + 10%"
 label_settings = SubResource("LabelSettings_ypois")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Label" type="Label" parent="infoPanel/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="infoPanel/HBoxContainer/VBoxContainer" unique_id=1774703981]
 layout_mode = 2
 size_flags_vertical = 8
 text = "enter = continue"
 label_settings = SubResource("LabelSettings_h3044")
 horizontal_alignment = 1
 
-[node name="laserAudio" type="AudioStreamPlayer" parent="."]
+[node name="laserAudio" type="AudioStreamPlayer" parent="." unique_id=977261843]
 stream = SubResource("AudioStreamPlaylist_663pl")
 
-[node name="misionPanel" type="PanelContainer" parent="."]
+[node name="misionPanel" type="PanelContainer" parent="." unique_id=1586127947]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -618,61 +584,61 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_612o0")
 
-[node name="MarginContainer" type="MarginContainer" parent="misionPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="misionPanel" unique_id=1047947299]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="misionPanel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="misionPanel/MarginContainer" unique_id=182701938]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="misionPanel/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="misionPanel/MarginContainer/VBoxContainer" unique_id=1970538619]
 layout_mode = 2
 theme_override_constants/separation = 130
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="misionPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="misionPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1303146325]
 layout_mode = 2
 texture = ExtResource("10_tiq3k")
 
-[node name="title" type="Label" parent="misionPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="title" type="Label" parent="misionPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1649646216]
 layout_mode = 2
 text = "Misja"
 label_settings = SubResource("LabelSettings_2goiw")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect2" type="TextureRect" parent="misionPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="misionPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=276932550]
 layout_mode = 2
 texture = ExtResource("10_tiq3k")
 
-[node name="MarginContainer" type="MarginContainer" parent="misionPanel/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="misionPanel/MarginContainer/VBoxContainer" unique_id=534234930]
 layout_mode = 2
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="HBoxContainer2" type="VBoxContainer" parent="misionPanel/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="HBoxContainer2" type="VBoxContainer" parent="misionPanel/MarginContainer/VBoxContainer/MarginContainer" unique_id=1518045118]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="dataLabel" type="Label" parent="misionPanel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2"]
+[node name="dataLabel" type="Label" parent="misionPanel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2" unique_id=2049019207]
 layout_mode = 2
 text = "Data : 11/ 07/ 2079"
 label_settings = SubResource("LabelSettings_vxmel")
 
-[node name="localisationLabel" type="Label" parent="misionPanel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2"]
+[node name="localisationLabel" type="Label" parent="misionPanel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2" unique_id=1006999172]
 layout_mode = 2
 text = "Lokalizacja : planeta LV 2983"
 label_settings = SubResource("LabelSettings_vxmel")
 
-[node name="celeLabel" type="Label" parent="misionPanel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2"]
+[node name="celeLabel" type="Label" parent="misionPanel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2" unique_id=1864515744]
 layout_mode = 2
 text = "CEL MISJI :"
 label_settings = SubResource("LabelSettings_vxmel")
 
-[node name="opisLabel" type="Label" parent="misionPanel/MarginContainer/VBoxContainer"]
+[node name="opisLabel" type="Label" parent="misionPanel/MarginContainer/VBoxContainer" unique_id=1282740476]
 layout_mode = 2
 text = "Wyladowales na planecie LV-2983, mrocznej i tajemniczej. Osrodek naukowo-badawczy Weyland Yutani, niegdys tetniacy zyciem, teraz pograzyl sie w ciszy. Od kilku dni zadna wiadomosc nie dotarla z tej placowki. Wraz z utrata komunikacji zniknelo rowniez male zaplecze militarne, ktore zabezpieczalo teren. Weyland Yutani, zaniepokojona sytuacja, wyslalo oddzial marines, by zbadal sprawe. Lecz osrodek jest zbyt cenny, by zostawic go tylko w ich rekach. Korporacja postanowila wynajac ciebie — ducha, niezaleznego specjaliste do zadan specjalnych, ktory dziala w cieniu.
 Twoja misja jest jasna: odkryc prawde o zerwanym kontakcie. Musisz dzialac w absolutnej dyskrecji, poniewaz marines nie maja pojecia o twojej obecnosci. Ich zadanie to ochrona pozostalych czlonkow zalogi — naukowcow, inzynierow i lekarzy — co sprawia, ze moga stac sie dla ciebie zagrozeniem. Czas dziala na twoja niekorzysc, a na planecie kryje sie cos, co sprawia, ze wszyscy milcza. Powodzenia, duchu..."
@@ -680,25 +646,25 @@ label_settings = SubResource("LabelSettings_jblva")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="misionPanel/MarginContainer/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="misionPanel/MarginContainer/VBoxContainer" unique_id=206581910]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Label" type="Label" parent="misionPanel/MarginContainer/VBoxContainer/MarginContainer2"]
+[node name="Label" type="Label" parent="misionPanel/MarginContainer/VBoxContainer/MarginContainer2" unique_id=1865433217]
 layout_mode = 2
 text = "enter = continue"
 label_settings = SubResource("LabelSettings_3v0eh")
 horizontal_alignment = 1
 
-[node name="whatsThatAudio" type="AudioStreamPlayer" parent="."]
+[node name="whatsThatAudio" type="AudioStreamPlayer" parent="." unique_id=2046145876]
 stream = ExtResource("11_gcong")
 
-[node name="droneAudio" type="AudioStreamPlayer" parent="."]
+[node name="droneAudio" type="AudioStreamPlayer" parent="." unique_id=390306344]
 stream = SubResource("AudioStreamPlaylist_otygx")
 
-[node name="equipeDialogTimer" type="Timer" parent="."]
+[node name="equipeDialogTimer" type="Timer" parent="." unique_id=1058306815]
 process_callback = 0
 wait_time = 3.0
 one_shot = true

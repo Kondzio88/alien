@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cveqna10iagus"]
+[gd_scene format=3 uid="uid://cveqna10iagus"]
 
 [ext_resource type="Texture2D" uid="uid://blyhcrkut5f1a" path="res://characters/enemy.png" id="1_k1ttx"]
 [ext_resource type="Script" uid="uid://pq523s14upus" path="res://scripts/soldier.gd" id="1_o85cq"]
@@ -90,107 +90,109 @@ fill = 1
 fill_from = Vector2(0.527523, 0.46789)
 fill_to = Vector2(0.949541, 0.0458716)
 
-[node name="soldier" type="CharacterBody2D"]
+[node name="soldier" type="CharacterBody2D" unique_id=150201724]
 z_index = 5
 collision_layer = 9
 script = ExtResource("1_o85cq")
 
-[node name="audioDead" type="AudioStreamPlayer2D" parent="."]
+[node name="audioDead" type="AudioStreamPlayer2D" parent="." unique_id=743831962]
 stream = ExtResource("2_6pbt6")
 volume_db = 16.838
 bus = &"sfx"
 
-[node name="audioWalk" type="AudioStreamPlayer2D" parent="."]
+[node name="audioWalk" type="AudioStreamPlayer2D" parent="." unique_id=317528376]
 stream = ExtResource("3_rh8c5")
 volume_db = 15.0
 bus = &"enemyWalk"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=602453972]
 sprite_frames = SubResource("SpriteFrames_ljtrn")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=513736659]
 shape = SubResource("CapsuleShape2D_ee536")
 
-[node name="rangeArea" type="Area2D" parent="."]
+[node name="rangeArea" type="Area2D" parent="." unique_id=1920488870]
 collision_layer = 0
 collision_mask = 18
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="rangeArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rangeArea" unique_id=1101527634]
 shape = SubResource("CircleShape2D_m7wl8")
 
-[node name="pointBullet" type="Marker2D" parent="."]
+[node name="pointBullet" type="Marker2D" parent="." unique_id=352563807]
 position = Vector2(11, 4)
 
-[node name="coliding" type="RayCast2D" parent="pointBullet"]
+[node name="coliding" type="RayCast2D" parent="pointBullet" unique_id=1540294754]
 target_position = Vector2(9, 0)
 
-[node name="audioShoot" type="AudioStreamPlayer2D" parent="."]
+[node name="audioShoot" type="AudioStreamPlayer2D" parent="." unique_id=620353972]
 stream = ExtResource("6_ammvo")
 bus = &"sfx"
 
-[node name="hurtBoxArea" type="Area2D" parent="."]
+[node name="hurtBoxArea" type="Area2D" parent="." unique_id=1395861266]
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtBoxArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtBoxArea" unique_id=1392279885]
 shape = SubResource("CircleShape2D_ftnf4")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="hurtBoxArea"]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="hurtBoxArea" unique_id=719980891]
 occluder = SubResource("OccluderPolygon2D_uqeu3")
 
-[node name="question" type="Sprite2D" parent="."]
+[node name="question" type="Sprite2D" parent="." unique_id=1147091617]
 z_index = 5
 position = Vector2(0, -32)
 scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("8_sknsm")
 
-[node name="bloodSpriteDead" type="Sprite2D" parent="."]
+[node name="bloodSpriteDead" type="Sprite2D" parent="." unique_id=393746981]
 z_index = -1
 scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("11_wy8un")
 
-[node name="shootArea" type="Area2D" parent="."]
+[node name="shootArea" type="Area2D" parent="." unique_id=607125346]
 collision_layer = 0
 collision_mask = 18
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="shootArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="shootArea" unique_id=34667403]
 position = Vector2(2, 0)
 shape = SubResource("CircleShape2D_w2ihe")
 debug_color = Color(0.717237, 0.26428, 0.274828, 0.42)
 
-[node name="redLightQuestion" type="PointLight2D" parent="."]
+[node name="redLightQuestion" type="PointLight2D" parent="." unique_id=704947073]
 position = Vector2(0, -34)
 enabled = false
 texture = SubResource("GradientTexture2D_svk4n")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1707350771]
 path_postprocessing = 1
 simplify_path = true
 avoidance_enabled = true
+debug_enabled = true
+debug_path_custom_color = Color(0.99981505, 0, 0, 1)
 
-[node name="recalTimer" type="Timer" parent="."]
+[node name="recalTimer" type="Timer" parent="." unique_id=435782370]
 wait_time = 0.1
 autostart = true
 
-[node name="shootTimer" type="Timer" parent="."]
+[node name="shootTimer" type="Timer" parent="." unique_id=1251892111]
 wait_time = 2.0
 one_shot = true
 
-[node name="chaiseTimer" type="Timer" parent="."]
+[node name="chaiseTimer" type="Timer" parent="." unique_id=848870171]
 wait_time = 2.0
 one_shot = true
 
-[node name="whatAudio" type="AudioStreamPlayer2D" parent="."]
+[node name="whatAudio" type="AudioStreamPlayer2D" parent="." unique_id=1379425737]
 stream = ExtResource("11_w10cf")
 volume_db = 10.0
 bus = &"sfx"
 
-[node name="fuckYouAudio" type="AudioStreamPlayer2D" parent="."]
+[node name="fuckYouAudio" type="AudioStreamPlayer2D" parent="." unique_id=1460687020]
 stream = ExtResource("12_0c4no")
 
-[node name="fuckAudio" type="AudioStreamPlayer2D" parent="."]
+[node name="fuckAudio" type="AudioStreamPlayer2D" parent="." unique_id=1409376759]
 stream = ExtResource("13_na7pt")
 volume_db = 5.0
 bus = &"sfx"

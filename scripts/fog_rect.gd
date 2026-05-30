@@ -9,10 +9,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	print(_mat.get_shader_parameter('density'))
+	pass
 	
 func tween_density(target: float, duration: float = 0.6) -> void:
-	print('density is ok')
 	if _mat == null:
 		return
 	var from := float(_mat.get_shader_parameter("density"))

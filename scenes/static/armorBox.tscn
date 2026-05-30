@@ -30,7 +30,8 @@ polygon = PackedVector2Array(39, -5, 67, -5, 66, 40, 39, 40)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2tees"]
 size = Vector2(58, 74)
 
-[node name="grenadebox" type="StaticBody2D"]
+[node name="armorBox" type="StaticBody2D"]
+z_index = 5
 script = ExtResource("1_n2n8b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

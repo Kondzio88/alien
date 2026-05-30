@@ -31,6 +31,7 @@ polygon = PackedVector2Array(39, -5, 67, -5, 66, 40, 39, 40)
 size = Vector2(58, 74)
 
 [node name="grenadebox" type="StaticBody2D"]
+z_index = 5
 script = ExtResource("1_aovxd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

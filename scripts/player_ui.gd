@@ -11,25 +11,43 @@ extends CanvasLayer
 
 @onready var tip_panel: PanelContainer = $tipPanel
 
-# Dialog Ui
+# Dialog Ui and Dictionary with Image characters
 @onready var dialog_panel: PanelContainer = $dialogPanel
 @onready var dialog_label: Label = $dialogPanel/VBoxContainer/MarginContainer/dialogLabel
+@onready var dialog_image: TextureRect = $dialogPanel/VBoxContainer/VBoxContainer/dialogImage
+@onready var dialog_name_label: Label = $dialogPanel/VBoxContainer/VBoxContainer/dialogNameLabel
+
+
+@onready var  portraits = {
+	'pilot':{
+		'image' : preload("res://assets/asepriteMoj/pilotFace.jpg"),
+		'displayName': 'Pilot'
+	},
+	'player':{
+		'image' : preload("res://assets/asepriteMoj/playerFace.jpg"),
+		'displayName': 'Ghost'
+	} 
+}
 
 @onready var droneDialog:bool = false
 @onready var mision_panel: PanelContainer = $misionPanel
 
+# Sound Variables
 @onready var laser_audio: AudioStreamPlayer = $laserAudio
 @onready var whats_that_audio: AudioStreamPlayer = $whatsThatAudio
 @onready var drone_audio: AudioStreamPlayer = $droneAudio
 
+# Armor Variables
 @onready var armor_sprite: TextureRect = $PanelContainer/MarginContainer/HBoxContainer/VBoxContainer3/armorSprite
 @onready var armor_container: VBoxContainer = $PanelContainer/MarginContainer/HBoxContainer/armorContainer
 @onready var armor_precent: Label = $PanelContainer/MarginContainer/HBoxContainer/armorContainer/armorPrecent
 
+# Misiion Variables
 @onready var opis_label: Label = $misionPanel/MarginContainer/VBoxContainer/opisLabel
 @onready var data_label: Label = $misionPanel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/dataLabel
 @onready var localisation_label: Label = $misionPanel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/localisationLabel
 
+# Item sprite Variables
 @onready var drone_sprite: TextureRect = $PanelContainer/MarginContainer/HBoxContainer/panelEquipment/equipmentHBox/droneSprite
 @onready var laser_sprite: TextureRect = $PanelContainer/MarginContainer/HBoxContainer/panelEquipment/equipmentHBox/laserSprite
 
@@ -48,15 +66,6 @@ func _ready():
 	Global.mission2Signal.connect(mission2Text)
 	Global.magazineSignal.connect(magazineText)
 	
-	# Dialog connect
-	Global.dialog1.connect(dialog1display)
-	Global.dialog3.connect(dialog3display)
-	Global.dialog4.connect(dialog4display)
-	
-	Global.scriptSceneLvl2DeadSoldier.connect(dialogLvl2End)
-	# Soldier signal connect ,first kill dialog Lvl1 and Lvl2
-	Global.firstKillDialogSignal.connect(dialog2display)
-	Global.firstKillLevel2DialogSignal.connect(firstLvl2Dialog)
 	
 func _process(delta):
 	
@@ -65,22 +74,23 @@ func _process(delta):
 		info_panel.hide()
 		pause_panel.hide()
 		get_tree().paused = false
+		
 	label.text = Global.globalBullets
 	label2.text = Global.globalGrenadeMagazine
 	
 	if Input.is_action_just_pressed('pause'):
 		get_tree().paused = true
 		pause_panel.show()
-		
+		# Icon show and hide 
 	if Global.globalArmor:
 		armor_container.show()
 		armor_precent.text = Global.globalArmorPrecent
+		
 	if !Global.globalArmor:
 		armor_container.hide()
 		
 	if Global.droneEquipeGlobal:
 		drone_sprite.visible = true
-		
 			
 	if Global.laserEquipeGlobal:
 		laser_sprite.visible = true
@@ -150,45 +160,3 @@ func _on_back_button_pressed() -> void:
 func _on_continue_buttons_pressed() -> void:
 	pause_panel.hide()
 	get_tree().paused = false
-# Dialogs Level 1 --------------------
-
-func dialog1display():
-	dialog_panel.show()
-	await get_tree().create_timer(7).timeout
-	dialog_panel.hide()
-
-func dialog2display():
-	if !Global.firstKillDialog && Global.firstKillLevel2Dialog:
-		Global.firstKillDialog = true
-		dialog_panel.show()
-		dialog_label.text = 'jednak nie jestem sam ... to pewnie Ci marines wynajeci przez weyland yutani'
-		await get_tree().create_timer(7).timeout
-		dialog_panel.hide()
-		
-func dialog3display():
-	dialog_panel.show()
-	dialog_label.text = 'dlaczego wszedzie jest tyle krwi a nie ma zadnych cial ???'
-	await get_tree().create_timer(7).timeout
-	dialog_panel.hide()
-
-func dialog4display():
-	dialog_panel.show()
-	dialog_label.text = 'Co to kurwa jest ??? To jakas forma zycia ??? Co oni tu kurwa robia !?!'
-	await get_tree().create_timer(7).timeout
-	dialog_panel.hide()
-
-# Dialogs Levle 2 --------------------------
-
-func firstLvl2Dialog():
-	if !Global.firstKillLevel2Dialog && Global.firstKillDialog:
-		Global.firstKillLevel2Dialog = true
-		dialog_panel.show()
-		dialog_label.text = 'Te skurwysyny dostaly sie tez do tej czesci laboratorium... musze uwazac !!!'
-		await get_tree().create_timer(7).timeout
-		dialog_panel.hide()
-
-func dialogLvl2End():
-	dialog_panel.show()
-	dialog_label.text = 'Kurwa Mac !!! Cos mu rozszarpalo nogi !!! Co tu sie do huja odpierdala ?!?'
-	await get_tree().create_timer(10).timeout
-	dialog_panel.hide()

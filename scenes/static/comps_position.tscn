@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://rph36m6vbvkw"]
+
+[ext_resource type="PackedScene" uid="uid://dkj6obcbqpem7" path="res://scenes/static/table.tscn" id="1_a1nyy"]
+[ext_resource type="Texture2D" uid="uid://dea8a2llgtrca" path="res://assets/asepriteMoj/chair.png" id="2_ieyq8"]
+[ext_resource type="PackedScene" uid="uid://cn2gcxe60jl6j" path="res://scenes/static/water_boiler.tscn" id="3_g8xh1"]
+
+[node name="compsPosition" type="Node2D" unique_id=1197078648]
+
+[node name="table" parent="." unique_id=1528019967 instance=ExtResource("1_a1nyy")]
+
+[node name="table2" parent="." unique_id=1457941364 instance=ExtResource("1_a1nyy")]
+position = Vector2(86, 0)
+
+[node name="table3" parent="." unique_id=117069102 instance=ExtResource("1_a1nyy")]
+position = Vector2(86, -21)
+rotation = 3.1415927
+
+[node name="table4" parent="." unique_id=926602247 instance=ExtResource("1_a1nyy")]
+position = Vector2(0, -21)
+rotation = 3.1415927
+
+[node name="Chair" type="Sprite2D" parent="." unique_id=846355656]
+position = Vector2(8, 28)
+texture = ExtResource("2_ieyq8")
+
+[node name="Chair3" type="Sprite2D" parent="." unique_id=919408339]
+position = Vector2(-6, -53)
+rotation = 3.1415927
+texture = ExtResource("2_ieyq8")
+
+[node name="Chair4" type="Sprite2D" parent="." unique_id=1081862383]
+position = Vector2(75, -53)
+rotation = 3.594208
+texture = ExtResource("2_ieyq8")
+
+[node name="Chair2" type="Sprite2D" parent="." unique_id=1621952641]
+position = Vector2(94, 29)
+rotation = -0.13737383
+texture = ExtResource("2_ieyq8")
+
+[node name="waterBoiler" parent="." unique_id=260606314 instance=ExtResource("3_g8xh1")]
+position = Vector2(-51, -11)

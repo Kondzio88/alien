@@ -16,14 +16,9 @@ signal tipOffSignal
 signal mission2Signal
 
 # Dialogs Signal
-signal dialog1
-signal firstKillDialogSignal
 signal dialog3
 signal dialog4
 signal firstKillLevel2DialogSignal
-
-var firstKillDialog:bool = false
-var firstKillLevel2Dialog:bool = true # Levle2 Setts bool on false
 
 # Script Scenes Signals
 signal scriptSceneLvl2

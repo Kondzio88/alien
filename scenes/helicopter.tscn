@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cu7ldqvib4shk"]
+[gd_scene format=3 uid="uid://cu7ldqvib4shk"]
 
 [ext_resource type="Script" uid="uid://clan0xr4a8ilm" path="res://scripts/helicopter.gd" id="1_wncid"]
 [ext_resource type="Texture2D" uid="uid://y3v2auhjre51" path="res://assets/helicopterPng.png" id="1_xmuea"]
@@ -21,30 +21,32 @@ fill_to = Vector2(0.123853, 0.165138)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_vw2hu"]
 polygon = PackedVector2Array(83, -21, 96, -20, 107, -8, 107, 7, 100, 16, 82, 20, 49, 26, 5, 24, -22, 19, -40, 15, -39, -16, -21, -23, 42, -26)
 
-[node name="helicopter" type="CharacterBody2D"]
+[node name="helicopter" type="CharacterBody2D" unique_id=1422398407]
 z_index = 20
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_wncid")
+textToSay = "W koncu widac jakies przyzwoite miejsce do ladowania w tym lesie, tryzmaj sie moze troche zatrzasc !!!"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1340288570]
 position = Vector2(32, 0.5)
 shape = SubResource("RectangleShape2D_vw2hu")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=539610054]
 light_mask = 0
 z_index = 20
-rotation = 2.35619
+rotation = 2.3561945
 scale = Vector2(0.993493, 0.994164)
 texture = ExtResource("1_xmuea")
 
-[node name="wirnik" type="Sprite2D" parent="Sprite2D"]
+[node name="wirnik" type="Sprite2D" parent="Sprite2D" unique_id=1253836276]
+light_mask = 0
 z_index = 20
 position = Vector2(-10, -8)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_xmuea")
 
-[node name="redLight" type="PointLight2D" parent="Sprite2D"]
+[node name="redLight" type="PointLight2D" parent="Sprite2D" unique_id=1397085277]
 position = Vector2(120.995, 135.14)
 rotation = 0.755779
 shadow_enabled = true
@@ -53,13 +55,21 @@ shadow_filter_smooth = 1.0
 shadow_item_cull_mask = 5
 texture = SubResource("GradientTexture2D_xd8dw")
 
-[node name="sound" type="AudioStreamPlayer" parent="."]
+[node name="sound" type="AudioStreamPlayer" parent="." unique_id=10012625]
 stream = ExtResource("4_vw2hu")
 volume_db = 5.0
 autoplay = true
+bus = &"sfx"
 parameters/looping = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1834448553]
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=2137343300]
 occluder = SubResource("OccluderPolygon2D_vw2hu")
+
+[node name="Timer" type="Timer" parent="." unique_id=151246851]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

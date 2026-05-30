@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://bseijcu3ixl48"]
+
+[ext_resource type="Texture2D" uid="uid://cp84gbepe1obc" path="res://assets/asepriteMoj/machinGun.png" id="1_w7cv7"]
+[ext_resource type="Script" uid="uid://clglw75sjst2p" path="res://scripts/machin_gun.gd" id="1_xed7p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ws2ng"]
+size = Vector2(22, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ck5km"]
+size = Vector2(10, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ksdhc"]
+size = Vector2(6, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8qwr"]
+atlas = ExtResource("1_w7cv7")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngdsk"]
+atlas = ExtResource("1_w7cv7")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyfut"]
+atlas = ExtResource("1_w7cv7")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8y7mg"]
+atlas = ExtResource("1_w7cv7")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evvop"]
+atlas = ExtResource("1_w7cv7")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qi3ra"]
+atlas = ExtResource("1_w7cv7")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jvfgg"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8qwr")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngdsk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyfut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8y7mg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evvop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qi3ra")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 12.0
+}]
+
+[node name="machinGun" type="StaticBody2D" unique_id=1906497720]
+script = ExtResource("1_xed7p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=341502936]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_ws2ng")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=545521495]
+position = Vector2(0, 14.5)
+shape = SubResource("RectangleShape2D_ck5km")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=762870946]
+position = Vector2(-14, -9)
+shape = SubResource("RectangleShape2D_ksdhc")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="." unique_id=2089886994]
+position = Vector2(14, -9)
+shape = SubResource("RectangleShape2D_ksdhc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1730183103]
+sprite_frames = SubResource("SpriteFrames_jvfgg")
+animation = &"shoot"
+frame_progress = 0.86331713

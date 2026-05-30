@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dd84yt7iphpis"]
+[gd_scene format=3 uid="uid://dd84yt7iphpis"]
 
 [ext_resource type="Texture2D" uid="uid://2wyc3mefw5c1" path="res://assets/asepriteMoj/lampLight.png" id="1_apf10"]
 [ext_resource type="Script" uid="uid://buw4qmn7fl6sx" path="res://scripts/labLight.gd" id="2_o6btx"]
@@ -14,15 +14,15 @@ fill = 1
 fill_from = Vector2(0.522936, 0.490826)
 fill_to = Vector2(0.880734, 0.110092)
 
-[node name="lampLvl2" type="Sprite2D"]
+[node name="lampLvl2" type="Sprite2D" unique_id=1861681179]
 texture = ExtResource("1_apf10")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=862787337]
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_odhcq")
 script = ExtResource("2_o6btx")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=515205834]
 amount = 2
 lifetime = 0.2
 emission_shape = 1

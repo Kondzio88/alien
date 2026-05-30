@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://b11cxqvbq3lxy"]
+[gd_scene format=3 uid="uid://b11cxqvbq3lxy"]
 
 [ext_resource type="Script" uid="uid://cquq6p1bgwr35" path="res://scripts/player.gd" id="1_kdosh"]
 [ext_resource type="Texture2D" uid="uid://dhdyv5tulm5ih" path="res://characters/2 aim.png" id="2_nutqk"]
@@ -200,135 +200,140 @@ fill_to = Vector2(0.830275, 0.178899)
 cull_mode = 1
 polygon = PackedVector2Array(-1.86955, -8.7467, -4.05622, -8.27931, -6.02589, -4.6571, -6.34302, 4.55698, -4.90749, 6.99404, -2.25342, 8.71333, 1.86955, 8.7467, 3.83922, 5.12449, 5.84226, -2.62069, 4.18972, -8.21257)
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" unique_id=692213356]
 z_index = 6
 collision_layer = 3
 collision_mask = 9
 script = ExtResource("1_kdosh")
+textToSay = "Jasne kurwa !!! Jak zawsze ... powowdzenia i znow zostaje sam ... Pierdole taka robote ! ! ! "
+speakerName = "Ghost"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1837457007]
 rotation = -0.244346
 sprite_frames = SubResource("SpriteFrames_jm4cv")
 animation = &"idle"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=321292071]
 rotation = -0.000628946
 polygon = PackedVector2Array(-4, -8, -10, -2, -10, 5, -3, 9, 3, 9, 4.99685, 5.00314, 12.9987, 2.00818, 13.0006, -0.991824, 9.00063, -0.994339, 6, -2, 2, -7)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=106848532]
 shape = SubResource("CapsuleShape2D_obs2f")
 debug_color = Color(0.757969, 0.0798969, 0.111204, 0.42)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=48357952]
 z_index = 5
 zoom = Vector2(2.3, 2.3)
 
-[node name="flashlight" type="PointLight2D" parent="."]
+[node name="flashlight" type="PointLight2D" parent="." unique_id=50813333]
 position = Vector2(6, 0)
 scale = Vector2(9.2, 5)
 enabled = false
 color = Color(1, 1, 1, 0.709804)
 energy = 0.6
+range_item_cull_mask = 5
 shadow_enabled = true
 shadow_filter = 2
 shadow_filter_smooth = 2.0
 shadow_item_cull_mask = 5
 texture = SubResource("GradientTexture2D_rqfa3")
 
-[node name="flashlight2" type="PointLight2D" parent="."]
+[node name="flashlight2" type="PointLight2D" parent="." unique_id=1255382915]
 position = Vector2(6, 0)
 scale = Vector2(5, 1.25)
 enabled = false
 energy = 0.8
+range_item_cull_mask = 5
 shadow_enabled = true
 shadow_item_cull_mask = 5
 texture = SubResource("GradientTexture2D_0jo1g")
 
-[node name="flashlight3" type="PointLight2D" parent="."]
+[node name="flashlight3" type="PointLight2D" parent="." unique_id=70166487]
 position = Vector2(5, 0)
 scale = Vector2(7, 1.25)
 enabled = false
 energy = 0.7
+range_item_cull_mask = 5
 shadow_enabled = true
 shadow_filter = 2
 shadow_filter_smooth = 1.5
 shadow_item_cull_mask = 5
 texture = SubResource("GradientTexture2D_0jo1g")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=936259029]
 position = Vector2(-21, 0)
 rotation = 7.40878e-05
 occluder = SubResource("OccluderPolygon2D_jyueh")
 occluder_light_mask = 4
 
-[node name="pointBullet" type="Marker2D" parent="."]
+[node name="pointBullet" type="Marker2D" parent="." unique_id=670417892]
 z_index = 10
 position = Vector2(10, 0)
 
-[node name="fireLight" type="PointLight2D" parent="pointBullet"]
+[node name="fireLight" type="PointLight2D" parent="pointBullet" unique_id=1994618794]
 z_index = 10
 position = Vector2(7, 0)
 enabled = false
 texture = SubResource("GradientTexture2D_bcco5")
 
-[node name="fireLight2" type="PointLight2D" parent="pointBullet"]
+[node name="fireLight2" type="PointLight2D" parent="pointBullet" unique_id=1581281953]
 z_index = 10
 position = Vector2(7, 4)
 rotation = 0.773309
 enabled = false
 texture = SubResource("GradientTexture2D_bcco5")
 
-[node name="fireLight3" type="PointLight2D" parent="pointBullet"]
+[node name="fireLight3" type="PointLight2D" parent="pointBullet" unique_id=1042069711]
 z_index = 10
 position = Vector2(8, -5)
 rotation = -0.716956
 enabled = false
 texture = SubResource("GradientTexture2D_bcco5")
 
-[node name="hurtBoxArea" type="Area2D" parent="."]
+[node name="hurtBoxArea" type="Area2D" parent="." unique_id=1361945357]
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtBoxArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtBoxArea" unique_id=1271853179]
 shape = SubResource("CapsuleShape2D_tbgjy")
 
-[node name="audioReload" type="AudioStreamPlayer2D" parent="."]
+[node name="audioReload" type="AudioStreamPlayer2D" parent="." unique_id=1486848322]
 rotation = -0.253073
 stream = ExtResource("13_evfds")
 bus = &"sfx"
 
-[node name="audioShoot" type="AudioStreamPlayer2D" parent="."]
+[node name="audioShoot" type="AudioStreamPlayer2D" parent="." unique_id=1559074192]
 stream = ExtResource("8_xip78")
 bus = &"sfx"
 
-[node name="audioWalk" type="AudioStreamPlayer2D" parent="."]
+[node name="audioWalk" type="AudioStreamPlayer2D" parent="." unique_id=1185300460]
 stream = ExtResource("14_lbjc1")
 
-[node name="audioRun" type="AudioStreamPlayer2D" parent="."]
+[node name="audioRun" type="AudioStreamPlayer2D" parent="." unique_id=1442865068]
 stream = ExtResource("15_kglew")
 
-[node name="chestSound" type="AudioStreamPlayer2D" parent="."]
+[node name="chestSound" type="AudioStreamPlayer2D" parent="." unique_id=810970306]
 stream = ExtResource("18_rd6qk")
 
-[node name="electricFlashLight" type="AudioStreamPlayer2D" parent="."]
+[node name="electricFlashLight" type="AudioStreamPlayer2D" parent="." unique_id=2024194430]
 stream = ExtResource("19_q2xh0")
 bus = &"sfx"
 
-[node name="transition" parent="." instance=ExtResource("17_p3x8i")]
+[node name="transition" parent="." unique_id=115208913 instance=ExtResource("17_p3x8i")]
 
-[node name="audioDead" type="AudioStreamPlayer2D" parent="transition"]
+[node name="audioDead" type="AudioStreamPlayer2D" parent="transition" unique_id=1530741468]
 stream = ExtResource("18_1b3jn")
 
-[node name="redGrenadeLight" type="PointLight2D" parent="."]
+[node name="redGrenadeLight" type="PointLight2D" parent="." unique_id=1513876984]
 position = Vector2(-10, 14)
 color = Color(0.995572, 0, 0, 1)
 texture = SubResource("GradientTexture2D_7ctsb")
 script = ExtResource("21_hc7pw")
 
-[node name="shadow" type="LightOccluder2D" parent="."]
+[node name="shadow" type="LightOccluder2D" parent="." unique_id=1310779922]
 rotation = -0.253073
 occluder = SubResource("OccluderPolygon2D_otv6e")
 
-[node name="laser" parent="." instance=ExtResource("14_n4tu0")]
+[node name="laser" parent="." unique_id=313346317 instance=ExtResource("14_n4tu0")]
 
 [connection signal="area_entered" from="hurtBoxArea" to="." method="_on_hurt_box_area_area_entered"]

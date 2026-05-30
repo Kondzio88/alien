@@ -1,0 +1,1265 @@
+[gd_scene format=4 uid="uid://bc80idftjcfiy"]
+
+[ext_resource type="Script" uid="uid://drlanwl2gilwm" path="res://scripts/house.gd" id="1_d5a6f"]
+[ext_resource type="Texture2D" uid="uid://kq0emk6sr8j5" path="res://assets/buildings roofs other.jpg" id="1_upc6q"]
+[ext_resource type="Script" uid="uid://cuwbwhod3ho52" path="res://scripts/door.gd" id="2_d5a6f"]
+[ext_resource type="Texture2D" uid="uid://c6tl2g6wgi3nq" path="res://assets/asepriteMoj/doorNew.png" id="3_ponbb"]
+[ext_resource type="AudioStream" uid="uid://kpap60nu7j2k" path="res://sounds/sfx/spaceship-door-opening.mp3" id="4_gvmg7"]
+[ext_resource type="Texture2D" uid="uid://dx5qg5vk70itl" path="res://assets/buildings_roofs_other.png" id="6_ponbb"]
+[ext_resource type="Script" uid="uid://bys5i4nb3g14g" path="res://scripts/armor_box.gd" id="7_847u0"]
+[ext_resource type="Texture2D" uid="uid://bph65nmcf6y33" path="res://assets/grass wehicles other.jpg" id="8_iwviv"]
+[ext_resource type="PackedScene" uid="uid://dkj6obcbqpem7" path="res://scenes/static/table.tscn" id="8_x36mw"]
+[ext_resource type="Shader" uid="uid://c1hsnughkfkvr" path="res://shaders/highlights.gdshader" id="9_1b2m1"]
+[ext_resource type="Texture2D" uid="uid://dea8a2llgtrca" path="res://assets/asepriteMoj/chair.png" id="9_ursuj"]
+[ext_resource type="Texture2D" uid="uid://cl3wdtvoncour" path="res://assets/asepriteMoj/weylandLogo.png" id="10_mpx5c"]
+[ext_resource type="Texture2D" uid="uid://d1k5wlw74ffn6" path="res://assets/asepriteMoj/armorBoxPng.png" id="10_ytcaj"]
+[ext_resource type="PackedScene" uid="uid://dd84yt7iphpis" path="res://scenes/static/lamp_lvl_2.tscn" id="11_x36mw"]
+[ext_resource type="AudioStream" uid="uid://bohsihm1lb3y5" path="res://sounds/sfx/Chest Open 2.wav" id="11_xw4ut"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y87x4"]
+size = Vector2(50, 16)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wqyjc"]
+polygon = PackedVector2Array(-25, -8, -25, 8, 25, 8, 25, -8)
+
+[sub_resource type="Gradient" id="Gradient_prmdq"]
+offsets = PackedFloat32Array(0, 0.948052)
+colors = PackedColorArray(0.114326, 0.975206, 0.0130073, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ebloq"]
+gradient = SubResource("Gradient_prmdq")
+fill = 1
+fill_from = Vector2(0.509174, 0.477064)
+fill_to = Vector2(0.922018, 0.0733945)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kvhxq"]
+polygon = PackedVector2Array(-25, -8, -25, 8, 25, 8, 25, -8)
+
+[sub_resource type="Animation" id="Animation_gsoq4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(50, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gqdhb"]
+resource_name = "close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-25, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(78, 0), Vector2(50, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ejwtc"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-25, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(50, 0), Vector2(78, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1o51u"]
+_data = {
+&"RESET": SubResource("Animation_gsoq4"),
+&"close": SubResource("Animation_gqdhb"),
+&"open": SubResource("Animation_ejwtc")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vufvb"]
+radius = 44.4072
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ponbb"]
+size = Vector2(310, 281)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ponbb"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gvmg7"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7w7ee"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0541m"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_68620"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_x36mw"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ursuj"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_mpx5c"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2gqi4"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_847u0"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_iwviv"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_1b2m1"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gvmg7"]
+texture = ExtResource("6_ponbb")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+16:0/0 = 0
+17:0/0 = 0
+18:0/0 = 0
+19:0/0 = 0
+20:0/0 = 0
+21:0/0 = 0
+22:0/0 = 0
+23:0/0 = 0
+24:0/0 = 0
+25:0/0 = 0
+26:0/0 = 0
+27:0/0 = 0
+28:0/0 = 0
+29:0/0 = 0
+30:0/0 = 0
+31:0/0 = 0
+32:0/0 = 0
+33:0/0 = 0
+34:0/0 = 0
+35:0/0 = 0
+36:0/0 = 0
+37:0/0 = 0
+38:0/0 = 0
+41:0/0 = 0
+42:0/0 = 0
+43:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+14:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_ponbb")
+14:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+15:1/0 = 0
+16:1/0 = 0
+17:1/0 = 0
+18:1/0 = 0
+19:1/0 = 0
+20:1/0 = 0
+21:1/0 = 0
+22:1/0 = 0
+23:1/0 = 0
+24:1/0 = 0
+25:1/0 = 0
+26:1/0 = 0
+27:1/0 = 0
+28:1/0 = 0
+29:1/0 = 0
+30:1/0 = 0
+31:1/0 = 0
+32:1/0 = 0
+33:1/0 = 0
+34:1/0 = 0
+35:1/0 = 0
+36:1/0 = 0
+37:1/0 = 0
+38:1/0 = 0
+40:1/0 = 0
+41:1/0 = 0
+42:1/0 = 0
+43:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+11:2/0 = 0
+12:2/0 = 0
+13:2/0 = 0
+14:2/0 = 0
+14:2/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_68620")
+14:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+15:2/0 = 0
+16:2/0 = 0
+17:2/0 = 0
+18:2/0 = 0
+19:2/0 = 0
+20:2/0 = 0
+21:2/0 = 0
+22:2/0 = 0
+23:2/0 = 0
+24:2/0 = 0
+25:2/0 = 0
+26:2/0 = 0
+27:2/0 = 0
+28:2/0 = 0
+29:2/0 = 0
+30:2/0 = 0
+31:2/0 = 0
+32:2/0 = 0
+33:2/0 = 0
+34:2/0 = 0
+35:2/0 = 0
+36:2/0 = 0
+37:2/0 = 0
+38:2/0 = 0
+40:2/0 = 0
+41:2/0 = 0
+42:2/0 = 0
+43:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+11:3/0 = 0
+12:3/0 = 0
+13:3/0 = 0
+14:3/0 = 0
+14:3/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_x36mw")
+14:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+15:3/0 = 0
+16:3/0 = 0
+17:3/0 = 0
+18:3/0 = 0
+19:3/0 = 0
+20:3/0 = 0
+21:3/0 = 0
+22:3/0 = 0
+23:3/0 = 0
+24:3/0 = 0
+25:3/0 = 0
+26:3/0 = 0
+27:3/0 = 0
+28:3/0 = 0
+29:3/0 = 0
+30:3/0 = 0
+31:3/0 = 0
+32:3/0 = 0
+33:3/0 = 0
+34:3/0 = 0
+35:3/0 = 0
+36:3/0 = 0
+37:3/0 = 0
+38:3/0 = 0
+40:3/0 = 0
+41:3/0 = 0
+42:3/0 = 0
+43:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+11:4/0 = 0
+12:4/0 = 0
+13:4/0 = 0
+14:4/0 = 0
+14:4/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_ursuj")
+14:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+15:4/0 = 0
+16:4/0 = 0
+17:4/0 = 0
+18:4/0 = 0
+19:4/0 = 0
+20:4/0 = 0
+21:4/0 = 0
+22:4/0 = 0
+23:4/0 = 0
+24:4/0 = 0
+25:4/0 = 0
+26:4/0 = 0
+27:4/0 = 0
+28:4/0 = 0
+29:4/0 = 0
+30:4/0 = 0
+31:4/0 = 0
+32:4/0 = 0
+33:4/0 = 0
+34:4/0 = 0
+35:4/0 = 0
+36:4/0 = 0
+37:4/0 = 0
+38:4/0 = 0
+41:4/0 = 0
+42:4/0 = 0
+43:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+11:5/0 = 0
+12:5/0 = 0
+13:5/0 = 0
+14:5/0 = 0
+14:5/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_mpx5c")
+14:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+15:5/0 = 0
+16:5/0 = 0
+17:5/0 = 0
+18:5/0 = 0
+19:5/0 = 0
+20:5/0 = 0
+21:5/0 = 0
+22:5/0 = 0
+23:5/0 = 0
+24:5/0 = 0
+25:5/0 = 0
+26:5/0 = 0
+27:5/0 = 0
+28:5/0 = 0
+29:5/0 = 0
+30:5/0 = 0
+31:5/0 = 0
+32:5/0 = 0
+33:5/0 = 0
+34:5/0 = 0
+35:5/0 = 0
+36:5/0 = 0
+37:5/0 = 0
+38:5/0 = 0
+41:5/0 = 0
+42:5/0 = 0
+43:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+10:6/0 = 0
+11:6/0 = 0
+12:6/0 = 0
+13:6/0 = 0
+14:6/0 = 0
+14:6/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_2gqi4")
+14:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+15:6/0 = 0
+16:6/0 = 0
+17:6/0 = 0
+18:6/0 = 0
+19:6/0 = 0
+20:6/0 = 0
+21:6/0 = 0
+22:6/0 = 0
+23:6/0 = 0
+24:6/0 = 0
+25:6/0 = 0
+26:6/0 = 0
+27:6/0 = 0
+28:6/0 = 0
+29:6/0 = 0
+30:6/0 = 0
+31:6/0 = 0
+32:6/0 = 0
+33:6/0 = 0
+34:6/0 = 0
+35:6/0 = 0
+36:6/0 = 0
+37:6/0 = 0
+38:6/0 = 0
+42:6/0 = 0
+43:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+10:7/0 = 0
+11:7/0 = 0
+12:7/0 = 0
+13:7/0 = 0
+14:7/0 = 0
+14:7/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_847u0")
+14:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+15:7/0 = 0
+16:7/0 = 0
+17:7/0 = 0
+18:7/0 = 0
+19:7/0 = 0
+20:7/0 = 0
+21:7/0 = 0
+22:7/0 = 0
+23:7/0 = 0
+24:7/0 = 0
+25:7/0 = 0
+26:7/0 = 0
+27:7/0 = 0
+28:7/0 = 0
+29:7/0 = 0
+30:7/0 = 0
+31:7/0 = 0
+32:7/0 = 0
+33:7/0 = 0
+34:7/0 = 0
+35:7/0 = 0
+36:7/0 = 0
+37:7/0 = 0
+38:7/0 = 0
+42:7/0 = 0
+43:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+10:8/0 = 0
+11:8/0 = 0
+12:8/0 = 0
+13:8/0 = 0
+14:8/0 = 0
+14:8/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_iwviv")
+14:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+15:8/0 = 0
+16:8/0 = 0
+17:8/0 = 0
+18:8/0 = 0
+19:8/0 = 0
+20:8/0 = 0
+21:8/0 = 0
+22:8/0 = 0
+23:8/0 = 0
+24:8/0 = 0
+25:8/0 = 0
+26:8/0 = 0
+27:8/0 = 0
+28:8/0 = 0
+29:8/0 = 0
+30:8/0 = 0
+31:8/0 = 0
+32:8/0 = 0
+33:8/0 = 0
+34:8/0 = 0
+35:8/0 = 0
+36:8/0 = 0
+37:8/0 = 0
+38:8/0 = 0
+42:8/0 = 0
+43:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+8:9/0 = 0
+9:9/0 = 0
+10:9/0 = 0
+11:9/0 = 0
+12:9/0 = 0
+13:9/0 = 0
+14:9/0 = 0
+14:9/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_1b2m1")
+14:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+15:9/0 = 0
+16:9/0 = 0
+17:9/0 = 0
+18:9/0 = 0
+19:9/0 = 0
+20:9/0 = 0
+21:9/0 = 0
+22:9/0 = 0
+23:9/0 = 0
+24:9/0 = 0
+25:9/0 = 0
+26:9/0 = 0
+27:9/0 = 0
+28:9/0 = 0
+29:9/0 = 0
+30:9/0 = 0
+31:9/0 = 0
+32:9/0 = 0
+33:9/0 = 0
+34:9/0 = 0
+35:9/0 = 0
+36:9/0 = 0
+37:9/0 = 0
+38:9/0 = 0
+42:9/0 = 0
+43:9/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+3:10/0 = 0
+4:10/0 = 0
+5:10/0 = 0
+6:10/0 = 0
+7:10/0 = 0
+8:10/0 = 0
+9:10/0 = 0
+10:10/0 = 0
+11:10/0 = 0
+12:10/0 = 0
+13:10/0 = 0
+14:10/0 = 0
+14:10/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_gvmg7")
+14:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+15:10/0 = 0
+16:10/0 = 0
+17:10/0 = 0
+18:10/0 = 0
+19:10/0 = 0
+20:10/0 = 0
+21:10/0 = 0
+22:10/0 = 0
+23:10/0 = 0
+24:10/0 = 0
+25:10/0 = 0
+26:10/0 = 0
+27:10/0 = 0
+28:10/0 = 0
+29:10/0 = 0
+30:10/0 = 0
+31:10/0 = 0
+32:10/0 = 0
+33:10/0 = 0
+34:10/0 = 0
+35:10/0 = 0
+36:10/0 = 0
+37:10/0 = 0
+38:10/0 = 0
+42:10/0 = 0
+43:10/0 = 0
+0:11/0 = 0
+1:11/0 = 0
+2:11/0 = 0
+3:11/0 = 0
+4:11/0 = 0
+5:11/0 = 0
+6:11/0 = 0
+7:11/0 = 0
+8:11/0 = 0
+9:11/0 = 0
+10:11/0 = 0
+11:11/0 = 0
+12:11/0 = 0
+13:11/0 = 0
+14:11/0 = 0
+14:11/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_7w7ee")
+14:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+15:11/0 = 0
+16:11/0 = 0
+17:11/0 = 0
+18:11/0 = 0
+19:11/0 = 0
+20:11/0 = 0
+21:11/0 = 0
+22:11/0 = 0
+23:11/0 = 0
+24:11/0 = 0
+25:11/0 = 0
+26:11/0 = 0
+27:11/0 = 0
+28:11/0 = 0
+29:11/0 = 0
+30:11/0 = 0
+31:11/0 = 0
+32:11/0 = 0
+33:11/0 = 0
+34:11/0 = 0
+35:11/0 = 0
+36:11/0 = 0
+37:11/0 = 0
+38:11/0 = 0
+42:11/0 = 0
+43:11/0 = 0
+0:12/0 = 0
+1:12/0 = 0
+2:12/0 = 0
+3:12/0 = 0
+4:12/0 = 0
+5:12/0 = 0
+6:12/0 = 0
+7:12/0 = 0
+8:12/0 = 0
+9:12/0 = 0
+10:12/0 = 0
+11:12/0 = 0
+12:12/0 = 0
+13:12/0 = 0
+14:12/0 = 0
+14:12/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_0541m")
+14:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+15:12/0 = 0
+16:12/0 = 0
+17:12/0 = 0
+18:12/0 = 0
+19:12/0 = 0
+20:12/0 = 0
+21:12/0 = 0
+22:12/0 = 0
+23:12/0 = 0
+24:12/0 = 0
+25:12/0 = 0
+26:12/0 = 0
+27:12/0 = 0
+28:12/0 = 0
+29:12/0 = 0
+30:12/0 = 0
+31:12/0 = 0
+32:12/0 = 0
+33:12/0 = 0
+34:12/0 = 0
+35:12/0 = 0
+36:12/0 = 0
+37:12/0 = 0
+38:12/0 = 0
+41:12/0 = 0
+42:12/0 = 0
+43:12/0 = 0
+0:13/0 = 0
+1:13/0 = 0
+2:13/0 = 0
+3:13/0 = 0
+4:13/0 = 0
+5:13/0 = 0
+6:13/0 = 0
+7:13/0 = 0
+8:13/0 = 0
+9:13/0 = 0
+10:13/0 = 0
+11:13/0 = 0
+12:13/0 = 0
+13:13/0 = 0
+14:13/0 = 0
+15:13/0 = 0
+21:13/0 = 0
+22:13/0 = 0
+23:13/0 = 0
+24:13/0 = 0
+25:13/0 = 0
+26:13/0 = 0
+27:13/0 = 0
+28:13/0 = 0
+29:13/0 = 0
+30:13/0 = 0
+31:13/0 = 0
+32:13/0 = 0
+33:13/0 = 0
+34:13/0 = 0
+35:13/0 = 0
+36:13/0 = 0
+37:13/0 = 0
+38:13/0 = 0
+41:13/0 = 0
+42:13/0 = 0
+43:13/0 = 0
+1:14/0 = 0
+2:14/0 = 0
+3:14/0 = 0
+4:14/0 = 0
+5:14/0 = 0
+6:14/0 = 0
+7:14/0 = 0
+10:14/0 = 0
+11:14/0 = 0
+12:14/0 = 0
+13:14/0 = 0
+14:14/0 = 0
+15:14/0 = 0
+16:14/0 = 0
+17:14/0 = 0
+18:14/0 = 0
+19:14/0 = 0
+20:14/0 = 0
+21:14/0 = 0
+22:14/0 = 0
+23:14/0 = 0
+24:14/0 = 0
+25:14/0 = 0
+26:14/0 = 0
+27:14/0 = 0
+28:14/0 = 0
+29:14/0 = 0
+30:14/0 = 0
+31:14/0 = 0
+32:14/0 = 0
+33:14/0 = 0
+34:14/0 = 0
+35:14/0 = 0
+36:14/0 = 0
+37:14/0 = 0
+41:14/0 = 0
+42:14/0 = 0
+43:14/0 = 0
+0:15/0 = 0
+1:15/0 = 0
+2:15/0 = 0
+3:15/0 = 0
+4:15/0 = 0
+5:15/0 = 0
+6:15/0 = 0
+7:15/0 = 0
+8:15/0 = 0
+10:15/0 = 0
+11:15/0 = 0
+12:15/0 = 0
+13:15/0 = 0
+14:15/0 = 0
+15:15/0 = 0
+16:15/0 = 0
+17:15/0 = 0
+18:15/0 = 0
+19:15/0 = 0
+20:15/0 = 0
+21:15/0 = 0
+22:15/0 = 0
+23:15/0 = 0
+24:15/0 = 0
+25:15/0 = 0
+26:15/0 = 0
+27:15/0 = 0
+28:15/0 = 0
+29:15/0 = 0
+30:15/0 = 0
+31:15/0 = 0
+32:15/0 = 0
+33:15/0 = 0
+34:15/0 = 0
+35:15/0 = 0
+36:15/0 = 0
+37:15/0 = 0
+40:15/0 = 0
+41:15/0 = 0
+42:15/0 = 0
+43:15/0 = 0
+1:16/0 = 0
+2:16/0 = 0
+3:16/0 = 0
+4:16/0 = 0
+5:16/0 = 0
+6:16/0 = 0
+7:16/0 = 0
+8:16/0 = 0
+10:16/0 = 0
+11:16/0 = 0
+12:16/0 = 0
+13:16/0 = 0
+14:16/0 = 0
+15:16/0 = 0
+16:16/0 = 0
+17:16/0 = 0
+18:16/0 = 0
+19:16/0 = 0
+20:16/0 = 0
+21:16/0 = 0
+22:16/0 = 0
+23:16/0 = 0
+24:16/0 = 0
+25:16/0 = 0
+26:16/0 = 0
+27:16/0 = 0
+28:16/0 = 0
+29:16/0 = 0
+30:16/0 = 0
+31:16/0 = 0
+32:16/0 = 0
+33:16/0 = 0
+34:16/0 = 0
+35:16/0 = 0
+36:16/0 = 0
+40:16/0 = 0
+41:16/0 = 0
+42:16/0 = 0
+43:16/0 = 0
+0:17/0 = 0
+1:17/0 = 0
+2:17/0 = 0
+3:17/0 = 0
+4:17/0 = 0
+5:17/0 = 0
+6:17/0 = 0
+7:17/0 = 0
+8:17/0 = 0
+10:17/0 = 0
+11:17/0 = 0
+12:17/0 = 0
+13:17/0 = 0
+14:17/0 = 0
+15:17/0 = 0
+16:17/0 = 0
+17:17/0 = 0
+18:17/0 = 0
+19:17/0 = 0
+20:17/0 = 0
+21:17/0 = 0
+22:17/0 = 0
+23:17/0 = 0
+24:17/0 = 0
+25:17/0 = 0
+26:17/0 = 0
+27:17/0 = 0
+28:17/0 = 0
+29:17/0 = 0
+30:17/0 = 0
+31:17/0 = 0
+32:17/0 = 0
+33:17/0 = 0
+34:17/0 = 0
+35:17/0 = 0
+36:17/0 = 0
+41:17/0 = 0
+42:17/0 = 0
+43:17/0 = 0
+0:18/0 = 0
+1:18/0 = 0
+2:18/0 = 0
+3:18/0 = 0
+4:18/0 = 0
+5:18/0 = 0
+6:18/0 = 0
+7:18/0 = 0
+8:18/0 = 0
+9:18/0 = 0
+10:18/0 = 0
+11:18/0 = 0
+12:18/0 = 0
+13:18/0 = 0
+21:18/0 = 0
+22:18/0 = 0
+23:18/0 = 0
+24:18/0 = 0
+25:18/0 = 0
+26:18/0 = 0
+27:18/0 = 0
+28:18/0 = 0
+29:18/0 = 0
+30:18/0 = 0
+31:18/0 = 0
+32:18/0 = 0
+33:18/0 = 0
+34:18/0 = 0
+35:18/0 = 0
+36:18/0 = 0
+37:18/0 = 0
+41:18/0 = 0
+42:18/0 = 0
+43:18/0 = 0
+0:19/0 = 0
+1:19/0 = 0
+2:19/0 = 0
+3:19/0 = 0
+4:19/0 = 0
+5:19/0 = 0
+6:19/0 = 0
+7:19/0 = 0
+8:19/0 = 0
+9:19/0 = 0
+10:19/0 = 0
+11:19/0 = 0
+12:19/0 = 0
+13:19/0 = 0
+21:19/0 = 0
+22:19/0 = 0
+23:19/0 = 0
+24:19/0 = 0
+25:19/0 = 0
+26:19/0 = 0
+27:19/0 = 0
+28:19/0 = 0
+29:19/0 = 0
+30:19/0 = 0
+31:19/0 = 0
+32:19/0 = 0
+33:19/0 = 0
+34:19/0 = 0
+35:19/0 = 0
+36:19/0 = 0
+37:19/0 = 0
+38:19/0 = 0
+0:20/0 = 0
+1:20/0 = 0
+3:20/0 = 0
+4:20/0 = 0
+5:20/0 = 0
+7:20/0 = 0
+8:20/0 = 0
+9:20/0 = 0
+10:20/0 = 0
+11:20/0 = 0
+21:20/0 = 0
+22:20/0 = 0
+23:20/0 = 0
+24:20/0 = 0
+25:20/0 = 0
+26:20/0 = 0
+27:20/0 = 0
+32:20/0 = 0
+33:20/0 = 0
+34:20/0 = 0
+35:20/0 = 0
+36:20/0 = 0
+37:20/0 = 0
+38:20/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_7w7ee"]
+occlusion_layer_0/light_mask = 1
+occlusion_layer_0/sdf_collision = true
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_gvmg7")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5r3w6"]
+size = Vector2(26, 44)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sgjva"]
+resource_local_to_scene = true
+shader = ExtResource("9_1b2m1")
+shader_parameter/Line_Smoothness = 0.045
+shader_parameter/Line_Width = 0.09
+shader_parameter/Brightness = 10.0
+shader_parameter/Rotation_deg = 30.0
+shader_parameter/Distortion = 1.8
+shader_parameter/Speed = 0.7
+shader_parameter/Position = 0.0
+shader_parameter/Position_Min = 0.25
+shader_parameter/Position_Max = 0.5
+shader_parameter/Alpha = 1.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bn1hh"]
+cull_mode = 2
+polygon = PackedVector2Array(39, -5, 67, -5, 66, 40, 39, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2tees"]
+size = Vector2(58, 74)
+
+[sub_resource type="Gradient" id="Gradient_x36mw"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ursuj"]
+gradient = SubResource("Gradient_x36mw")
+fill = 1
+fill_from = Vector2(0.4974359, 0.4051282)
+fill_to = Vector2(0.14188035, 0.9760684)
+
+[node name="house" type="Node2D" unique_id=258982348]
+script = ExtResource("1_d5a6f")
+
+[node name="roof" type="Sprite2D" parent="." unique_id=2096273445]
+visible = false
+light_mask = 0
+z_index = 15
+texture = ExtResource("1_upc6q")
+region_enabled = true
+region_rect = Rect2(536, 6, 314, 283)
+
+[node name="door" type="Node2D" parent="." unique_id=1498980868]
+z_index = 6
+position = Vector2(-155, -25)
+rotation = 1.5569601
+script = ExtResource("2_d5a6f")
+
+[node name="Sprite2D" type="Sprite2D" parent="door" unique_id=446744818]
+texture = ExtResource("3_ponbb")
+region_rect = Rect2(0, 0, 400, 400)
+
+[node name="Area2D" type="StaticBody2D" parent="door/Sprite2D" unique_id=450348719]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="door/Sprite2D/Area2D" unique_id=1571716177]
+shape = SubResource("RectangleShape2D_y87x4")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="door/Sprite2D" unique_id=1921201716]
+occluder = SubResource("OccluderPolygon2D_wqyjc")
+
+[node name="PointLight2D" type="PointLight2D" parent="door/Sprite2D" unique_id=213921882]
+position = Vector2(0, 9)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_ebloq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="door" unique_id=727229057]
+position = Vector2(50, 0)
+texture = ExtResource("3_ponbb")
+
+[node name="Area2D" type="StaticBody2D" parent="door/Sprite2D2" unique_id=413589145]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="door/Sprite2D2/Area2D" unique_id=984780486]
+shape = SubResource("RectangleShape2D_y87x4")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="door/Sprite2D2" unique_id=749147265]
+occluder = SubResource("OccluderPolygon2D_kvhxq")
+
+[node name="PointLight2D2" type="PointLight2D" parent="door/Sprite2D2" unique_id=655834296]
+position = Vector2(0, 9)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_ebloq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="door" unique_id=924265729]
+libraries/ = SubResource("AnimationLibrary_1o51u")
+
+[node name="range" type="Area2D" parent="door" unique_id=872377682]
+position = Vector2(-11, 0)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="door/range" unique_id=1631789836]
+position = Vector2(38, -1)
+shape = SubResource("CircleShape2D_vufvb")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="door" unique_id=388004483]
+stream = ExtResource("4_gvmg7")
+volume_db = -15.0
+bus = &"sfx"
+
+[node name="colisionArea" type="StaticBody2D" parent="." unique_id=740360662]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="colisionArea" unique_id=971716890]
+polygon = PackedVector2Array(-158, -46, -158, -142, 158, -142, 157, 141, -157, 141, -156, 53, -153, 53, -154, 136, 154, 137, 154, -138, -155, -139, -154, -47)
+
+[node name="detectedBody" type="Area2D" parent="." unique_id=2116261892]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detectedBody" unique_id=1581757233]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_ponbb")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1928693081]
+tile_map_data = PackedByteArray("AAAAAPf/AQAOAAEAAFD///f/AQAOAAIAAFD+//f/AQAOAAMAAFD9//f/AQAOAAQAAFD8//f/AQAOAAUAAFD7//f/AQAOAAYAAFD6//f/AQAOAAcAAFD5//f/AQAOAAgAAFD4//f/AQAOAAkAAFD3//f/AQAOAAoAAFD2//f/AQAOAAsAAFAJAPf/AQAOAAsAADAIAPf/AQAOAAQAAFAHAPf/AQAOAAUAAFAGAPf/AQAOAAYAAFAFAPf/AQAOAAcAAFAEAPf/AQAOAAgAAFADAPf/AQAOAAkAAFACAPf/AQAOAAoAAFABAPf/AQAOAAsAAFAJAPj/AQAOAAoAADAJAPn/AQAOAAkAADAJAPr/AQAOAAgAADAJAPv/AQAOAAcAADAJAPz/AQAOAAYAADAJAP3/AQAOAAUAADAJAP7/AQAOAAsAADAJAP//AQAOAAoAADAJAAAAAQAOAAkAADAJAAEAAQAOAAgAADAJAAIAAQAOAAcAADAJAAMAAQAOAAYAADAJAAQAAQAOAAUAADAJAAUAAQAOAAQAADAJAAYAAQAOAAMAADAJAAcAAQAOAAIAADAJAAgAAQAOAAsAAGAIAAgAAQAOAAoAAGAHAAgAAQAOAAkAAGAGAAgAAQAOAAgAAGAFAAgAAQAOAAcAAGAEAAgAAQAOAAYAAGADAAgAAQAOAAUAAGACAAgAAQAOAAQAAGABAAgAAQAOAAMAAGAAAAgAAQAOAAsAAGD//wgAAQAOAAoAAGD+/wgAAQAOAAkAAGD9/wgAAQAOAAgAAGD8/wgAAQAOAAcAAGD7/wgAAQAOAAYAAGD6/wgAAQAOAAUAAGD5/wgAAQAOAAQAAGD4/wgAAQAOAAMAAGD3/wgAAQAOAAIAAGD2/wgAAQAOAAEAAGD2/wMAAQAOAAEAAAD2/wQAAQAOAAIAAAD2/wUAAQAOAAMAAAD2/wYAAQAOAAQAAAD2/wcAAQAOAAUAAAD2//j/AQAOAAEAAAD2//n/AQAOAAIAAAD2//r/AQAOAAMAAAD2//v/AQAOAAQAAAD2//z/AQAOAAUAAAD3//j/AQAaABAAAAD3//n/AQAaABEAAAD4//j/AQAaABAAAAD4//n/AQAaABEAAAD4//r/AQAaABAAAAD4//v/AQAaABEAAAD5//r/AQAaABAAAAD5//v/AQAaABEAAAD6//r/AQAaABAAAAD6//v/AQAaABEAAAD7//r/AQAaABAAAAD7//v/AQAaABEAAAD8//r/AQAaABAAAAD8//v/AQAaABEAAAD9//r/AQAaABAAAAD9//v/AQAaABEAAAD+//r/AQAaABAAAAD+//v/AQAaABEAAAD///r/AQAaABAAAAD///v/AQAaABEAAAAAAPr/AQAaABAAAAAAAPv/AQAaABEAAAABAPr/AQAaABAAAAABAPv/AQAaABEAAAD3//r/AQAaABAAAAD3//v/AQAaABEAAAD3//z/AQAaABAAAAD3//3/AQAaABEAAAD3//7/AQAaABAAAAD3////AQAaABEAAAD3/wAAAQAaABAAAAD3/wEAAQAaABEAAAD4//z/AQAaABAAAAD4//3/AQAaABEAAAD4//7/AQAaABAAAAD4////AQAaABEAAAD4/wAAAQAaABAAAAD4/wEAAQAaABEAAAD5//j/AQAaABAAAAD5//n/AQAaABEAAAD5//z/AQAaABAAAAD5//3/AQAaABEAAAD5//7/AQAaABAAAAD5////AQAaABEAAAD5/wAAAQAaABAAAAD5/wEAAQAaABEAAAD6//j/AQAaABAAAAD6//n/AQAaABEAAAD6//z/AQAaABAAAAD6//3/AQAaABEAAAD6//7/AQAaABAAAAD6////AQAaABEAAAD6/wAAAQAaABAAAAD6/wEAAQAaABEAAAD7//j/AQAaABAAAAD7//n/AQAaABEAAAD7//z/AQAaABAAAAD7//3/AQAaABEAAAD7//7/AQAaABAAAAD7////AQAaABEAAAD7/wAAAQAaABAAAAD7/wEAAQAaABEAAAD8//j/AQAaABAAAAD8//n/AQAaABEAAAD8//z/AQAaABAAAAD8//3/AQAaABEAAAD8//7/AQAaABAAAAD8////AQAaABEAAAD8/wAAAQAaABAAAAD8/wEAAQAaABEAAAD9//j/AQAaABAAAAD9//n/AQAaABEAAAD9//z/AQAaABAAAAD9//3/AQAaABEAAAD9//7/AQAaABAAAAD9////AQAaABEAAAD9/wAAAQAaABAAAAD9/wEAAQAaABEAAAD+//j/AQAaABAAAAD+//n/AQAaABEAAAD+//z/AQAaABAAAAD+//3/AQAaABEAAAD+//7/AQAaABAAAAD+////AQAaABEAAAD+/wAAAQAaABAAAAD+/wEAAQAaABEAAAD///j/AQAaABAAAAD///n/AQAaABEAAAD///z/AQAaABAAAAD///3/AQAaABEAAAD///7/AQAaABAAAAD/////AQAaABEAAAD//wAAAQAaABAAAAD//wEAAQAaABEAAAAAAPj/AQAaABAAAAAAAPn/AQAaABEAAAAAAPz/AQAaABAAAAAAAP3/AQAaABEAAAAAAP7/AQAaABAAAAAAAP//AQAaABEAAAAAAAAAAQAaABAAAAAAAAEAAQAaABEAAAABAPj/AQAaABAAAAABAPn/AQAaABEAAAABAPz/AQAaABAAAAABAP3/AQAaABEAAAABAP7/AQAaABAAAAABAP//AQAaABEAAAABAAAAAQAaABAAAAABAAEAAQAaABEAAAACAPj/AQAaABAAAAACAPn/AQAaABEAAAACAPr/AQAaABAAAAACAPv/AQAaABEAAAACAPz/AQAaABAAAAACAP3/AQAaABEAAAACAP7/AQAaABAAAAACAP//AQAaABEAAAACAAAAAQAaABAAAAACAAEAAQAaABEAAAADAPj/AQAaABAAAAADAPn/AQAaABEAAAADAPr/AQAaABAAAAADAPv/AQAaABEAAAADAPz/AQAaABAAAAADAP3/AQAaABEAAAADAP7/AQAaABAAAAADAP//AQAaABEAAAADAAAAAQAaABAAAAADAAEAAQAaABEAAAAEAPj/AQAaABAAAAAEAPn/AQAaABEAAAAEAPr/AQAaABAAAAAEAPv/AQAaABEAAAAEAPz/AQAaABAAAAAEAP3/AQAaABEAAAAEAP7/AQAaABAAAAAEAP//AQAaABEAAAAEAAAAAQAaABAAAAAEAAEAAQAaABEAAAAFAPj/AQAaABAAAAAFAPn/AQAaABEAAAAFAPr/AQAaABAAAAAFAPv/AQAaABEAAAAFAPz/AQAaABAAAAAFAP3/AQAaABEAAAAFAP7/AQAaABAAAAAFAP//AQAaABEAAAAFAAAAAQAaABAAAAAFAAEAAQAaABEAAAAGAPj/AQAaABAAAAAGAPn/AQAaABEAAAAGAPr/AQAaABAAAAAGAPv/AQAaABEAAAAGAPz/AQAaABAAAAAGAP3/AQAaABEAAAAGAP7/AQAaABAAAAAGAP//AQAaABEAAAAGAAAAAQAaABAAAAAGAAEAAQAaABEAAAAHAPj/AQAaABAAAAAHAPn/AQAaABEAAAAHAPr/AQAaABAAAAAHAPv/AQAaABEAAAAHAPz/AQAaABAAAAAHAP3/AQAaABEAAAAHAP7/AQAaABAAAAAHAP//AQAaABEAAAAHAAAAAQAaABAAAAAHAAEAAQAaABEAAAAIAPj/AQAaABAAAAAIAPn/AQAaABEAAAAIAPr/AQAaABAAAAAIAPv/AQAaABEAAAAIAPz/AQAaABAAAAAIAP3/AQAaABEAAAAIAP7/AQAaABAAAAAIAP//AQAaABEAAAAIAAAAAQAaABAAAAAIAAEAAQAaABEAAAD3/wIAAQAaABAAAAD3/wMAAQAaABEAAAD3/wQAAQAaABAAAAD3/wUAAQAaABEAAAD3/wYAAQAaABAAAAD3/wcAAQAaABEAAAD4/wIAAQAaABAAAAD4/wMAAQAaABEAAAD4/wQAAQAaABAAAAD4/wUAAQAaABEAAAD4/wYAAQAaABAAAAD4/wcAAQAaABEAAAD5/wIAAQAaABAAAAD5/wMAAQAaABEAAAD5/wQAAQAaABAAAAD5/wUAAQAaABEAAAD5/wYAAQAaABAAAAD5/wcAAQAaABEAAAD6/wIAAQAaABAAAAD6/wMAAQAaABEAAAD6/wQAAQAaABAAAAD6/wUAAQAaABEAAAD6/wYAAQAaABAAAAD6/wcAAQAaABEAAAD7/wIAAQAaABAAAAD7/wMAAQAaABEAAAD7/wQAAQAaABAAAAD7/wUAAQAaABEAAAD7/wYAAQAaABAAAAD7/wcAAQAaABEAAAD8/wIAAQAaABAAAAD8/wMAAQAaABEAAAD8/wQAAQAaABAAAAD8/wUAAQAaABEAAAD8/wYAAQAaABAAAAD8/wcAAQAaABEAAAD9/wIAAQAaABAAAAD9/wMAAQAaABEAAAD9/wQAAQAaABAAAAD9/wUAAQAaABEAAAD9/wYAAQAaABAAAAD9/wcAAQAaABEAAAD+/wIAAQAaABAAAAD+/wMAAQAaABEAAAD+/wQAAQAaABAAAAD+/wUAAQAaABEAAAD+/wYAAQAaABAAAAD+/wcAAQAaABEAAAD//wIAAQAaABAAAAD//wMAAQAaABEAAAD//wQAAQAaABAAAAD//wUAAQAaABEAAAD//wYAAQAaABAAAAD//wcAAQAaABEAAAAAAAIAAQAaABAAAAAAAAMAAQAaABEAAAAAAAQAAQAaABAAAAAAAAUAAQAaABEAAAAAAAYAAQAaABAAAAAAAAcAAQAaABEAAAABAAIAAQAaABAAAAABAAMAAQAaABEAAAABAAQAAQAaABAAAAABAAUAAQAaABEAAAABAAYAAQAaABAAAAABAAcAAQAaABEAAAACAAIAAQAaABAAAAACAAMAAQAaABEAAAACAAQAAQAaABAAAAACAAUAAQAaABEAAAACAAYAAQAaABAAAAACAAcAAQAaABEAAAADAAIAAQAaABAAAAADAAMAAQAaABEAAAADAAQAAQAaABAAAAADAAUAAQAaABEAAAADAAYAAQAaABAAAAADAAcAAQAaABEAAAAEAAIAAQAaABAAAAAEAAMAAQAaABEAAAAEAAQAAQAaABAAAAAEAAUAAQAaABEAAAAEAAYAAQAaABAAAAAEAAcAAQAaABEAAAAFAAIAAQAaABAAAAAFAAMAAQAaABEAAAAFAAQAAQAaABAAAAAFAAUAAQAaABEAAAAFAAYAAQAaABAAAAAFAAcAAQAaABEAAAAGAAIAAQAaABAAAAAGAAMAAQAaABEAAAAGAAQAAQAaABAAAAAGAAUAAQAaABEAAAAGAAYAAQAaABAAAAAGAAcAAQAaABEAAAAHAAIAAQAaABAAAAAHAAMAAQAaABEAAAAHAAQAAQAaABAAAAAHAAUAAQAaABEAAAAHAAYAAQAaABAAAAAHAAcAAQAaABEAAAAIAAIAAQAaABAAAAAIAAMAAQAaABEAAAAIAAQAAQAaABAAAAAIAAUAAQAaABEAAAAIAAYAAQAaABAAAAAIAAcAAQAaABEAAAD2//3/AQAaABAAAAD2//7/AQAaABEAAAD2////AQAaABAAAAD2/wAAAQAaABEAAAD2/wEAAQAaABAAAAD2/wIAAQAaABEAAAA=")
+tile_set = SubResource("TileSet_7w7ee")
+
+[node name="decorations" type="Node2D" parent="." unique_id=1404991937]
+
+[node name="armorBox" type="StaticBody2D" parent="decorations" unique_id=1425630857]
+z_index = 5
+position = Vector2(122.000015, 112.99999)
+rotation = 1.5718058
+scale = Vector2(0.99999994, 0.99999994)
+script = ExtResource("7_847u0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="decorations/armorBox" unique_id=1097852293]
+shape = SubResource("RectangleShape2D_5r3w6")
+
+[node name="Sprite2D" type="Sprite2D" parent="decorations/armorBox" unique_id=1927526183]
+clip_children = 2
+texture = ExtResource("8_iwviv")
+region_enabled = true
+region_rect = Rect2(186, 318, 27, 45)
+
+[node name="Shader" type="ColorRect" parent="decorations/armorBox/Sprite2D" unique_id=1574726659]
+material = SubResource("ShaderMaterial_sgjva")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -13.5
+offset_top = -22.5
+offset_right = -13.5
+offset_bottom = -22.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D2" type="Sprite2D" parent="decorations/armorBox" unique_id=1566907439]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("10_ytcaj")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="decorations/armorBox" unique_id=2082180975]
+position = Vector2(-53, -17)
+occluder = SubResource("OccluderPolygon2D_bn1hh")
+
+[node name="Area2D" type="Area2D" parent="decorations/armorBox" unique_id=1755175847]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="decorations/armorBox/Area2D" unique_id=1214127449]
+shape = SubResource("RectangleShape2D_2tees")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="decorations/armorBox" unique_id=54186878]
+stream = ExtResource("11_xw4ut")
+
+[node name="table" parent="decorations" unique_id=150106648 instance=ExtResource("8_x36mw")]
+position = Vector2(110, -117)
+
+[node name="Chair" type="Sprite2D" parent="decorations" unique_id=2013907586]
+position = Vector2(118, -87)
+texture = ExtResource("9_ursuj")
+
+[node name="Chair2" type="Sprite2D" parent="decorations" unique_id=1055614163]
+position = Vector2(30, -88)
+texture = ExtResource("9_ursuj")
+
+[node name="WeylandLogo" type="Sprite2D" parent="decorations" unique_id=910549071]
+texture = ExtResource("10_mpx5c")
+
+[node name="lampLvl2" parent="decorations" unique_id=1335347820 instance=ExtResource("11_x36mw")]
+position = Vector2(-142, -83)
+
+[node name="lampLvl3" parent="decorations" unique_id=153482794 instance=ExtResource("11_x36mw")]
+position = Vector2(-142, 95)
+
+[node name="lampLvl4" parent="decorations" unique_id=482903431 instance=ExtResource("11_x36mw")]
+position = Vector2(142, -1)
+rotation = -3.080383
+
+[node name="table2" parent="decorations" unique_id=717132043 instance=ExtResource("8_x36mw")]
+position = Vector2(21, -118)
+
+[node name="darkRoomLight" type="PointLight2D" parent="." unique_id=936781936]
+position = Vector2(0, -0.5)
+scale = Vector2(4.84375, 4.3593755)
+blend_mode = 1
+texture = SubResource("GradientTexture2D_ursuj")
+
+[connection signal="body_entered" from="door/range" to="door" method="_on_range_body_entered"]
+[connection signal="body_exited" from="door/range" to="door" method="_on_range_body_exited"]
+[connection signal="body_entered" from="detectedBody" to="." method="_on_detected_body_body_entered"]
+[connection signal="body_exited" from="detectedBody" to="." method="_on_detected_body_body_exited"]
+[connection signal="body_entered" from="decorations/armorBox/Area2D" to="decorations/armorBox" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="decorations/armorBox/Area2D" to="decorations/armorBox" method="_on_area_2d_body_exited"]

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cspuu5g8sc2q6"]
+
+[ext_resource type="Texture2D" uid="uid://c1m4o1afrah6k" path="res://assets/hotMiamiAssets/furnitures/sprProjectorTable.png" id="1_u3bni"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_1kt7e"]
+cull_mode = 2
+polygon = PackedVector2Array(20, 36, 93, 36, 93, 65, 20, 65)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4p1bm"]
+size = Vector2(73, 29)
+
+[node name="tablePlanning" type="Node2D" unique_id=1792379825]
+
+[node name="SprProjectorTable2" type="Sprite2D" parent="." unique_id=549613447]
+modulate = Color(1, 0.98403144, 0.98403144, 1)
+position = Vector2(57, 50)
+rotation = -3.1415925
+texture = ExtResource("1_u3bni")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=724467012]
+occluder = SubResource("OccluderPolygon2D_1kt7e")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1975478758]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1201228828]
+position = Vector2(56.5, 50.5)
+shape = SubResource("RectangleShape2D_4p1bm")
