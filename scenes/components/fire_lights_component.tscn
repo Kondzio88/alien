@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://b7urbj7dnp84h"]
+
+[ext_resource type="Script" uid="uid://dw7hweese0r62" path="res://scripts/fire_lights_component.gd" id="1_70h5u"]
+
+[sub_resource type="Gradient" id="Gradient_y6f0h"]
+offsets = PackedFloat32Array(0.155844, 1)
+colors = PackedColorArray(1, 0.971044, 0.0856797, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bcco5"]
+gradient = SubResource("Gradient_y6f0h")
+width = 20
+height = 10
+fill = 1
+fill_from = Vector2(0.495413, 0.481651)
+fill_to = Vector2(0.940367, 0.174312)
+
+[node name="fireLightsComponent" type="Node2D" unique_id=775201183]
+script = ExtResource("1_70h5u")
+
+[node name="fireLight" type="PointLight2D" parent="." unique_id=1635146441]
+z_index = 10
+position = Vector2(7, 0)
+enabled = false
+energy = 10.0
+texture = SubResource("GradientTexture2D_bcco5")
+
+[node name="fireLight2" type="PointLight2D" parent="." unique_id=1353121210]
+z_index = 10
+position = Vector2(7, 4)
+rotation = 0.773309
+enabled = false
+energy = 10.0
+texture = SubResource("GradientTexture2D_bcco5")
+
+[node name="fireLight3" type="PointLight2D" parent="." unique_id=640505379]
+z_index = 10
+position = Vector2(8, -5)
+rotation = -0.716956
+enabled = false
+energy = 10.0
+texture = SubResource("GradientTexture2D_bcco5")

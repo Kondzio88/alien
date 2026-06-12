@@ -13,7 +13,7 @@ extends RayCast2D
 
 func _ready() -> void:
 	laser_light.texture.height = 2
-	
+	laser.add_exception(area_laser)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:

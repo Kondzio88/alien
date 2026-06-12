@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cd8to2v7ao0ny"]
+[gd_scene format=3 uid="uid://cd8to2v7ao0ny"]
 
 [ext_resource type="Script" uid="uid://c1k1m4253wpe5" path="res://scripts/enemy_blood.gd" id="1_whfy2"]
 
@@ -6,7 +6,8 @@
 offsets = PackedFloat32Array(0, 0.993333)
 colors = PackedColorArray(0.581464, 0.10718, 0.10718, 1, 0.595041, 0.101856, 0.101856, 1)
 
-[node name="enemyBlood" type="CPUParticles2D"]
+[node name="enemyBlood" type="CPUParticles2D" unique_id=1229408276]
+z_index = 5
 emitting = false
 amount = 40
 lifetime = 4.0

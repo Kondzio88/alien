@@ -460,6 +460,11 @@ theme_override_font_sizes/font_size = 40
 text = "back"
 flat = true
 
+[node name="equipmentMargin" type="MarginContainer" parent="PanelContainer" unique_id=34289299]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+
 [node name="healthBarUi" parent="." unique_id=987078615 instance=ExtResource("3_kichw")]
 offset_left = 56.0
 offset_top = 39.0

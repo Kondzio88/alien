@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dkj6obcbqpem7"]
+[gd_scene format=3 uid="uid://dkj6obcbqpem7"]
 
 [ext_resource type="Texture2D" uid="uid://28u12r0nr4yo" path="res://assets/table.png" id="1_jstdo"]
 
@@ -18,19 +18,19 @@ fill = 1
 fill_from = Vector2(0.518349, 0.486239)
 fill_to = Vector2(0.880734, 0.110092)
 
-[node name="table" type="StaticBody2D"]
+[node name="table" type="StaticBody2D" unique_id=846107468]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1621698588]
 texture = ExtResource("1_jstdo")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2064496886]
 position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_437xl")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=571751877]
 occluder = SubResource("OccluderPolygon2D_t8ll4")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=788039966 groups=["navigation_polygon_source_geometry_group"]]
 position = Vector2(8, 2)
 shadow_enabled = true
 shadow_filter = 2

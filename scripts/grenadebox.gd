@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 		collision_shape_2d.disabled = true
 	if open:
 		player = null
-		mat.set_shader_parameter('Brightness',0.0)
+		mat.set_shader_parameter('shine_energy',0.0)
 		
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	player = body

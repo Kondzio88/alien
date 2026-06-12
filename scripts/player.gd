@@ -2,7 +2,11 @@ extends CharacterBody2D
 
 class_name Player
 
+# Signals
+signal healthChange(currentHealth:int, maxHealth:int)
+signal batteryChange(currentBattery:int, maxBattery:int)
 
+# Onready ond Export
 @onready var health:int = 100
 @onready var maxHealth:int = 100
 
@@ -11,7 +15,7 @@ class_name Player
 @export var walk:int = 130
 @export var aimSpeed:int = 90
 @export var sprint:int = 180
-var direction:Vector2 = Vector2.ZERO
+@export var direction:Vector2 = Vector2.ZERO
 
 # Player bool
 var aiming :bool = false
@@ -20,7 +24,7 @@ var sprinting:bool = false
 var die:bool = false
 var reload:bool = false
 var frag:bool = false
-var canMove:bool = true
+var canMove:bool = true # Block for CutScenes
 
 # Global bool
 var pushGrenade :bool = false
@@ -45,7 +49,12 @@ var magazineActive:bool = false
 @onready var grenade:PackedScene = preload("res://scenes/grenade.tscn")
 @onready var droneScene :PackedScene = preload("res://scenes/drone.tscn")
 
-# Camera , AnimatedSprite, Colison , Transition, PointBullet
+# Components
+@onready var hurt_box_component: HurtBoxComponent = $hurtBoxComponent
+@onready var fire_lights_component: Node2D = $pointBullet/fireLightsComponent
+@onready var equipment_manager: EquipmentManager = $EquipmentManager
+
+# Camera , AnimatedSprite, Colison , Transition, PointBullet 
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var animated_sprite_2d:AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_polygon_2d:CollisionPolygon2D = $CollisionPolygon2D
@@ -69,14 +78,11 @@ var magazineActive:bool = false
 @onready var audio_dead = $transition/audioDead
 @onready var electric_flash_light: AudioStreamPlayer2D = $electricFlashLight
 
-# Fire Lights and Shadow Player
-@onready var fire_light = $pointBullet/fireLight
-@onready var fire_light_2 = $pointBullet/fireLight2
-@onready var fire_light_3 = $pointBullet/fireLight3
+# Shadow Player
 @onready var shadow: LightOccluder2D = $shadow
-@onready var arraylightFire :Array = [fire_light,fire_light_2,fire_light_3]
 
-# Grenade Sprite and Laser
+# Grenade Sprite and Laser and drone for instance and cancel
+@onready var activeDroneNode: Node2D = null
 @onready var grenadeSprite: CharacterBody2D = $grenade
 @onready var red_grenade_light: PointLight2D = $redGrenadeLight
 @onready var laser: RayCast2D = $laser
@@ -84,9 +90,19 @@ var magazineActive:bool = false
 # Dialog variable for first dialog in the game rest will be in the other nodes
 @export_multiline var textToSay:String = ''
 @export var speakerName:String = ''
+@export var timeSpeak:int = 5
 var firstDialogEver :bool = false
 
 func _ready():
+	
+	#Signals
+	hurt_box_component.tookDamage.connect(receiveDamage)
+	equipment_manager.specialToggled.connect(activeSpecials)
+	Global.laserSignal.connect(func(): equipment_manager.unlockItem('laser'))
+	Global.droneSignal.connect(func(): equipment_manager.unlockItem('drone'))
+	Global.idCardSignal.connect(idCardAvaible)
+	Global.magazineSignal.connect(magazineAvaible)
+	
 	# First dialog after landing
 	firtsDialogInTheGame()
 	
@@ -95,10 +111,6 @@ func _ready():
 	battery = maxBattery
 	
 	Global.playerPosition = self
-	Global.laserSignal.connect(laserAvaible)
-	Global.idCardSignal.connect(idCardAvaible)
-	Global.droneSignal.connect(droneAvaible)
-	Global.magazineSignal.connect(magazineAvaible)
 	
 	# Script Scene Lvl 2
 	Global.scriptSceneLvl2.connect(scriptSceneLvl2)
@@ -113,11 +125,11 @@ func _physics_process(delta):
 	if die:
 		return
 	else:
-		Global.globalBattery = battery
-		Global.playerHealthUi = health
+		#Global.globalBattery = battery
+		#Global.playerHealthUi = health
 		Global.globalBullets = str(magazine)
-		Global.globalStrength = strengthGrenade
-		Global.globalGrenadeMagazine = str(grenadeMagazine)
+		#Global.globalStrength = strengthGrenade
+		#Global.globalGrenadeMagazine = str(grenadeMagazine)
 		Global.globalArmorPrecent = str(armor)
 		
 		var mouse_position = get_global_mouse_position()
@@ -140,15 +152,13 @@ func _physics_process(delta):
 		batteryStatus()
 		camera()
 		armorFunc()
-		droneSceneInstant()
-		laserCheck()
 		magazineCheck()
 		flashLightArrayDisplay(flashLigthsArray)
 		
 func firtsDialogInTheGame():
 	if  firstDialogEver == false:
-		await get_tree().create_timer(15).timeout
-		Dialogs.trigger_dialog.emit(textToSay,speakerName)
+		await get_tree().create_timer(11).timeout
+		Dialogs.trigger_dialog.emit(textToSay,speakerName,timeSpeak)
 		firstDialogEver = true
 	
 @warning_ignore("unused_parameter")
@@ -187,7 +197,7 @@ func playAnimation(delta):
 				aiming = false
 				animated_sprite_2d.play("fragGrenade")
 				red_grenade_light.enabled = true
-				strengthGrenade += 2
+				strengthGrenade += 3
 				collision_polygon_2d.disabled = true
 				flashlight.enabled = false
 				flashlight_2.enabled = false
@@ -200,7 +210,7 @@ func playAnimation(delta):
 				
 				if pushGrenade:
 					pushGrenade = false
-					shootGrenade(delta,strengthGrenade)
+					shootGrenade(strengthGrenade)
 					strengthGrenade = 0
 					
 			if reload:
@@ -247,6 +257,8 @@ func playAnimation(delta):
 							audio_run.play()
 							audio_walk.stop()
 						
+# END -------------------------------------------------------
+						
 # Shoot , Shoot Grenade and Reload Magazine -------
 
 @warning_ignore("unused_parameter")
@@ -259,23 +271,20 @@ func shoot(delta):
 		get_tree().root.add_child(projectile)
 		projectile.global_rotation = point_bullet.global_rotation
 		projectile.global_position = point_bullet.global_position
-		var launchDir :Vector2 = Vector2.RIGHT.rotated(point_bullet.global_rotation)
-		projectile.launch(launchDir)
 		var luskaItem = luska.instantiate()
 		get_tree().root.add_child(luskaItem)
 		luskaItem.global_position = point_bullet.global_position
 		luskaItem.global_rotation = point_bullet.global_rotation
 		
 @warning_ignore("shadowed_variable")
-func shootGrenade(delta,strengthGrenade):
+func shootGrenade(strengthGrenade):
 	if grenadeMagazine > 0:
 		grenadeMagazine -= 1
 		var projectile = grenade.instantiate()
 		get_tree().root.add_child(projectile)
 		projectile.global_position = point_bullet.global_position
 		projectile.global_rotation = point_bullet.global_rotation
-		var launchDir :Vector2 = Vector2.RIGHT.rotated(point_bullet.global_rotation)
-		projectile.launch(launchDir,delta,strengthGrenade)
+		projectile.launch(strengthGrenade)
 		
 func reloadMagazine():
 	if !die:
@@ -295,6 +304,8 @@ func reloadMagazine():
 			await get_tree().create_timer(1).timeout
 			reload = false
 
+# END -------------------------------------------------------
+
 # Flash Light and Light Fire --------------------
 
 func flashLightArrayDisplay(array):
@@ -306,46 +317,44 @@ func flashLightArrayDisplay(array):
 			i.enabled = false
 		
 func lightFireOn():
-	for i in arraylightFire:
-		i.enabled = true
-	await get_tree().create_timer(0.1).timeout
-	lightFireOff()
+	fire_lights_component.flash()
 	
-func lightFireOff():
-	for i in arraylightFire:
-		i.enabled = false
+# END -------------------------------------------------------
 
-# Hurt Box Function and Dead Function ------------
+# Hurt Box Components Function and Dead Function ------------
 
-func _on_hurt_box_area_area_entered(area):
-	if area is Bullet || area is AlienArea:
+func receiveDamage(amount:int ,hitBox:Node2D):
+	if hitBox is Bullet || hitBox is AlienArea:
 		if armor > 0:
-			armor -= 25
+			armor -= amount
 		else:
 			var blood = bloodScene.instantiate()
 			get_tree().current_scene.add_child(blood)
-			blood.global_position = area.global_position
-			blood.rotation = global_position.angle_to_point(area.global_position)
+			blood.global_position = hitBox.global_position
+			blood.rotation = global_position.angle_to_point(hitBox.global_position)
 			blood.emitting = true
-			health -= area.dealDamage()
-			Global.playerHealthUi -= area.dealDamage()
+			health -= amount
+			Global.playerHealthUi -= amount
+			healthChange.emit(health,maxHealth)
 			
-	if area is Grenade || area is Barell:
+	if hitBox is Grenade || hitBox is Barell:
 		
 		var blood = bloodScene.instantiate()
 		get_tree().current_scene.add_child(blood)
-		blood.global_position = area.global_position
-		blood.rotation = global_position.angle_to_point(area.global_position)
+		blood.global_position = hitBox.global_position
+		blood.rotation = global_position.angle_to_point(hitBox.global_position)
 		blood.emitting = true
-		health -= area.dealDamage()
-		Global.playerHealthUi -= area.dealDamage()
-
+		health -= amount
+		Global.playerHealthUi -= amount
+		healthChange.emit(health,maxHealth)
+		
 func dead():
 	if health <= 0:
 		animated_sprite_2d.z_index = -1
 		laser.queue_free()
 		shadow.queue_free()
 		collision_shape_2d.queue_free()
+		hurt_box_component.queue_free()
 		die = true
 		playAnimation('dead')
 		red_grenade_light.enabled = false
@@ -357,6 +366,25 @@ func dead():
 		await get_tree().create_timer(3).timeout
 		get_tree().reload_current_scene()
 
+# END -------------------------------------------------------
+
+# Active or Not Special Equipments with ManagerEquipment
+
+func activeSpecials(itemName:String,isActive:bool):
+	if itemName == 'laser':
+		laserActive = isActive
+		laser.visible = (laserActive and aiming)
+	if itemName == 'drone':
+		droneActive = isActive
+		if droneActive :
+			var drone = droneScene.instantiate()
+			get_tree().current_scene.add_child(drone)
+			drone.global_position = self.global_position
+			activeDroneNode = drone # references drone scene
+		else:
+			activeDroneNode.queue_free() # delete drone node sa null 
+	
+# END -------------------------------------------------------
 func rigidBodyPush():
 	var pushDirection :Vector2 = direction
 	
@@ -367,22 +395,25 @@ func rigidBodyPush():
 			if !get_node('chestSound').playing:
 				get_node('chestSound').play()
 				
+# Add health 
 func healthPlus():
 	health += 33
 	if health >= maxHealth:
 		health = maxHealth
+	healthChange.emit(health,maxHealth)
 
 func batteryStatus():
 	if aiming:
 		battery -= 1 
 		if battery < 0:
 			battery = 0
-			
+		batteryChange.emit(battery,maxBattery)
 	if !aiming && battery < maxBattery:
 		battery += 3 
 		if battery > maxBattery:
 			battery = maxBattery
-			
+		batteryChange.emit(battery,maxBattery)
+		
 	if battery > 250:
 		flashlight.energy = 0.6
 		flashlight_2.energy = 0.8
@@ -408,22 +439,18 @@ func camera():
 	if canMove:
 		var cameraTween:Tween = get_tree().create_tween()
 		if aiming && battery > 0 && Global.laserEquipeGlobal:
-			cameraTween.tween_property(camera_2d,'zoom',Vector2(1.8,1.8),0.5)
+			cameraTween.tween_property(camera_2d,'zoom',Vector2(0.9,0.9),0.5)
 		if aiming && battery > 0|| frag :
-			cameraTween.tween_property(camera_2d,'zoom',Vector2(2,2),0.5)
+			cameraTween.tween_property(camera_2d,'zoom',Vector2(1,1),0.5)
 		if !aiming && !frag || aiming && battery <= 0:
-			cameraTween.tween_property(camera_2d,'zoom',Vector2(2.3,2.3),0.5)
+			cameraTween.tween_property(camera_2d,'zoom',Vector2(1.2,1.2),0.5)
 	if !canMove:
-		camera_2d.zoom = Vector2(1.7,1.7)
+		camera_2d.zoom = Vector2(0.8,0.8)
 		
 # GLOBAL EQUIPE PLAYER and Armor ,Grenade Plus
 
 func laserAvaible():
 	Global.laserEquipeGlobal = true
-
-func laserCheck():
-	if Global.laserEquipeGlobal && !laserActive:
-		laserActive = true
 
 func idCardAvaible():
 	Global.globalIdCardEquipe = true
@@ -442,19 +469,14 @@ func grenadePlus():
 func droneAvaible():
 	Global.droneEquipeGlobal = true
 
-func droneSceneInstant():
-	if Global.droneEquipeGlobal && !droneActive:
-		droneActive = true
-		var drone = droneScene.instantiate()
-		get_tree().current_scene.add_child(drone)
-		drone.global_position = self.global_position
-
 func magazineAvaible():
 	Global.magazineEquipe = true
 
 func magazineCheck():
 	if Global.magazineEquipe && !magazineActive:
 		magazineActive = true
+
+# END -------------------------------------------------------
 
 # SCRIPT SCENES ---------------------------
 

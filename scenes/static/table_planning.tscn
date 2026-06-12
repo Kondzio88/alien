@@ -20,7 +20,7 @@ texture = ExtResource("1_u3bni")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=724467012]
 occluder = SubResource("OccluderPolygon2D_1kt7e")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1975478758]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1975478758 groups=["navigation_polygon_source_geometry_group"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1201228828]
 position = Vector2(56.5, 50.5)

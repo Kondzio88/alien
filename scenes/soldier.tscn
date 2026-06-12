@@ -12,8 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://5loyfy7rbp04" path="res://characters/questionMark.png" id="8_sknsm"]
 [ext_resource type="AudioStream" uid="uid://dnqitkd0226cn" path="res://sounds/sfx/whatAFuck.wav" id="11_w10cf"]
 [ext_resource type="Texture2D" uid="uid://2obxqh2qd6nu" path="res://assets/asepriteMoj/blood.png" id="11_wy8un"]
-[ext_resource type="AudioStream" uid="uid://6m0o881uj55p" path="res://sounds/sfx/fuckYouAshole.wav" id="12_0c4no"]
 [ext_resource type="AudioStream" uid="uid://cs31wkq305r64" path="res://sounds/sfx/fuck.wav" id="13_na7pt"]
+[ext_resource type="AudioStream" uid="uid://c5hitykt6oxl1" path="res://sounds/sfx/fuckYou.mp3" id="13_yf5wr"]
+[ext_resource type="PackedScene" uid="uid://df8kocbts22r6" path="res://scenes/components/hurt_box.tscn" id="15_qf1do"]
+[ext_resource type="PackedScene" uid="uid://ccalu4yoj3vgc" path="res://scenes/components/laser_detected_component.tscn" id="16_yf5wr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2xgha"]
 atlas = ExtResource("1_k1ttx")
@@ -70,13 +72,6 @@ height = 18.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_m7wl8"]
 radius = 262.002
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ftnf4"]
-radius = 9.0
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uqeu3"]
-cull_mode = 2
-polygon = PackedVector2Array(-4, -8, -2, -9, 2, -9, 4, -8, 5, -4, 6, -3, 6, 3, 4, 5, 4, 8, 2, 9, -2, 9, -4, 8, -6, 4, -6, -4)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_w2ihe"]
 radius = 221.002
 
@@ -89,6 +84,18 @@ gradient = SubResource("Gradient_rcq5y")
 fill = 1
 fill_from = Vector2(0.527523, 0.46789)
 fill_to = Vector2(0.949541, 0.0458716)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qf1do"]
+radius = 6.0
+height = 18.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_qf1do"]
+cull_mode = 2
+polygon = PackedVector2Array(-3, -8, 1, -8, 3, -6, 4, -3, 4, 4, 2, 8, -2, 8, -5, 4, -5, -4)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uvogt"]
+radius = 6.0
+height = 18.0
 
 [node name="soldier" type="CharacterBody2D" unique_id=150201724]
 z_index = 5
@@ -123,22 +130,14 @@ shape = SubResource("CircleShape2D_m7wl8")
 [node name="pointBullet" type="Marker2D" parent="." unique_id=352563807]
 position = Vector2(11, 4)
 
-[node name="coliding" type="RayCast2D" parent="pointBullet" unique_id=1540294754]
-target_position = Vector2(9, 0)
+[node name="coliding" type="RayCast2D" parent="." unique_id=1540294754]
+modulate = Color(0.89459085, 0.06605826, 0.06605826, 1)
+position = Vector2(6, 0)
+target_position = Vector2(1, 0)
 
 [node name="audioShoot" type="AudioStreamPlayer2D" parent="." unique_id=620353972]
 stream = ExtResource("6_ammvo")
 bus = &"sfx"
-
-[node name="hurtBoxArea" type="Area2D" parent="." unique_id=1395861266]
-collision_layer = 0
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtBoxArea" unique_id=1392279885]
-shape = SubResource("CircleShape2D_ftnf4")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="hurtBoxArea" unique_id=719980891]
-occluder = SubResource("OccluderPolygon2D_uqeu3")
 
 [node name="question" type="Sprite2D" parent="." unique_id=1147091617]
 z_index = 5
@@ -168,7 +167,7 @@ texture = SubResource("GradientTexture2D_svk4n")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1707350771]
 path_postprocessing = 1
 simplify_path = true
-avoidance_enabled = true
+radius = 20.0
 debug_enabled = true
 debug_path_custom_color = Color(0.99981505, 0, 0, 1)
 
@@ -190,19 +189,33 @@ volume_db = 10.0
 bus = &"sfx"
 
 [node name="fuckYouAudio" type="AudioStreamPlayer2D" parent="." unique_id=1460687020]
-stream = ExtResource("12_0c4no")
+stream = ExtResource("13_yf5wr")
 
 [node name="fuckAudio" type="AudioStreamPlayer2D" parent="." unique_id=1409376759]
 stream = ExtResource("13_na7pt")
 volume_db = 5.0
 bus = &"sfx"
 
+[node name="hurtBoxComponent" parent="." unique_id=1315955650 instance=ExtResource("15_qf1do")]
+
+[node name="CollisionShape2D" parent="hurtBoxComponent" index="0" unique_id=1565007202]
+shape = SubResource("CapsuleShape2D_qf1do")
+
+[node name="shadow" type="LightOccluder2D" parent="." unique_id=2052479035]
+occluder = SubResource("OccluderPolygon2D_qf1do")
+
+[node name="laserDetectedComponent" parent="." unique_id=1492485813 instance=ExtResource("16_yf5wr")]
+
+[node name="CollisionShape2D" parent="laserDetectedComponent" index="0" unique_id=1894592830]
+shape = SubResource("CapsuleShape2D_uvogt")
+
 [connection signal="body_entered" from="rangeArea" to="." method="_on_range_area_body_entered"]
 [connection signal="body_exited" from="rangeArea" to="." method="_on_range_area_body_exited"]
-[connection signal="area_entered" from="hurtBoxArea" to="." method="_on_hurt_box_area_area_entered"]
-[connection signal="area_exited" from="hurtBoxArea" to="." method="_on_hurt_box_area_area_exited"]
 [connection signal="body_entered" from="shootArea" to="." method="_on_shoot_area_body_entered"]
 [connection signal="body_exited" from="shootArea" to="." method="_on_shoot_area_body_exited"]
 [connection signal="timeout" from="recalTimer" to="." method="_on_recal_timer_timeout"]
 [connection signal="timeout" from="shootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="chaiseTimer" to="." method="_on_chaise_timer_timeout"]
+
+[editable path="hurtBoxComponent"]
+[editable path="laserDetectedComponent"]

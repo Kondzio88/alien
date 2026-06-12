@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://br1ffjii0b3f2"]
+
+[ext_resource type="Script" uid="uid://tw4f1gdrea8y" path="res://scripts/doctor_lab.gd" id="1_1n07t"]
+[ext_resource type="Texture2D" uid="uid://7rfwcnrrhr2g" path="res://assets/hotMiamiAssets/characters/sprDoctorWalk_strip8.png" id="2_invnd"]
+[ext_resource type="Texture2D" uid="uid://x66x0kttbonw" path="res://assets/hotMiamiAssets/characters/doctorLab-dead.png" id="2_q6cs2"]
+[ext_resource type="PackedScene" uid="uid://df8kocbts22r6" path="res://scenes/components/hurt_box.tscn" id="3_invnd"]
+[ext_resource type="Texture2D" uid="uid://2obxqh2qd6nu" path="res://assets/asepriteMoj/blood.png" id="5_y8647"]
+[ext_resource type="AudioStream" uid="uid://bvpy2spn56p6x" path="res://sounds/sfx/deadSound .mp3" id="6_y8647"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xgbj5"]
+radius = 6.0
+height = 24.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_alm7x"]
+atlas = ExtResource("2_q6cs2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6cs2"]
+atlas = ExtResource("2_invnd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8647"]
+atlas = ExtResource("2_invnd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtxai"]
+atlas = ExtResource("2_invnd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_424mn"]
+atlas = ExtResource("2_invnd")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pyokq"]
+atlas = ExtResource("2_invnd")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1i33"]
+atlas = ExtResource("2_invnd")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upn8s"]
+atlas = ExtResource("2_invnd")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wroib"]
+atlas = ExtResource("2_invnd")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2s0uj"]
+atlas = ExtResource("2_invnd")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_alm7x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_alm7x")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6cs2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8647")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtxai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_424mn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pyokq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1i33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_upn8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wroib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2s0uj")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q6cs2"]
+radius = 6.0
+height = 24.0
+
+[node name="doctorLab" type="CharacterBody2D" unique_id=1634596478]
+z_index = 5
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_1n07t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=812047142]
+position = Vector2(-1, 0)
+shape = SubResource("CapsuleShape2D_xgbj5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1991837663]
+sprite_frames = SubResource("SpriteFrames_alm7x")
+animation = &"dead"
+
+[node name="hurtBoxComponent" parent="." unique_id=1315955650 instance=ExtResource("3_invnd")]
+
+[node name="CollisionShape2D" parent="hurtBoxComponent" index="0" unique_id=1565007202]
+position = Vector2(-1, 0)
+shape = SubResource("CapsuleShape2D_q6cs2")
+
+[node name="bloodDead" type="Sprite2D" parent="." unique_id=1522145888]
+z_index = -1
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("5_y8647")
+
+[node name="deadSound" type="AudioStreamPlayer2D" parent="." unique_id=1560727513]
+stream = ExtResource("6_y8647")
+volume_db = -5.0
+
+[editable path="hurtBoxComponent"]

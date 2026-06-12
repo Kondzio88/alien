@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://crncdmgndsdl7"]
+
+[ext_resource type="Script" uid="uid://bakgeiqp2hijw" path="res://scripts/playerUi.gd" id="1_xjrg6"]
+[ext_resource type="Texture2D" uid="uid://dx2m7nsgkyp2" path="res://assets/uiIcons/35.png" id="2_5oy4a"]
+[ext_resource type="Texture2D" uid="uid://b3m5hb7mve5w1" path="res://assets/asepriteMoj/healthBackground.png" id="3_i4w06"]
+[ext_resource type="Texture2D" uid="uid://csxdjvy1vjnw2" path="res://assets/asepriteMoj/healthFill.png" id="4_grh5h"]
+[ext_resource type="Texture2D" uid="uid://6yvoruyuj2e4" path="res://assets/asepriteMoj/healthOver.png" id="4_o320f"]
+[ext_resource type="Script" uid="uid://ghqfwjaj71im" path="res://scripts/health_bar.gd" id="5_o320f"]
+[ext_resource type="Texture2D" uid="uid://c1cwfacu4qx8w" path="res://assets/uiIcons/đôĐÇĐâđ┐đ┐đ░ 20.png" id="6_i4w06"]
+[ext_resource type="Script" uid="uid://ove7yoq3qafk" path="res://scripts/flash_light_bar.gd" id="8_o320f"]
+
+[node name="playerUI" type="CanvasLayer" unique_id=593749228]
+script = ExtResource("1_xjrg6")
+
+[node name="topLeft" type="MarginContainer" parent="." unique_id=183275833]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="healthBox" type="HBoxContainer" parent="topLeft" unique_id=1313578587]
+layout_mode = 2
+
+[node name="healthIcon" type="TextureRect" parent="topLeft/healthBox" unique_id=35710022]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_5oy4a")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="healthBar" type="TextureProgressBar" parent="topLeft/healthBox" unique_id=1252862095]
+custom_minimum_size = Vector2(200, 24)
+layout_mode = 2
+size_flags_vertical = 4
+nine_patch_stretch = true
+texture_under = ExtResource("3_i4w06")
+texture_over = ExtResource("4_o320f")
+texture_progress = ExtResource("4_grh5h")
+script = ExtResource("5_o320f")
+
+[node name="topRight" type="MarginContainer" parent="." unique_id=74769211]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="flashLightBox" type="HBoxContainer" parent="topRight" unique_id=598484307]
+layout_mode = 2
+
+[node name="flashLightIcon" type="TextureRect" parent="topRight/flashLightBox" unique_id=1402074684]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("6_i4w06")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="flashLightBar" type="TextureProgressBar" parent="topRight/flashLightBox" unique_id=145091955]
+custom_minimum_size = Vector2(200, 24)
+layout_mode = 2
+size_flags_vertical = 4
+nine_patch_stretch = true
+texture_under = ExtResource("3_i4w06")
+texture_over = ExtResource("4_o320f")
+texture_progress = ExtResource("4_grh5h")
+script = ExtResource("8_o320f")
+
+[node name="topCenter" type="MarginContainer" parent="." unique_id=310172999]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 20
+
+[node name="bottomLeft" type="MarginContainer" parent="." unique_id=279270333]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="bottomCenter" type="MarginContainer" parent="." unique_id=1783453724]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 20

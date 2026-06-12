@@ -16,7 +16,7 @@ var die :bool = false
 @onready var hit_sound: AudioStreamPlayer = $hitSound
 
 @onready var bloodScene :PackedScene = preload("res://scenes/particle/enemy_blood.tscn")
-const idCard:PackedScene = preload("res://scenes/id_card.tscn")
+@onready var idCard:PackedScene = preload("res://scenes/id_card.tscn")
 
 func _ready() -> void:
 	direction = Vector2.UP

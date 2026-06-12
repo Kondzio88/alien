@@ -3,9 +3,9 @@ extends Area2D
 class_name Bullet
 
 @export var damage:int = 10
-@export var speed: int = 400
+@export var speed: int = 500
 @export var particleDestroyeScene: PackedScene
-@onready var ray_cast_2d = $RayCast2D
+
 
 var direction
 
@@ -13,15 +13,8 @@ func _ready():
 	pass
 
 func _physics_process(delta):
-	position += direction * speed * delta
-	if ray_cast_2d.is_colliding():
-		destroy()
+	position += transform.x * speed * delta
 	
-func launch(dir):
-	direction = dir 
-	
-func dealDamage():
-	return 10
 
 # Visible Off when its out screen
 func _on_visible_on_screen_enabler_2d_screen_exited():
@@ -34,3 +27,13 @@ func destroy():
 	get_tree().root.add_child(particle)
 	particle.emitting = true
 	queue_free()
+
+#in enterd in Wall itd
+func _on_body_entered(body: Node2D) -> void:
+	destroy()
+
+# if enterd in Components like hurtBox
+func _on_area_entered(area: Area2D) -> void:
+	if area is HurtBoxComponent:
+		area.takeDamage(damage, self)
+		destroy()

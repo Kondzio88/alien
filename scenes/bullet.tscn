@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://4o17xcqaettm"]
+[gd_scene format=3 uid="uid://4o17xcqaettm"]
 
 [ext_resource type="Script" uid="uid://ddfwg6hamumpr" path="res://scripts/bullet.gd" id="1_d47qc"]
 [ext_resource type="Texture2D" uid="uid://cr7v8bi8nw3f8" path="res://assets/bullet.png" id="1_i1nx6"]
@@ -7,28 +7,24 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_85s5v"]
 size = Vector2(13.2011, 2.93368)
 
-[node name="bullet" type="Area2D"]
+[node name="bullet" type="Area2D" unique_id=1311411958]
 scale = Vector2(0.5, 0.5)
 collision_layer = 4
+collision_mask = 5
 script = ExtResource("1_d47qc")
-speed = 500
 particleDestroyeScene = ExtResource("2_kt0ya")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1410986170]
 position = Vector2(2.60057, -0.466839)
 shape = SubResource("RectangleShape2D_85s5v")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1766440407]
 z_index = 10
 texture = ExtResource("1_i1nx6")
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1428792595]
 scale = Vector2(0.4, 0.1)
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(5.04982, -0.508233)
-target_position = Vector2(4.93178, -0.0262256)
-hit_from_inside = true
-
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

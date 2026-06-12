@@ -26,15 +26,15 @@ func _process(delta):
 
 
 func _on_range_body_entered(body):
-	if body is Player || body is Soldier || body is Guardian || body is BlueSoldier:
+	if body is CharacterBody2D:
 		bodyOpen = body
 		if animation_player.name != 'open' && bodyOpen != null:
 			animation_player.play("open")
 
 
 func _on_range_body_exited(body):
-	if body is Player || body is Soldier || body is Guardian || body is BlueSoldier:
-		bodyOpen = null
+	bodyOpen = null
+	if body is CharacterBody2D and bodyOpen == null:
 		if animation_player.name != 'close' && bodyOpen == null:
 			animation_player.play("close")
 		

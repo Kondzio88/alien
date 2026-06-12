@@ -25,7 +25,7 @@ extends CharacterBody2D
 # Dialog variables
 @export_multiline var textToSay :String 
 @export var speakerName :String = 'Pilot'
-
+@export var timeSpeak :int = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -101,7 +101,7 @@ func rotationLanding():
 
 func startAfterLanding():
 	textToSay = 'Dobra ja juz spierdalam z tego zadupia , powodzenia !!!'
-	Dialogs.trigger_dialog.emit(textToSay,speakerName)
+	Dialogs.trigger_dialog.emit(textToSay,speakerName,timeSpeak)
 	
 	var tween:Tween = create_tween()
 	tween.tween_property(self, 'wirnikSpeed', 60, 3.0)
@@ -123,5 +123,4 @@ func startAfterLanding():
 	
 func _on_timer_timeout() -> void:
 		# Dialog signal emit
-	Dialogs.trigger_dialog.emit(textToSay,speakerName)
-	print('pilot dialog ok')
+	Dialogs.trigger_dialog.emit(textToSay,speakerName,timeSpeak)

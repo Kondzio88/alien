@@ -4,18 +4,18 @@
 [ext_resource type="Texture2D" uid="uid://dea8a2llgtrca" path="res://assets/asepriteMoj/chair.png" id="2_ieyq8"]
 [ext_resource type="PackedScene" uid="uid://cn2gcxe60jl6j" path="res://scenes/static/water_boiler.tscn" id="3_g8xh1"]
 
-[node name="compsPosition" type="Node2D" unique_id=1197078648]
+[node name="compsPosition" type="Node2D" unique_id=1197078648 groups=["navigation_polygon_source_geometry_group"]]
 
-[node name="table" parent="." unique_id=1528019967 instance=ExtResource("1_a1nyy")]
+[node name="table" parent="." unique_id=1528019967 groups=["navigation_polygon_source_geometry_group"] instance=ExtResource("1_a1nyy")]
 
-[node name="table2" parent="." unique_id=1457941364 instance=ExtResource("1_a1nyy")]
+[node name="table2" parent="." unique_id=1457941364 groups=["navigation_polygon_source_geometry_group"] instance=ExtResource("1_a1nyy")]
 position = Vector2(86, 0)
 
-[node name="table3" parent="." unique_id=117069102 instance=ExtResource("1_a1nyy")]
+[node name="table3" parent="." unique_id=117069102 groups=["navigation_polygon_source_geometry_group"] instance=ExtResource("1_a1nyy")]
 position = Vector2(86, -21)
 rotation = 3.1415927
 
-[node name="table4" parent="." unique_id=926602247 instance=ExtResource("1_a1nyy")]
+[node name="table4" parent="." unique_id=926602247 groups=["navigation_polygon_source_geometry_group"] instance=ExtResource("1_a1nyy")]
 position = Vector2(0, -21)
 rotation = 3.1415927
 

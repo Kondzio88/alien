@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bvpy2spn56p6x"
+path="res://.godot/imported/deadSound .mp3-2c89f007f3f54e1cbaca0f56554f53b5.mp3str"
+
+[deps]
+
+source_file="res://sounds/sfx/deadSound .mp3"
+dest_files=["res://.godot/imported/deadSound .mp3-2c89f007f3f54e1cbaca0f56554f53b5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

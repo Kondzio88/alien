@@ -20,13 +20,16 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var shootTimerBool:bool = false
 @onready var shootColiding:bool = false
 
+# Components
+@onready var hurt_box_component: HurtBoxComponent = $hurtBoxComponent
+
 # Nodes animated , collision ,point , hurtBox ,rangeArea ,rayCast Coliding
 @onready var animated_sprite_2d:AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d:CollisionShape2D = $CollisionShape2D
 @onready var point_bullet:Marker2D = $pointBullet
 @onready var hurt_box_area:Area2D = $hurtBoxArea
 @onready var range_area:Area2D = $rangeArea
-@onready var colidingRayCast: RayCast2D = $pointBullet/coliding
+@onready var colidingRayCast: RayCast2D = $coliding
 
 # Question , lights and navigation ,and bloodSprite dead
 @onready var question:Sprite2D = $question
@@ -58,17 +61,14 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var playerPos # Global cordinate when player isnt chaise
 
 func _ready():
+	# Connect Signals Components
+	hurt_box_component.tookDamage.connect(receiveDamage)
+	
 	direction = Vector2.UP
 	recal_timer.timeout.connect(_on_recal_timer_timeout)
 	
 func _physics_process(delta):
 	
-	# Change move direction when touch avoide
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		if collision.get_collider():
-			direction = Vector2(changeDirection(),changeDirection())
-			
 	# Question Sign Position
 	question.rotation = -rotation
 	question.global_position = self.global_position - Vector2(0,25)
@@ -91,6 +91,12 @@ func _physics_process(delta):
 			velocity = direction * speed
 			
 		if !chaise:
+				# Change move direction when touch avoide
+			for i in get_slide_collision_count():
+				var collision = get_slide_collision(i)
+				if collision.get_collider():
+					direction = Vector2(changeDirection(),changeDirection())
+					
 			if direction:
 				# Zmiana rotacji wzgledem osi X ogolnie na mapie
 				if position.x > 0 :
@@ -157,8 +163,6 @@ func shoot():
 		get_tree().root.add_child(projectile)
 		projectile.global_rotation = point_bullet.global_rotation
 		projectile.global_position = point_bullet.global_position
-		var launchDir = Vector2.RIGHT.rotated(point_bullet.global_rotation)
-		projectile.launch(launchDir)
 		var luskaItem = luska.instantiate()
 		get_tree().root.add_child(luskaItem)
 		luskaItem.global_position = point_bullet.global_position
@@ -171,30 +175,22 @@ func _on_shoot_timer_timeout() -> void:
 	if player && shooting :
 		shoot()
 
-func _on_hurt_box_area_area_entered(area):
-	
-	if area is AreaLaser:
-		animated_sprite_2d.modulate = Color8(255,0,0,255)
-	if area is not AreaLaser:
-		if !fuck_audio.playing:
-			fuck_audio.play()
-		var blood = bloodScene.instantiate()
-		get_tree().root.add_child(blood)
-		blood.global_position = area.global_position
-		blood.rotation = global_position.angle_to_point(Global.playerPosition.global_position)
-		blood.emitting = true
-		health -= area.dealDamage()
-		chaise = true
-		var tween = get_tree().create_tween().set_loops()
-		tween.tween_property(question,'scale',Vector2(0.7,0.7),0.3)
-		tween.tween_property(question,'scale',Vector2(0.4,0.3),0.4)
+func receiveDamage(damage:int,hitBox:Node2D):
+	if !fuck_audio.playing:
+		fuck_audio.play()
+	var blood = bloodScene.instantiate()
+	get_tree().root.add_child(blood)
+	blood.global_position = hitBox.global_position
+	blood.rotation = global_position.angle_to_point(hitBox.global_position)
+	blood.emitting = true
+	health -= damage
+	chaise = true
+	var tween = get_tree().create_tween().set_loops()
+	tween.tween_property(question,'scale',Vector2(0.7,0.7),0.3)
+	tween.tween_property(question,'scale',Vector2(0.4,0.3),0.4)
 
 func dead():
 	if health <= 0:
-		# Dialog Signal Emit 
-		Dialogs.dialogSoldierKillLvl1.emit()
-		
-		
 		chaise = false
 		shooting = false
 		attack = false
@@ -202,7 +198,7 @@ func dead():
 		self.z_index = 4
 		range_area.queue_free()
 		collision_shape_2d.queue_free()
-		hurt_box_area.queue_free()
+		hurt_box_component.queue_free()
 		question.visible = false
 		red_light_question.enabled = false
 		audio_dead.play()
@@ -250,9 +246,6 @@ func _on_chaise_timer_timeout() -> void:
 			red_light_question.enabled = false
 			question.visible = false
 
-func _on_hurt_box_area_area_exited(area: Area2D) -> void:
-	if area is AreaLaser:
-		animated_sprite_2d.modulate = Color8(255,255,255,255)
 
 func enemy():
 	pass

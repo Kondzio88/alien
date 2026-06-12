@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c01qykfbfiur5"]
+[gd_scene format=3 uid="uid://c01qykfbfiur5"]
 
 [ext_resource type="Script" uid="uid://dp1025008lkg" path="res://scripts/comp_level.gd" id="1_cjfso"]
 [ext_resource type="Texture2D" uid="uid://dd62cj07up0uy" path="res://assets/asepriteMoj/compLevel.png" id="2_wf3ef"]
@@ -24,56 +24,56 @@ fill_from = Vector2(0.509174, 0.504587)
 fill_to = Vector2(0.857798, 0.142202)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uxtwl"]
-size = Vector2(63, 29)
+size = Vector2(63, 33)
 
-[node name="compLevel" type="StaticBody2D"]
+[node name="compLevel" type="StaticBody2D" unique_id=1740704135]
 script = ExtResource("1_cjfso")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=161269137]
 texture = ExtResource("2_wf3ef")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=811923991]
 position = Vector2(1, 3.5)
 shape = SubResource("RectangleShape2D_s1p2o")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=455734281]
 position = Vector2(2, 18)
 rotation = -0.26298
 occluder = SubResource("OccluderPolygon2D_sk1eo")
 
-[node name="greenLight" type="PointLight2D" parent="."]
+[node name="greenLight" type="PointLight2D" parent="." unique_id=1172892173]
 position = Vector2(1, 6)
 color = Color(0.0131884, 0.988783, 0.0864967, 1)
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_b5n0d")
 
-[node name="redLight" type="PointLight2D" parent="."]
+[node name="redLight" type="PointLight2D" parent="." unique_id=1631537569]
 position = Vector2(1, 6)
 color = Color(0.988783, 0.0131884, 0.0601215, 1)
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_b5n0d")
 
-[node name="turnOnArea" type="Area2D" parent="."]
+[node name="turnOnArea" type="Area2D" parent="." unique_id=2085104617]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="turnOnArea"]
-position = Vector2(1, -1.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="turnOnArea" unique_id=1792017469]
+position = Vector2(1, -3.5)
 shape = SubResource("RectangleShape2D_uxtwl")
 
-[node name="audioTurnOn" type="AudioStreamPlayer2D" parent="."]
+[node name="audioTurnOn" type="AudioStreamPlayer2D" parent="." unique_id=360808365]
 stream = ExtResource("4_k31r7")
 
-[node name="passwordPleaseAudio" type="AudioStreamPlayer2D" parent="."]
+[node name="passwordPleaseAudio" type="AudioStreamPlayer2D" parent="." unique_id=1565346985]
 stream = ExtResource("5_vebho")
 
-[node name="keyboardTyping" type="AudioStreamPlayer2D" parent="."]
+[node name="keyboardTyping" type="AudioStreamPlayer2D" parent="." unique_id=1793095330]
 stream = ExtResource("6_ncu4q")
 
-[node name="passwordInccorect" type="AudioStreamPlayer2D" parent="."]
+[node name="passwordInccorect" type="AudioStreamPlayer2D" parent="." unique_id=1585331897]
 stream = ExtResource("7_j2lgn")
 
-[node name="passwordCorrect" type="AudioStreamPlayer2D" parent="."]
+[node name="passwordCorrect" type="AudioStreamPlayer2D" parent="." unique_id=993304217]
 stream = ExtResource("7_tsxuw")
 
 [connection signal="body_entered" from="turnOnArea" to="." method="_on_turn_on_area_body_entered"]

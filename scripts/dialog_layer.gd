@@ -15,7 +15,7 @@ func _ready() -> void:
 	Dialogs.trigger_dialog.connect(display_dialog)
 
 # Zauważ, że funkcja musi przyjmować dokładnie te same argumenty, co sygnał!
-func display_dialog(text: String = '', speaker_name: String = '') -> void:
+func display_dialog(text: String = '', speaker_name: String = '' ,timeSpeak:int = 5) -> void:
 	# Visible Layer on topbeacuse Player Ui is Layer 5 
 	dialog_layer.layer = 10
 	
@@ -31,7 +31,7 @@ func display_dialog(text: String = '', speaker_name: String = '') -> void:
 	var tween:Tween = create_tween()
 	tween.tween_property(dialog_label,'visible_ratio',1.0,writeTime)
 	await tween.finished
-	await get_tree().create_timer(7).timeout
+	await get_tree().create_timer(timeSpeak).timeout
 	dialog_panel.hide()
 	# Hide layer under Player Ui
 	dialog_layer.layer = 0

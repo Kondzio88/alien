@@ -15,9 +15,12 @@
 [ext_resource type="Texture2D" uid="uid://dhx2k71u3sd01" path="res://characters/run.png" id="8_6owr0"]
 [ext_resource type="AudioStream" uid="uid://cjtri6sqibmn0" path="res://sounds/sfx/762x54r Single Isolated MP3.mp3" id="8_xip78"]
 [ext_resource type="AudioStream" uid="uid://4fhsogi43nki" path="res://sounds/sfx/Mosin Bolt Cycle MP3.mp3" id="13_evfds"]
+[ext_resource type="PackedScene" uid="uid://df8kocbts22r6" path="res://scenes/components/hurt_box.tscn" id="14_l71n6"]
 [ext_resource type="AudioStream" uid="uid://doacu3mt3s4b2" path="res://sounds/sfx/Dirt Walk 1.wav" id="14_lbjc1"]
 [ext_resource type="PackedScene" uid="uid://cytu2rw4xv8qc" path="res://scenes/laser.tscn" id="14_n4tu0"]
+[ext_resource type="PackedScene" uid="uid://b7urbj7dnp84h" path="res://scenes/components/fire_lights_component.tscn" id="15_ke2ow"]
 [ext_resource type="AudioStream" uid="uid://ddalx4l063oxe" path="res://sounds/sfx/Dirt Run 1.wav" id="15_kglew"]
+[ext_resource type="PackedScene" uid="uid://cd66sh2tcf7q5" path="res://scenes/components/equipment_manager.tscn" id="16_ujl30"]
 [ext_resource type="PackedScene" uid="uid://d3nni6nu75e2m" path="res://scenes/transition.tscn" id="17_p3x8i"]
 [ext_resource type="AudioStream" uid="uid://dfuf0saog1xh5" path="res://sounds/sfx/Injured.wav" id="18_1b3jn"]
 [ext_resource type="AudioStream" uid="uid://djntsd684h7v7" path="res://sounds/sfx/wood-chest-slid3-90317.mp3" id="18_rd6qk"]
@@ -168,21 +171,9 @@ fill_to = Vector2(0.793578, 0.146789)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jyueh"]
 polygon = PackedVector2Array(24, 0, 35.9999, -2.00267, 24, -2, 20, -4, 15, 0, 19, 4, 36.0001, 1.99733)
 
-[sub_resource type="Gradient" id="Gradient_y6f0h"]
-offsets = PackedFloat32Array(0.155844, 1)
-colors = PackedColorArray(1, 0.971044, 0.0856797, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_bcco5"]
-gradient = SubResource("Gradient_y6f0h")
-width = 10
-height = 5
-fill = 1
-fill_from = Vector2(0.495413, 0.481651)
-fill_to = Vector2(0.940367, 0.174312)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tbgjy"]
-radius = 6.0
-height = 20.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l71n6"]
+radius = 5.0
+height = 18.0
 
 [sub_resource type="Gradient" id="Gradient_ywgbq"]
 offsets = PackedFloat32Array(0.805195, 1)
@@ -266,36 +257,18 @@ rotation = 7.40878e-05
 occluder = SubResource("OccluderPolygon2D_jyueh")
 occluder_light_mask = 4
 
+[node name="hurtBoxComponent" parent="." unique_id=1315955650 instance=ExtResource("14_l71n6")]
+
+[node name="CollisionShape2D" parent="hurtBoxComponent" index="0" unique_id=1565007202]
+shape = SubResource("CapsuleShape2D_l71n6")
+
 [node name="pointBullet" type="Marker2D" parent="." unique_id=670417892]
 z_index = 10
-position = Vector2(10, 0)
+position = Vector2(15, 0)
 
-[node name="fireLight" type="PointLight2D" parent="pointBullet" unique_id=1994618794]
-z_index = 10
-position = Vector2(7, 0)
-enabled = false
-texture = SubResource("GradientTexture2D_bcco5")
+[node name="fireLightsComponent" parent="pointBullet" unique_id=775201183 instance=ExtResource("15_ke2ow")]
 
-[node name="fireLight2" type="PointLight2D" parent="pointBullet" unique_id=1581281953]
-z_index = 10
-position = Vector2(7, 4)
-rotation = 0.773309
-enabled = false
-texture = SubResource("GradientTexture2D_bcco5")
-
-[node name="fireLight3" type="PointLight2D" parent="pointBullet" unique_id=1042069711]
-z_index = 10
-position = Vector2(8, -5)
-rotation = -0.716956
-enabled = false
-texture = SubResource("GradientTexture2D_bcco5")
-
-[node name="hurtBoxArea" type="Area2D" parent="." unique_id=1361945357]
-collision_layer = 0
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtBoxArea" unique_id=1271853179]
-shape = SubResource("CapsuleShape2D_tbgjy")
+[node name="EquipmentManager" parent="." unique_id=372465657 instance=ExtResource("16_ujl30")]
 
 [node name="audioReload" type="AudioStreamPlayer2D" parent="." unique_id=1486848322]
 rotation = -0.253073
@@ -335,5 +308,6 @@ rotation = -0.253073
 occluder = SubResource("OccluderPolygon2D_otv6e")
 
 [node name="laser" parent="." unique_id=313346317 instance=ExtResource("14_n4tu0")]
+collision_mask = 17
 
-[connection signal="area_entered" from="hurtBoxArea" to="." method="_on_hurt_box_area_area_entered"]
+[editable path="hurtBoxComponent"]

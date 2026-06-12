@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://kle4ghtpojbx"]
+[gd_scene format=3 uid="uid://kle4ghtpojbx"]
 
 [ext_resource type="Script" uid="uid://ba83lqlivsyug" path="res://scripts/grenade.gd" id="1_g4yln"]
 [ext_resource type="Texture2D" uid="uid://b344v0n66tuss" path="res://assets/asepriteMoj/grenade.png" id="2_wpcpn"]
@@ -21,6 +21,9 @@ height = 40
 fill = 1
 fill_from = Vector2(0.5, 0.454128)
 fill_to = Vector2(0.724771, 0.155963)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_t0o0f"]
+light_mode = 1
 
 [sub_resource type="Animation" id="Animation_et5tw"]
 length = 0.001
@@ -51,7 +54,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("areaGrenade/CollisionShape2D:disabled")
+tracks/2/path = NodePath("areaGrenade/colisionExplosionDamage:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -151,7 +154,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("areaGrenade/CollisionShape2D:disabled")
+tracks/2/path = NodePath("areaGrenade/colisionExplosionDamage:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -242,43 +245,44 @@ fill = 1
 fill_from = Vector2(0.5, 0.490826)
 fill_to = Vector2(0.922018, 0.0688073)
 
-[node name="grenade" type="CharacterBody2D"]
+[node name="grenade" type="CharacterBody2D" unique_id=365133731 node_paths=PackedStringArray("explosionRange")]
+z_index = 5
 script = ExtResource("1_g4yln")
+explosionRange = NodePath("areaGrenade")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=659299435]
 position = Vector2(-0.495985, -0.50374)
 shape = SubResource("RectangleShape2D_fcek7")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1140094901]
 texture = ExtResource("2_wpcpn")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=244507026]
 position = Vector2(-0.446457, -4.61338)
 color = Color(1, 0, 0, 1)
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_mnjt8")
 
-[node name="explosion" parent="." instance=ExtResource("3_lrbtl")]
+[node name="explosion" parent="." unique_id=1236464344 instance=ExtResource("3_lrbtl")]
+material = SubResource("CanvasItemMaterial_t0o0f")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_iydj1")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1383081466]
+libraries/ = SubResource("AnimationLibrary_iydj1")
 
-[node name="areaGrenade" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 0
+[node name="areaGrenade" type="Area2D" parent="." unique_id=1728588956]
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("4_f1mcy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="areaGrenade"]
+[node name="colisionExplosionDamage" type="CollisionShape2D" parent="areaGrenade" unique_id=1780754848]
 shape = SubResource("CircleShape2D_nasft")
 disabled = true
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1800989690]
 stream = ExtResource("5_v5gls")
 volume_db = 10.0
 
-[node name="PointLight2D2" type="PointLight2D" parent="."]
+[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=1708760893]
 enabled = false
 color = Color(0.968418, 0.805218, 0.0447608, 1)
 shadow_enabled = true
@@ -286,8 +290,9 @@ shadow_filter = 2
 shadow_filter_smooth = 1.0
 texture = SubResource("GradientTexture2D_h807r")
 
-[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="." unique_id=1399510557]
 stream = ExtResource("6_d66hc")
 volume_db = 5.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="area_entered" from="areaGrenade" to="." method="_on_area_grenade_area_entered"]

@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2tm2tf5f5tec"]
+[gd_scene format=3 uid="uid://b2tm2tf5f5tec"]
 
 [ext_resource type="Script" uid="uid://bys5i4nb3g14g" path="res://scripts/armor_box.gd" id="1_n2n8b"]
 [ext_resource type="Texture2D" uid="uid://bph65nmcf6y33" path="res://assets/grass wehicles other.jpg" id="2_aaddr"]
 [ext_resource type="Texture2D" uid="uid://d1k5wlw74ffn6" path="res://assets/asepriteMoj/armorBoxPng.png" id="3_xatow"]
-[ext_resource type="Shader" uid="uid://c1hsnughkfkvr" path="res://shaders/highlights.gdshader" id="3_xmm4r"]
+[ext_resource type="Shader" uid="uid://dk8ow48xnw8pq" path="res://shaders/armorBox.gdshader" id="3_xmm4r"]
 [ext_resource type="AudioStream" uid="uid://bohsihm1lb3y5" path="res://sounds/sfx/Chest Open 2.wav" id="4_e82qv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5r3w6"]
@@ -12,16 +12,10 @@ size = Vector2(26, 44)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vc1go"]
 resource_local_to_scene = true
 shader = ExtResource("3_xmm4r")
-shader_parameter/Line_Smoothness = 0.045
-shader_parameter/Line_Width = 0.09
-shader_parameter/Brightness = 10.0
-shader_parameter/Rotation_deg = 30.0
-shader_parameter/Distortion = 1.8
-shader_parameter/Speed = 0.7
-shader_parameter/Position = 0.0
-shader_parameter/Position_Min = 0.25
-shader_parameter/Position_Max = 0.5
-shader_parameter/Alpha = 1.0
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/shine_energy = 3.0000000447036
+shader_parameter/pause_duration = 3.0
+shader_parameter/shine_size = 0.1
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bn1hh"]
 cull_mode = 2
@@ -30,20 +24,20 @@ polygon = PackedVector2Array(39, -5, 67, -5, 66, 40, 39, 40)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2tees"]
 size = Vector2(58, 74)
 
-[node name="armorBox" type="StaticBody2D"]
+[node name="armorBox" type="StaticBody2D" unique_id=394000431]
 z_index = 5
 script = ExtResource("1_n2n8b")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=100965837]
 shape = SubResource("RectangleShape2D_5r3w6")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=840877035]
 clip_children = 2
 texture = ExtResource("2_aaddr")
 region_enabled = true
 region_rect = Rect2(186, 318, 27, 45)
 
-[node name="Shader" type="ColorRect" parent="Sprite2D"]
+[node name="Shader" type="ColorRect" parent="Sprite2D" unique_id=541170583]
 material = SubResource("ShaderMaterial_vc1go")
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,22 +49,22 @@ offset_bottom = -22.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1728678220]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_xatow")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=905809486]
 position = Vector2(-53, -17)
 occluder = SubResource("OccluderPolygon2D_bn1hh")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1736882763]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=783928112]
 shape = SubResource("RectangleShape2D_2tees")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1896300027]
 stream = ExtResource("4_e82qv")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

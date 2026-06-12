@@ -3,30 +3,36 @@ extends StaticBody2D
 
 @onready var explosion: GPUParticles2D = $explosion
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
-@onready var hit_box: CollisionShape2D = $Area2D2/hitBox
+
 @onready var explode:bool = false
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var hurt_box: CollisionShape2D = $Area2D/hurtBox
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var health:int = 15
 @onready var laser_target_light: PointLight2D = $laserTargetLight
 @onready var shadow: LightOccluder2D = $shadow
 
+#Components
+@onready var hurt_box_component: HurtBoxComponent = $hurtBoxComponent
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	hurt_box_component.tookDamage.connect(receiveDamage)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 	
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	health -= area.dealDamage()
+# Components func receiveDamage
+
+func receiveDamage(damage:int,hitBox:Node2D):
+	health -= damage
 	if health <= 0:
 		animation_player.play('explosion')
 		shadow.visible = false
 		
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	
 	if area is AreaLaser:
 		var tween = get_tree().create_tween().set_loops()
 		tween.tween_property(laser_target_light,'texture_scale',1,0.5)

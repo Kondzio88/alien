@@ -27,12 +27,13 @@ func _process(delta: float) -> void:
 		password_inccorect.play()
 		
 func _on_turn_on_area_body_entered(body: Node2D) -> void:
-	if body is Player && !open:
+	if body is Player && !open && !password_please_audio.playing:
 		player = body
 		Global.tipOnSignal.emit()
 		password_please_audio.play()
 		
 func _on_turn_on_area_body_exited(body: Node2D) -> void:
+	password_please_audio.playing = false
 	player = null
 	Global.tipOffSignal.emit()
 

@@ -4,7 +4,7 @@ extends Node
 var textDisplay
 
 # Dialogs signal
-signal trigger_dialog(text: String, speaker_name: String)
+signal trigger_dialog(text: String, speaker_name: String ,timeSpeak:int)
 
 # Dialogs Bool
 var soldierKillLvl1:bool = false
